@@ -1,11 +1,11 @@
 import { SplashScreen, Stack } from "expo-router";
 import { I18nextProvider } from "react-i18next";
 import { useEffect } from "react";
+import { Image, View } from "react-native";
 
 import i18n from "../i18n";
-import useLoadFonts from "@/hooks/useLoadFonts";
 import './global.css';
-import { Image, ImageBackground, View } from "react-native";
+import useLoadFonts from "@/hooks/useLoadFonts";
 import HeaderBackground from "@/components/HeaderBackground";
 
 export default function RootLayout() {
@@ -26,15 +26,13 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerBackground: () => <HeaderBackground />,
-          headerStyle: { backgroundColor: "transparent" },
         }}
       >
         <Stack.Screen
           name="index"
           options={{
-            title: '',
             headerTitle: () => (
-              <View style={{ flex: 1, alignItems: 'flex-start', left: -5 }}>
+              <View style={{ flex: 1, left: -5 }}>
                 <Image 
                   source={require('../assets/images/logo_white.png')} 
                   style={{ width: 70, height: 30 }}

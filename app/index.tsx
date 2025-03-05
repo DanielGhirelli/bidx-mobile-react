@@ -6,21 +6,14 @@ import {
     TouchableOpacity,
     ScrollView,
     useColorScheme,
-    SafeAreaView,
     ImageBackground
 } from 'react-native';
 import i18n from '../i18n';
 
 const WelcomeScreen = () => {
-    const [isDarkMode] = useState((useColorScheme() ?? 'light') === "dark");
-
-    const backgroundImage = isDarkMode
+    const backgroundImage = (useColorScheme()) === "dark"
         ? require("../assets/images/body_background_dark.jpg")
         : require("../assets/images/body_background_light.jpg");
-
-    const logoImage = isDarkMode
-        ? require("../assets/images/logo_white.png")
-        : require("../assets/images/logo_blue.png");
 
     return (
         <View className={`flex-1`}>
@@ -51,7 +44,7 @@ const WelcomeScreen = () => {
             </ImageBackground>
 
             {/* Bottom Section with White Background */}
-            <View style={{ backgroundColor: 'white', paddingVertical: 16 }}>
+            <View className="bg-background dark:bg-background-dark" style={{ paddingVertical: 16 }}>
                 <View className="flex-row justify-evenly">
                     <TouchableOpacity className="flex-1 items-center py-2">
                         <Text className="text-lg font-source-sans-semibold text-text-primary dark:text-text-primary-dark">Google</Text>
