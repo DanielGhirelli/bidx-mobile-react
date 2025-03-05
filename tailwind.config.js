@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class", // Enables dark mode via class switching
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
@@ -17,67 +16,67 @@ module.exports = {
       },
       colors: {
         primary: {
-          light: '#13144A',
+          DEFAULT: '#13144A',
           dark: "#F2F2F2",
         },
         secondary: {
-          light: "#FC6053",
+          DEFAULT: "#FC6053",
           dark: "#13144A",
         },
         error: {
-          light: "#A53428",
+          DEFAULT: "#A53428",
           dark: "#E57368",
         },
         background: {
-          light: "#FBFBFD",
+          DEFAULT: "#FBFBFD",
           dark: "#212121",
         },
         surface: {
-          light: "#FBFBFD",
+          DEFAULT: "#FBFBFD",
           dark: "#212121",
         },
-        textPrimary: {
-          light: "#13144A",
+        'text-primary': {
+          DEFAULT: "#13144A",
           dark: "#E6DFDF",
         },
-        textSecondary: {
-          light: "#5D6268",
+        'text-secondary': {
+          DEFAULT: "#5D6268",
           dark: "#D0CFCF",
         },
         button: {
-          light: "#13144A",
+          DEFAULT: "#13144A",
           dark: "#424392",
         },
         divider: {
-          light: "#E0E1EF",
+          DEFAULT: "#E0E1EF",
           dark: "#3D3D3D",
         },
-        bottomBarActive: {
-          light: "#13144A",
+        'bottom-bar-active': {
+          DEFAULT: "#13144A",
           dark: "#E6DFDF",
         },
-        bottomBarShadow: {
-          light: "#0000001A",
+        'bottom-bar-shadow': {
+          DEFAULT: "#0000001A",
           dark: "#FFFFFF1A",
         },
-        cardBackground: {
-          light: "#E7E6EE",
+        'card-background': {
+          DEFAULT: "#E7E6EE",
           dark: "#3A393E",
         },
-        cardSecondaryBackground: {
-          light: "#DEDCE9",
+        'card-secondary-background': {
+          DEFAULT: "#DEDCE9",
           dark: "#4E4B55",
         },
-        cardDisabledBackground: {
-          light: "#D3D3D3",
+        'card-disabled-background': {
+          DEFAULT: "#D3D3D3",
           dark: "#3D3D3D",
         },
-        shimmerBaseColor: {
-          light: "#CDCDCD",
+        'shimmer-base-color': {
+          DEFAULT: "#CDCDCD",
           dark: "#676767",
         },
-        circularProgress: {
-          light: "#6550AC",
+        'circular-progress': {
+          DEFAULT: "#6550AC",
           dark: "#D09C34",
         },
       },

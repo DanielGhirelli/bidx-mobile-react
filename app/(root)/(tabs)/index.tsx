@@ -12,7 +12,6 @@ export default function Index() {
       }}>
 
       <Text className="font-bold text-lg my-10 font-source-sans text-3xl">Index</Text>
-      <Link href="/welcome">Welcome</Link>
     </View>
   )
 }

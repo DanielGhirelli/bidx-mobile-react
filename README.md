@@ -32,3 +32,6 @@ Emulator or iOS Simulator, use:
 - Manually Reload in Emulator If you’re using an Android Emulator or iOS Simulator, use:
   * Android: Press `R` twice (RR).
   * iOS: Press `Cmd + R` or `R`.
+- Switch between Light/Dark theme
+  * Android: 
+  * iOS: Press `Cmd + Shift + A` and then `R`.
