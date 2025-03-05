@@ -1,0 +1,292 @@
+{
+    "locale": "en",
+    "core": {
+        "cancel": "Cancel",
+        "continue": "Continue",
+        "search": "Search",
+        "required": "Sorry, this field is required.",
+        "password": {
+            "strength": {
+                "too_short": "Too short",
+                "fair": "Fair",
+                "good": "Good",
+                "medium": "Medium",
+                "weak": "Weak"
+            },
+            "invalid": "Sorry, the provided password does not meet our required criteria!"
+        },
+        "phone": {
+            "invalid": "Sorry, the provided phone is not valid!"
+        },
+        "today": "Today",
+        "yesterday": "Yesterday"
+    },
+    "welcome": {
+        "title": "Leave your Amazon Ads to us.",
+        "sub_title_bold": "And have the time to focus on your business.",
+        "sub_title": "We have developed a web application that uses machine-learning algorithms to continuously analyze the performance of your advertisements.",
+        "signup_button": "SIGN UP NOW",
+        "signup_description": "Get BidX to optimize your advertising strategy with advanced automation tools. Learn more at bidx.io",
+        "signin_button": "Sign In"
+    },
+    "login": {
+        "forgot_password": "Forgot your password?",
+        "email_input": {
+            "label": "Email",
+            "invalid": "Sorry, this is not a valid email address.",
+            "error": "Either these credentials do not match our records or your account has not been activated yet."
+        },
+        "password_input": {
+            "label": "Password"
+        },
+        "description": {
+            "button": "Need help signing in?"
+        },
+        "google_button": "Sign in with Google"
+    },
+    "register": {
+        "step": {
+            "header": "STEP {number}",
+            "1": {
+                "title": "Enter your email address to continue",
+                "subtitle": "With a BidX account, you can seamlessly access BidX and all of our associated services with a single login.",
+                "invalid": "Sorry, this email has been taken or is invalid!"
+            },
+            "2": {
+                "title": "Create a password to continue",
+                "subtitle": "To continue, please enter your password. Ensure that your password is strong and secure.",
+                "password_min": "Use a minimum of 6 characters (case sensitive) with at least one number or special character."
+            },
+            "3": {
+                "inputs": {
+                    "company": "Company Name",
+                    "first_name": "First Name",
+                    "last_name": "Last Name",
+                    "phone": "Phone"
+                },
+                "title": "Additional information",
+                "subtitle": "We’d love to learn more about you! Please provide a few additional details so we can personalize your experience.",
+                "newsletter": "Yes! I would like to be informed about news and product updates about BidX and other services by email.",
+                "terms_1": "By clicking \"Agree & Continue\", you create your BidX account governed by the",
+                "terms_1_link": "Terms of Use",
+                "terms_2": "and acknowledge that you have read our",
+                "terms_2_link": "Privacy Rights",
+                "button": "Agree & Continue"
+            },
+            "4": {
+                "title": "Congratulations! You've successfully registered.",
+                "description": "You’ll soon receive an email to activate your account. Follow the steps to start enjoying access to all our features, exclusive content, and a smooth, enjoyable experience with us!",
+                "learn_more": "Learn more about BidX"
+            }
+        }
+    },
+    "app_layout": {
+        "top_nav_bar": {
+            "exit_user_switch": {
+                "title": "Return to main account",
+                "content": "Exiting current user means returning your app to the previously logged main user account."
+            }
+        },
+        "bottom_nav_bar": {
+            "home": "Home",
+            "dashboard": "Dashboards",
+            "management": "Management",
+            "profile": "Profile"
+        }
+    },
+    "home": {
+        "cards": {
+            "setup_alert": {
+                "title": "Welcome to BidX!",
+                "description": "To ensure you have full access to all our features, please visit our website and complete your account setup. Simply log in and follow the prompts to finish the process.",
+                "continue": "Continue to Website",
+                "not_now": "Not Now"
+            },
+            "general": {
+                "cost": {
+                    "title": "Cost - Last 30 Days",
+                    "tooltip": "Cost"
+                },
+                "impressions": {
+                    "title": "Impressions - Last 30 Days",
+                    "tooltip": "Impressions"
+                },
+                "clicks": {
+                    "title": "Clicks - Last 30 Days",
+                    "tooltip": "Clicks"
+                }
+            },
+            "acos": {
+                "acos": {
+                    "title": "ACOS [Paid] - Last 30 Days",
+                    "tooltip": "ACOS"
+                },
+                "total_acos": {
+                    "title": "Total-ACOS [Paid] - Last 30 Days",
+                    "tooltip": "Total-ACOS"
+                },
+                "cvr": {
+                    "title": "Paid Conversion Rate (CVR)",
+                    "tooltip": "CVR"
+                }
+            },
+            "sales": {
+                "paid_sales": {
+                    "title": "Paid Sales",
+                    "tooltip": "Paid Sales"
+                },
+                "total_sales": {
+                    "title": "Total Sales",
+                    "tooltip": "Total Sales"
+                },
+                "paid_orders": {
+                    "title": "Paid Orders",
+                    "tooltip": "Paid Orders"
+                }
+            }
+        }
+    },
+    "notification": {
+        "top_nav_bar": {
+            "title": "Notifications"
+        },
+        "menu_bar": {
+            "all": "All",
+            "feature": "Feature",
+            "system": "System",
+            "general": "General",
+            "action_required": "Action Required",
+            "success": "Success"
+        },
+        "no_data_display": "No more data to display."
+    },
+    "dashboard": {
+        "top_nav_bar": {
+            "title": "Dashboards"
+        },
+        "sales_funnel": {
+            "title": "Sales Funnel - Last 30 Days",
+            "impressions": "Impressions",
+            "clicks": "Clicks",
+            "paid_orders": "Orders"
+        },
+        "sales_bar": {
+            "title": "Sales Marketplace - Last 30 Days"
+        },
+        "acos_cr_bar_chart": {
+            "title": "ACOS & CVR - Day of Week",
+            "acos": "ACOS",
+            "cvr": "Conv. Rate"
+        }
+    },
+    "management": {
+        "top_nav_bar": {
+            "title": "Management"
+        },
+        "menu_bar": {
+            "adjustment": "Adjustment",
+            "products": "Products",
+            "segment": "Segment M.",
+            "schedule": "Schedule"
+        },
+        "adjustment": {
+            "filter": {
+                "date": "Date",
+                "campaign": "Campaign"
+            },
+            "total_changes": "Total changes performed: {total}",
+            "no_data_display": "No more data to display.",
+            "search_for_campaign": "Search for a campaign...",
+            "details": {
+                "title": "Detailed Log",
+                "description": "Below, you will find a comprehensive overview for {date}, including all pertinent changes and modifications."
+            }
+        }
+    },
+    "profile": {
+        "top_nav_bar": {
+            "title": "Profile"
+        },
+        "sign_out": {
+            "button": "Sign Out",
+            "dialog": {
+                "title": "Sign Out",
+                "content": "Singing out of this app means you'll also sign out of all other BidX apps on this device."
+            }
+        },
+        "account": {
+            "title": "Account",
+            "menus": {
+                "account_settings": "My account settings",
+                "billing": "Billing & Payment",
+                "user_switch": "Advertiser Switch"
+            },
+            "user_switch": {
+                "dropdown_header": "Select an advertiser",
+                "description": "Please go ahead and select the advertiser you would like to switch to:",
+                "error": "Before continuing you must select an advertiser!"
+            },
+            "settings": {
+                "description": "Manage your account details and keep your information up-to-date across the BidX Platform.",
+                "email_input": {
+                    "label": "Email"
+                },
+                "newsletter": {
+                    "title": "Newsletter",
+                    "description": "Stay connected to the latest trends and updates happening across the BidX Platform.",
+                    "toggle": "I would like to be informed about news and product updates:"
+                },
+                "localization": {
+                    "title": "Localization",
+                    "description": "Customize your BidX Platform selecting desired preferred language, currency, and much more.",
+                    "preferred_language": "Your preferred language",
+                    "preferred_currency": "Your preferred currency",
+                    "preferred_date_format": "Your preferred date format"
+                }
+            },
+            "billing": {
+                "description": "We aim to make your payment process straightforward and transparent. Find below all the necessary information regarding your account and billing.",
+                "account_status": {
+                    "title": "Account Status",
+                    "failed": "Payment failed",
+                    "canceled": "Canceled",
+                    "pending": "Payment is pending",
+                    "active": "Active"
+                },
+                "payment_method": "Payment Method:",
+                "sepa_direct_debit": "ACH Direct Debit",
+                "billing_address": "Billing Address:",
+                "history": {
+                    "title": "History",
+                    "description": "Below, you will find your last five invoices and corresponding payment receipts. You are welcome to export any of the generated invoices."
+                }
+            }
+        },
+        "admin": {
+            "title": "Admin",
+            "menus": {
+                "company_login": "Company Login"
+            },
+            "company_login": {
+                "dropdown_header": "Select a company",
+                "description": "Please go ahead and select the company you would like to switch to:",
+                "error": "Before continuing you must select a company!"
+            }
+        },
+        "feature": {
+            "title": "Feature",
+            "menus": {
+                "refresh_amazon": "Refresh my Amazon data",
+                "refresh_amazon_dialog": "Refreshing amazon data means your data will be fetched and reloaded. This routine can take sometime."
+            }
+        },
+        "help": {
+            "title": "Help",
+            "menus": {
+                "support": "Talk to support",
+                "status": "Check BidX status",
+                "home_page": "Go to Home Page"
+            }
+        }
+    }
+}

@@ -1,0 +1,292 @@
+{
+    "locale": "de",
+    "core": {
+        "cancel": "Abbrechen",
+        "continue": "Weiter",
+        "search": "Suche",
+        "required": "Entschuldigung, dieses Feld ist erforderlich.",
+        "password": {
+            "strength": {
+                "too_short": "Zu kurz",
+                "fair": "Ausreichend",
+                "good": "Gut",
+                "medium": "Mittel",
+                "weak": "Schwach"
+            },
+            "invalid": "Entschuldigung, das angegebene Passwort erfüllt nicht unsere Anforderungen!"
+        },
+        "phone": {
+            "invalid": "Entschuldigung, die angegebene Telefonnummer ist ungültig!"
+        },
+        "today": "Heute",
+        "yesterday": "Gestern"
+    },
+    "welcome": {
+        "title": "Überlasse uns deine Amazon-Werbung.",
+        "sub_title_bold": "Und nutze die Zeit, um dich auf dein Geschäft zu konzentrieren.",
+        "sub_title": "Wir haben eine Webanwendung entwickelt, die maschinelles Lernen verwendet, um kontinuierlich die Leistung deiner Anzeigen zu analysieren.",
+        "signup_button": "JETZT ANMELDEN",
+        "signup_description": "Hol dir BidX, um deine Werbestrategie mit fortschrittlichen Automatisierungstools zu optimieren. Mehr erfahren unter bidx.io",
+        "signin_button": "Einloggen"
+    },
+    "login": {
+        "forgot_password": "Passwort vergessen?",
+        "email_input": {
+            "label": "E-Mail",
+            "invalid": "Entschuldigung, diese E-Mail-Adresse ist ungültig.",
+            "error": "Entweder stimmen diese Anmeldeinformationen nicht mit unseren Aufzeichnungen überein oder dein Konto wurde noch nicht aktiviert."
+        },
+        "password_input": {
+            "label": "Passwort"
+        },
+        "description": {
+            "button": "Benötigen Sie Hilfe beim Einloggen?"
+        },
+        "google_button": "Melde dich mit Google an"
+    },
+    "register": {
+        "step": {
+            "header": "STEP {number}",
+            "1": {
+                "title": "Gib deine E-Mail-Adresse ein, um fortzufahren",
+                "subtitle": "Mit einem BidX-Konto kannst du nahtlos auf BidX und alle damit verbundenen Dienste mit einem einzigen Login zugreifen.",
+                "invalid": "Entschuldigung, diese E-Mail-Adresse ist bereits vergeben oder ungültig!"
+            },
+            "2": {
+                "title": "Erstelle ein Passwort, um fortzufahren",
+                "subtitle": "Um fortzufahren, gib bitte dein Passwort ein. Stelle sicher, dass dein Passwort stark und sicher ist.",
+                "password_min": "Verwende mindestens 6 Zeichen (groß- und kleingeschrieben) mit mindestens einer Zahl oder Sonderzeichen."
+            },
+            "3": {
+                "inputs": {
+                    "company": "Firmenname",
+                    "first_name": "Vorname",
+                    "last_name": "Nachname",
+                    "phone": "Telefon"
+                },
+                "title": "Zusätzliche Informationen",
+                "subtitle": "Wir würden gerne mehr über Sie erfahren! Bitte geben Sie ein paar zusätzliche Details an, damit wir Ihre Erfahrung personalisieren können.",
+                "newsletter": "Ja! Ich möchte per E-Mail über Neuigkeiten und Produktaktualisierungen von BidX und anderen Diensten informiert werden.",
+                "terms_1": "Mit dem Klicken auf \"Zustimmen & Weiter\" erstellen Sie Ihr BidX-Konto, das den",
+                "terms_1_link": "Nutzungsbedingungen",
+                "terms_2": "unterliegt und bestätigen, dass Sie unsere",
+                "terms_2_link": "Datenschutzrechte",
+                "button": "Zustimmen & Weiter"
+            },
+            "4": {
+                "title": "Herzlichen Glückwunsch! Du hast dich erfolgreich registriert.",
+                "description": "Sie erhalten in Kürze eine E-Mail, um Ihr Konto zu aktivieren. Befolgen Sie die Schritte, um Zugriff auf alle unsere Funktionen, exklusiven Inhalte und eine reibungslose, angenehme Erfahrung mit uns zu genießen!",
+                "learn_more": "Erfahre mehr über BidX"
+            }
+        }
+    },
+    "app_layout": {
+        "top_nav_bar": {
+            "exit_user_switch": {
+                "title": "Zum Hauptkonto zurückkehren",
+                "content": "Das Verlassen des aktuellen Benutzers bedeutet, dass deine App auf das zuvor angemeldete Hauptbenutzerkonto zurückgesetzt wird."
+            }
+        },
+        "bottom_nav_bar": {
+            "home": "Startseite",
+            "dashboard": "Dashboards",
+            "management": "Verwaltung",
+            "profile": "Profil"
+        }
+    },
+    "home": {
+        "cards": {
+            "setup_alert": {
+                "title": "Willkommen bei BidX!",
+                "description": "Um sicherzustellen, dass du vollen Zugriff auf alle unsere Funktionen hast, besuche bitte unsere Website und schließe die Einrichtung deines Kontos ab. Melde dich einfach an und folge den Anweisungen, um den Prozess abzuschließen.",
+                "continue": "Weiter zur Website",
+                "not_now": "Nicht Jetzt"
+            },
+            "general": {
+                "cost": {
+                    "title": "Kosten - Letzte 30 Tage",
+                    "tooltip": "Kosten"
+                },
+                "impressions": {
+                    "title": "Impressionen - Letzte 30 Tage",
+                    "tooltip": "Impressionen"
+                },
+                "clicks": {
+                    "title": "Klicks - Letzte 30 Tage",
+                    "tooltip": "Klicks"
+                }
+            },
+            "acos": {
+                "acos": {
+                    "title": "ACOS [Bezahlt] - Letzte 30 Tage",
+                    "tooltip": "ACOS"
+                },
+                "total_acos": {
+                    "title": "Gesamt-ACOS [Bezahlt] - Letzte 30 Tage",
+                    "tooltip": "Gesamt-ACOS"
+                },
+                "cvr": {
+                    "title": "Bezahlt Conversion Rate (CVR)",
+                    "tooltip": "CVR"
+                }
+            },
+            "sales": {
+                "paid_sales": {
+                    "title": "Bezahlt Verkäufe",
+                    "tooltip": "Bezahlt Verkäufe"
+                },
+                "total_sales": {
+                    "title": "Gesamtverkäufe",
+                    "tooltip": "Gesamtverkäufe"
+                },
+                "paid_orders": {
+                    "title": "Bezahlt Bestellungen",
+                    "tooltip": "Bezahlt Bestellungen"
+                }
+            }
+        }
+    },
+    "notification": {
+        "top_nav_bar": {
+            "title": "Benachrichtigungen"
+        },
+        "menu_bar": {
+            "all": "Alle",
+            "feature": "Besonderheit",
+            "system": "System",
+            "general": "General",
+            "action_required": "Aktion Erforderlich",
+            "success": "Erfolg"
+        },
+        "no_data_display": "Keine weiteren Daten anzuzeigen."
+    },
+    "dashboard": {
+        "top_nav_bar": {
+            "title": "Dashboards"
+        },
+        "sales_funnel": {
+            "title": "Verkaufstrichter - Letzte 30 Tage",
+            "impressions": "Impressionen",
+            "clicks": "Klicks",
+            "paid_orders": "Bestellungen"
+        },
+        "sales_bar": {
+            "title": "Verkaufsmarkt - Letzte 30 Tage"
+        },
+        "acos_cr_bar_chart": {
+            "title": "ACOS & CVR – Wochentag",
+            "acos": "ACOS",
+            "cvr": "Konv. Rate"
+        }
+    },
+    "management": {
+        "top_nav_bar": {
+            "title": "Verwaltung"
+        },
+        "menu_bar": {
+            "adjustment": "Adjustment",
+            "products": "Produkte",
+            "segment": "Segment M.",
+            "schedule": "Schedule"
+        },
+        "adjustment": {
+            "filter": {
+                "date": "Datum",
+                "campaign": "Kampagne"
+            },
+            "total_changes": "Durchgeführte Änderungen: {total}",
+            "no_data_display": "Keine weiteren Daten anzuzeigen.",
+            "search_for_campaign": "Suche nach einer Kampagne...",
+            "details": {
+                "title": "Detailliertes Protokoll",
+                "description": "Unten findest du eine umfassende Übersicht für {date}, einschließlich aller relevanten Änderungen und Modifikationen."
+            }
+        }
+    },
+    "profile": {
+        "top_nav_bar": {
+            "title": "Profil"
+        },
+        "sign_out": {
+            "button": "Abmelden",
+            "dialog": {
+                "title": "Abmelden",
+                "content": "Das Abmelden von dieser App bedeutet, dass du dich auch von allen anderen BidX-Apps auf diesem Gerät abmeldest."
+            }
+        },
+        "account": {
+            "title": "Konto",
+            "menus": {
+                "account_settings": "Meine Kontoeinstellungen",
+                "billing": "Abrechnung & Zahlung",
+                "user_switch": "Advertiser wechseln"
+            },
+            "user_switch": {
+                "dropdown_header": "Wähle einen Advertiser",
+                "description": "Bitte wähle den Advertiser aus, zu dem du wechseln möchtest:",
+                "error": "Bevor du fortfahren kannst, musst du einen Advertiser auswählen!"
+            },
+            "settings": {
+                "description": "Verwalte deine Kontodaten und halte deine Informationen auf der BidX-Plattform auf dem neuesten Stand.",
+                "email_input": {
+                    "label": "E-Mail"
+                },
+                "newsletter": {
+                    "title": "Newsletter",
+                    "description": "Bleibe über die neuesten Trends und Updates auf der BidX-Plattform informiert.",
+                    "toggle": "Ich möchte über Neuigkeiten und Produktaktualisierungen informiert werden:"
+                },
+                "localization": {
+                    "title": "Lokalisierung",
+                    "description": "Passe deine BidX-Plattform an, indem du die gewünschte Sprache, Währung und vieles mehr auswählst.",
+                    "preferred_language": "Deine präferierte Sprache",
+                    "preferred_currency": "Deine präferierte Währung",
+                    "preferred_date_format": "Dein präferiertes Datumsformat"
+                }
+            },
+            "billing": {
+                "description": "Wir möchten deinen Zahlungsprozess einfach und transparent gestalten. Unten findest du alle notwendigen Informationen zu deinem Konto und zur Abrechnung.",
+                "account_status": {
+                    "title": "Kontostatus",
+                    "failed": "Zahlung fehlgeschlagen",
+                    "canceled": "Abgebrochen",
+                    "pending": "Zahlung ausstehend",
+                    "active": "Aktiv"
+                },
+                "payment_method": "Zahlungsmethode:",
+                "sepa_direct_debit": "SEPA-Lastschrift",
+                "billing_address": "Rechnungsadresse:",
+                "history": {
+                    "title": "Verlauf",
+                    "description": "Unten findest du deine letzten fünf Rechnungen und entsprechenden Zahlungsbelege. Du kannst jede der generierten Rechnungen exportieren."
+                }
+            }
+        },
+        "admin": {
+            "title": "Admin",
+            "menus": {
+                "company_login": "Company Login"
+            },
+            "company_login": {
+                "dropdown_header": "Wähle ein Company",
+                "description": "Bitte wähle das Company aus, zu dem du wechseln möchtest:",
+                "error": "Bevor du fortfahren kannst, musst du ein Company auswählen!"
+            }
+        },
+        "feature": {
+            "title": "Funktion",
+            "menus": {
+                "refresh_amazon": "Meine Amazon-Daten aktualisieren",
+                "refresh_amazon_dialog": "Das Aktualisieren der Amazon-Daten bedeutet, dass deine Daten abgerufen und neu geladen werden. Dieser Vorgang kann einige Zeit in Anspruch nehmen."
+            }
+        },
+        "help": {
+            "title": "Hilfe",
+            "menus": {
+                "support": "Support kontaktieren",
+                "status": "BidX-Status überprüfen",
+                "home_page": "Zur Startseite"
+            }
+        }
+    }
+}
