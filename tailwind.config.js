@@ -51,12 +51,24 @@ module.exports = {
           DEFAULT: "#E0E1EF",
           dark: "#3D3D3D",
         },
+        'button-gradient': {
+          DEFAULT: ['#13144a', '#FD6053', '#F9A42E'],
+          dark: ['#424392', '#8A5D89', '#8A7188'],
+        },
+        'button-secondary-gradient': {
+          DEFAULT: ['#8A7188', '#765176', '#323367'],
+          dark: ['#C87925', '#9B4844', '#32325A'],
+        },
         'bottom-bar-active': {
           DEFAULT: "#13144A",
           dark: "#E6DFDF",
         },
         'bottom-bar-shadow': {
-          DEFAULT: "#0000001A",
+          DEFAULT: "#1F000000",
+          dark: "#FFFFFF1A",
+        },
+        'bottom-bar-secondary-shadow': {
+          DEFAULT: "#424392",
           dark: "#FFFFFF1A",
         },
         'card-background': {
