@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class", // Enable class-based dark mode
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
@@ -15,81 +16,32 @@ module.exports = {
         'source-sans-semibold': ["SourceSans3-SemiBold", "sans-serif"],
       },
       colors: {
-        primary: {
-          DEFAULT: '#13144A',
-          dark: "#F2F2F2",
-        },
-        secondary: {
-          DEFAULT: "#FC6053",
-          dark: "#13144A",
-        },
-        error: {
-          DEFAULT: "#A53428",
-          dark: "#E57368",
-        },
-        background: {
-          DEFAULT: "#FBFBFD",
-          dark: "#212121",
-        },
-        surface: {
-          DEFAULT: "#FBFBFD",
-          dark: "#212121",
-        },
-        'text-primary': {
-          DEFAULT: "#13144A",
-          dark: "#E6DFDF",
-        },
-        'text-secondary': {
-          DEFAULT: "#5D6268",
-          dark: "#D0CFCF",
-        },
-        button: {
-          DEFAULT: "#13144A",
-          dark: "#424392",
-        },
-        divider: {
-          DEFAULT: "#E0E1EF",
-          dark: "#3D3D3D",
-        },
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        error: 'var(--color-error)',
+        background: 'var(--color-background)',
+        surface: 'var(--color-surface)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        button: 'var(--button-color)',
+        divider: 'var(--divider-color)',
+        'bottom-bar-active': 'var(--bottom-bar-active)',
+        'bottom-bar-shadow': 'var(--bottom-bar-shadow)',
+        'bottom-bar-secondary-shadow': 'var(--bottom-bar-secondary-shadow)',
+        'card-background': 'var(--card-background)',
+        'card-secondary-background': 'var(--card-secondary-background)',
+        'card-disabled-background': 'var(--card-disabled-background)',
+        'shimmer-base-color': 'var(--shimmer-base-color)',
+        'circular-progress': 'var(--circular-progress)',
         'button-gradient': {
-          DEFAULT: ['#13144a', '#FD6053', '#F9A42E'],
-          dark: ['#424392', '#8A5D89', '#8A7188'],
+          '1': 'var(--button-gradient-1)',
+          '2': 'var(--button-gradient-2)',
+          '3': 'var(--button-gradient-3)',
         },
         'button-secondary-gradient': {
-          DEFAULT: ['#8A7188', '#765176', '#323367'],
-          dark: ['#C87925', '#9B4844', '#32325A'],
-        },
-        'bottom-bar-active': {
-          DEFAULT: "#13144A",
-          dark: "#E6DFDF",
-        },
-        'bottom-bar-shadow': {
-          DEFAULT: "#1F000000",
-          dark: "#FFFFFF1A",
-        },
-        'bottom-bar-secondary-shadow': {
-          DEFAULT: "#424392",
-          dark: "#FFFFFF1A",
-        },
-        'card-background': {
-          DEFAULT: "#E7E6EE",
-          dark: "#3A393E",
-        },
-        'card-secondary-background': {
-          DEFAULT: "#DEDCE9",
-          dark: "#4E4B55",
-        },
-        'card-disabled-background': {
-          DEFAULT: "#D3D3D3",
-          dark: "#3D3D3D",
-        },
-        'shimmer-base-color': {
-          DEFAULT: "#CDCDCD",
-          dark: "#676767",
-        },
-        'circular-progress': {
-          DEFAULT: "#6550AC",
-          dark: "#D09C34",
+          1: 'var(--button-secondary-gradient-1)',
+          2: 'var(--button-secondary-gradient-2)',
+          3: 'var(--button-secondary-gradient-3)',
         },
       },
     },
