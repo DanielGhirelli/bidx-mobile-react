@@ -70,8 +70,15 @@ const WelcomeScreen = () => {
 
       {/* Bottom Section with White Background */}
       <View
-        className="bg-background border-t border-bottom-bar-shadow shadow-lg"
-        style={{ paddingVertical: 16 }}
+        className="bg-background"
+        style={{
+          paddingVertical: 16,
+          shadowColor: fetchThemeKey("primary"),
+          shadowOpacity: 0.4,
+          shadowRadius: 4,
+          shadowOffset: { width: 0, height: 1 }, 
+          elevation: 1,
+        }}
       >
         <View className="flex-row justify-evenly mb-5">
           <TouchableOpacity className="ml-7 flex-1 flex-row items-center justify-center py-3 mx-2 rounded-full bg-bottom-bar-secondary-shadow">
