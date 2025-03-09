@@ -20,7 +20,6 @@ module.exports = {
         error: "var(--color-error)",
         background: "var(--color-background)",
         surface: "var(--color-surface)",
-        
         link: "var(--color-link)",
         button: "var(--color-button)",
         divider: "var(--color-divider)",
