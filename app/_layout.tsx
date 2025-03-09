@@ -7,6 +7,7 @@ import i18n from "../i18n";
 import "./global.css";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import HeaderBackground from "@/components/HeaderBackground";
+import { ThemeProvider } from "@/providers/ThemeProviders";
 
 export default function RootLayout() {
   const fontsLoaded = useLoadFonts();
@@ -25,10 +26,7 @@ export default function RootLayout() {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <View
-        key={currentScheme}
-        className={`flex-1 ${colorScheme === "dark" ? "dark" : "light"}`}
-      >
+      <ThemeProvider>
         <Stack
           screenOptions={{
             headerBackground: () => <HeaderBackground />,
@@ -49,7 +47,7 @@ export default function RootLayout() {
             }}
           />
         </Stack>
-      </View>
+      </ThemeProvider>
     </I18nextProvider>
   );
 }

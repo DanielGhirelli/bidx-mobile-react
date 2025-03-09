@@ -5,24 +5,17 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  useColorScheme,
   ImageBackground,
 } from "react-native";
 import i18n from "../i18n";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { getTailwindColor } from "@/utils/tailwindConfig";
+import { fetchThemeKey } from "../themes/bidx";
 
 const WelcomeScreen = () => {
-  const colorScheme = useColorScheme();
-  const backgroundImage =
-    colorScheme === "dark"
-      ? require("../assets/images/body_background_dark.jpg")
-      : require("../assets/images/body_background_light.jpg");
-
   return (
     <View className={`flex-1`}>
-      <ImageBackground source={backgroundImage} className={`flex-1`}>
+      <ImageBackground source={fetchThemeKey("bodyBackground")} className={`flex-1`}>
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -51,9 +44,9 @@ const WelcomeScreen = () => {
           >
             <LinearGradient
               colors={[
-                getTailwindColor("button-gradient", "1"),
-                getTailwindColor("button-gradient", "2"),
-                getTailwindColor("button-gradient", "3"),
+                fetchThemeKey("buttonGradient1"),
+                fetchThemeKey("buttonGradient2"),
+                fetchThemeKey("buttonGradient3"),
               ]}
               locations={[0.4, 0.9, 1]}
               start={{ x: 0, y: 0 }}
@@ -82,7 +75,9 @@ const WelcomeScreen = () => {
             <Text className="text-lg font-semibold text-text-primary primary-dark mr-2">
               Google
             </Text>
-            <Ionicons name="logo-google" size={22} />
+            <Ionicons name="logo-google" size={22} color={
+              fetchThemeKey("textPrimary")
+            } />
           </TouchableOpacity>
 
           <TouchableOpacity className="mr-7 flex-1 items-center justify-center py-3 mx-2 rounded-full bg-bottom-bar-secondary-shadow">
