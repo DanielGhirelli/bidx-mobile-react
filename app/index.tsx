@@ -15,7 +15,10 @@ import { fetchThemeKey } from "../themes/bidx";
 const WelcomeScreen = () => {
   return (
     <View className={`flex-1`}>
-      <ImageBackground source={fetchThemeKey("bodyBackground")} className={`flex-1`}>
+      <ImageBackground
+        source={fetchThemeKey("bodyBackground")}
+        className={`flex-1`}
+      >
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -75,9 +78,11 @@ const WelcomeScreen = () => {
             <Text className="text-lg font-semibold text-text-primary primary-dark mr-2">
               Google
             </Text>
-            <Ionicons name="logo-google" size={22} color={
-              fetchThemeKey("textPrimary")
-            } />
+            <Ionicons
+              name="logo-google"
+              size={22}
+              color={fetchThemeKey("textPrimary")}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity className="mr-7 flex-1 items-center justify-center py-3 mx-2 rounded-full bg-bottom-bar-secondary-shadow">

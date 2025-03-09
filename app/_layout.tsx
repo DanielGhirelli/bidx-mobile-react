@@ -1,7 +1,7 @@
 import { SplashScreen, Stack } from "expo-router";
 import { I18nextProvider } from "react-i18next";
-import { useEffect, useState } from "react";
-import { Image, View, useColorScheme } from "react-native";
+import { useEffect } from "react";
+import { Image, View } from "react-native";
 
 import i18n from "../i18n";
 import "./global.css";
@@ -11,8 +11,6 @@ import { ThemeProvider } from "@/providers/ThemeProviders";
 
 export default function RootLayout() {
   const fontsLoaded = useLoadFonts();
-  const colorScheme = useColorScheme();
-  const [currentScheme] = useState(colorScheme);
 
   useEffect(() => {
     if (fontsLoaded) {

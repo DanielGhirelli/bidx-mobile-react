@@ -34,4 +34,4 @@ Emulator or iOS Simulator, use:
   * iOS: Press `Cmd + R` or `R`.
 - Switch between Light/Dark theme
   * Android: 
-  * iOS: Press `Cmd + Shift + A` and then `R`.
+  * iOS: Press `Cmd + Shift + A`.
