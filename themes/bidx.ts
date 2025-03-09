@@ -120,7 +120,7 @@ export const themes = {
   }),
 };
 
-// fetchThemeKey: essential for component accessing this theme colors/images
+// fetchThemeKey: essential for component accessing theme colors/images
 export const fetchThemeKey = (key: keyof typeof light): any => {
   const { colorScheme } = useColorScheme();
   const theme = colorScheme === "dark" ? dark : light;
