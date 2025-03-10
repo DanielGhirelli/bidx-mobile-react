@@ -25,13 +25,16 @@ This is the Mobile Application for BidX.
    3. Proceed by download `Expo` App in your phone and Scan the QR Code.
 
 ## Must Know
+- Launch iOS or Android Device
+  * On VS Code press `Cmd + Shift + P` and type `Launch ...`
 - Open Expo Management Popup
 Emulator or iOS Simulator, use:
   * On Android: Shake your device or press `Ctrl + M` (Windows/Linux) or `Cmd + M` (Mac).
   * On iOS: Shake your device or press `Cmd + D` (Mac).
+  * On Terminal: Press `M`.
 - Manually Reload in Emulator If you’re using an Android Emulator or iOS Simulator, use:
   * Android: Press `R` twice (RR).
   * iOS: Press `Cmd + R` or `R`.
 - Switch between Light/Dark theme
-  * Android: 
+  * Android: `Cmd + ,`.
   * iOS: Press `Cmd + Shift + A`.

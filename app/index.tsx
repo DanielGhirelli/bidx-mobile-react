@@ -10,9 +10,10 @@ import {
 import i18n from "../i18n";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { fetchThemeKey } from "../themes/bidx";
+import { fetchThemeKey } from "@/themes/bidx";
+import { Link } from "expo-router";
 
-const WelcomeScreen = () => {
+export default function IndexScreen() {
   return (
     <View className={`flex-1`}>
       <ImageBackground
@@ -76,7 +77,7 @@ const WelcomeScreen = () => {
           shadowColor: fetchThemeKey("primary"),
           shadowOpacity: 0.4,
           shadowRadius: 4,
-          shadowOffset: { width: 0, height: 1 }, 
+          shadowOffset: { width: 0, height: 1 },
           elevation: 1,
         }}
       >
@@ -92,15 +93,15 @@ const WelcomeScreen = () => {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity className="mr-7 flex-1 items-center justify-center py-3 mx-2 rounded-full bg-bottom-bar-secondary-shadow">
-            <Text className="text-lg font-semibold text-text-primary">
-              Sign In
-            </Text>
-          </TouchableOpacity>
+          <Link href="/sign_in" asChild>
+            <TouchableOpacity className="mr-7 flex-1 items-center justify-center py-3 mx-2 rounded-full bg-bottom-bar-secondary-shadow">
+              <Text className="text-lg font-semibold text-text-primary">
+                Sign In
+              </Text>
+            </TouchableOpacity>
+          </Link>
         </View>
       </View>
     </View>
   );
-};
-
-export default WelcomeScreen;
+}
