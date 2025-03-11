@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { fetchThemeKey } from "@/themes/bidx";
 import { Link } from "expo-router";
 
-export default function IndexScreen() {
+export default function WelcomeScreen() {
   return (
     <View className={`flex-1`}>
       <ImageBackground

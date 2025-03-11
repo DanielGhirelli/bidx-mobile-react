@@ -9,6 +9,7 @@ import useLoadFonts from "@/hooks/useLoadFonts";
 import HeaderBackground from "@/components/HeaderBackground";
 import { ThemeProvider } from "@/providers/ThemeProviders";
 import { Ionicons } from "@expo/vector-icons";
+import HeaderLeft from "@/components/HeaderLeft";
 
 export default function RootLayout() {
   const fontsLoaded = useLoadFonts();
@@ -28,15 +29,8 @@ export default function RootLayout() {
       <ThemeProvider>
         <Stack
           screenOptions={{
-            headerLeft: () => {
-              const router = useRouter();
-              return (
-                <TouchableOpacity onPress={() => router.back()}>
-                  <Ionicons name="chevron-back" size={24} color="white" />
-                </TouchableOpacity>
-              );
-            },
-            contentStyle: { backgroundColor: 'transparent' },
+            headerLeft: () => <HeaderLeft />,
+            contentStyle: { backgroundColor: "transparent" },
             headerBackground: () => <HeaderBackground />,
           }}
         >
@@ -61,7 +55,11 @@ export default function RootLayout() {
             options={{
               headerRight: () => {
                 return (
-                  <TouchableOpacity onPress={() => Linking.openURL("https://go.bidx.io/knowledge")}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      Linking.openURL("https://go.bidx.io/knowledge")
+                    }
+                  >
                     <Ionicons name="help-circle" size={27} color="white" />
                   </TouchableOpacity>
                 );
@@ -75,6 +73,12 @@ export default function RootLayout() {
                   />
                 </View>
               ),
+            }}
+          />
+          <Stack.Screen
+            name="(tabs)"
+            options={{
+              headerShown: false,
             }}
           />
         </Stack>
