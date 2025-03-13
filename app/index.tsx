@@ -33,13 +33,13 @@ export default function WelcomeScreen() {
             className="w-64 h-64 object-contain"
           />
 
-          <Text className="text-text-primary text-2xl font-source-sans-bold text-center mt-5">
+          <Text className="font-source-sans-bold text-text-primary text-2xl text-center mt-5">
             {i18n.t("welcome.title")}
           </Text>
-          <Text className="text-text-secondary text-md font-source-sans-bold text-center mt-2">
+          <Text className="font-source-sans-bold text-text-secondary text-md text-center mt-2">
             {i18n.t("welcome.sub_title_bold")}
           </Text>
-          <Text className="text-text-secondary text-sm text-center mt-1 mb-20">
+          <Text className="font-source-sans text-text-secondary text-sm text-center mt-1 mb-20">
             {i18n.t("welcome.sub_title")}
           </Text>
 
@@ -57,13 +57,13 @@ export default function WelcomeScreen() {
               end={{ x: 1, y: 0 }}
               style={{ width: "100%", padding: 14, alignItems: "center" }}
             >
-              <Text style={{ fontSize: 18, fontWeight: "400", color: "white" }}>
+              <Text className="font-source-sans" style={{ fontSize: 20, fontWeight: "500", color: "white" }}>
                 {i18n.t("welcome.signup_button")}
               </Text>
             </LinearGradient>
           </TouchableOpacity>
 
-          <Text className="text-text-secondary text-sm text-center mt-3">
+          <Text className="font-source-sans text-text-secondary text-sm text-center mt-3">
             {i18n.t("welcome.signup_description")}
           </Text>
         </ScrollView>
@@ -83,7 +83,7 @@ export default function WelcomeScreen() {
       >
         <View className="flex-row justify-evenly mb-5">
           <TouchableOpacity className="ml-7 flex-1 flex-row items-center justify-center py-3 mx-2 rounded-full bg-bottom-bar-secondary-shadow">
-            <Text className="text-lg font-semibold text-text-primary primary-dark mr-2">
+            <Text className="font-source-sans-bold text-xl text-text-primary primary-dark mr-2">
               Google
             </Text>
             <Ionicons
@@ -95,7 +95,7 @@ export default function WelcomeScreen() {
 
           <Link href="/sign_in" asChild>
             <TouchableOpacity className="mr-7 flex-1 items-center justify-center py-3 mx-2 rounded-full bg-bottom-bar-secondary-shadow">
-              <Text className="text-lg font-semibold text-text-primary">
+              <Text className="font-source-sans-bold text-xl text-text-primary">
                 Sign In
               </Text>
             </TouchableOpacity>

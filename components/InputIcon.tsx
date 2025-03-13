@@ -67,6 +67,7 @@ export default function InputIcon({
           </TouchableOpacity>
         )}
       </View>
+
       {/* Display Validation Error */}
       {errorMessage ? (
         <Text className="text-error text-md mt-2 ml-2 mb-3 font-source-sans">

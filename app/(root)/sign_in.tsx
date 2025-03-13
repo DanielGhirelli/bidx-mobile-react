@@ -4,7 +4,7 @@ import { fetchThemeKey } from "../../themes/bidx";
 import { LinearGradient } from "expo-linear-gradient";
 
 import InputIcon from "@/components/InputIcon";
-import { useSignInController } from "@/controllers/(root)/SignInController";
+import { useSignInController } from "@/controllers/auth/SignInController";
 import i18n from "../../config/i18n";
 
 export default function SignInScreen() {
@@ -66,8 +66,8 @@ export default function SignInScreen() {
             end={{ x: 1, y: 0 }}
             style={{ width: "100%", padding: 14, alignItems: "center" }}
           >
-            <Text style={{ fontSize: 18, fontWeight: "400", color: "white" }}>
-              {loading ? i18n.t("loading") : i18n.t("welcome.signup_button")}
+            <Text className="font-source-sans" style={{ fontSize: 20, fontWeight: "500", color: "white" }}>
+              {loading ? i18n.t("loading") : i18n.t("core.continue")}
             </Text>
           </LinearGradient>
         </TouchableOpacity>
