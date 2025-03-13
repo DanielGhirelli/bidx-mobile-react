@@ -7,7 +7,7 @@ import {
   ScrollView,
   ImageBackground,
 } from "react-native";
-import i18n from "../i18n";
+import i18n from "../config/i18n";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { fetchThemeKey } from "@/themes/bidx";
@@ -36,10 +36,10 @@ export default function WelcomeScreen() {
           <Text className="text-text-primary text-2xl font-source-sans-bold text-center mt-5">
             {i18n.t("welcome.title")}
           </Text>
-          <Text className="text-text-secondary text-lg font-source-sans-semibold text-center mt-2">
+          <Text className="text-text-secondary text-md font-source-sans-bold text-center mt-2">
             {i18n.t("welcome.sub_title_bold")}
           </Text>
-          <Text className="text-text-secondary text-base text-center mt-1 mb-20">
+          <Text className="text-text-secondary text-sm text-center mt-1 mb-20">
             {i18n.t("welcome.sub_title")}
           </Text>
 

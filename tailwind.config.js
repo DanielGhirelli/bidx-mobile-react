@@ -34,6 +34,7 @@ module.exports = {
         "bottom-bar-secondary-shadow": "var(--color-bottom-bar-secondary-shadow)",
         "text-primary": "var(--color-text-primary)",
         "text-secondary": "var(--color-text-secondary)",
+        "text-placeholder": "var(--color-text-placeholder)",
         "card-background": "var(--color-card-background)",
         "card-secondary-background": "var(--color-card-secondary-background)",
         "card-disabled-background": "var(--color-card-disabled-background)",
