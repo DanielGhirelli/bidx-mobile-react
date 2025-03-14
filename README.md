@@ -24,6 +24,11 @@ This is the Mobile Application for BidX.
    2. Type `a` for Android
    3. Proceed by download `Expo` App in your phone and Scan the QR Code.
 
+## Deploying with Expo
+1. You must have installed `eas-cli`:
+   1. Execute `npm install -g eas-cli`
+   2. Log in to EAS with: `eas login` (Credentials on 1Password)
+
 ## Must Know
 - Launch iOS or Android Device
   * On VS Code press `Cmd + Shift + P` and type `Launch ...`
