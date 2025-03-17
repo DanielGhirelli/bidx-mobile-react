@@ -43,7 +43,7 @@ export default function InputIcon({
 
         {/* Input Field */}
         <TextInput
-          className={`flex-1 font-source-sans text-xl text-text-secondary`}
+          className={`flex-1 font-source-sans text-xl text-text-primary`}
           autoCapitalize="none"
           placeholder={placeholder}
           placeholderTextColor={fetchThemeKey("textPlaceholder")}

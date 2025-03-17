@@ -64,7 +64,7 @@ export default function SignInScreen() {
           }
           style={{ alignSelf: "flex-start" }}
         >
-          <Text className="font-source-sans text-text-secondary text-md mb-14">
+          <Text className="font-source-sans text-text-primary text-md mb-14">
             {i18n.t("login.forgot_password")}
           </Text>
         </TouchableOpacity>

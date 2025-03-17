@@ -27,7 +27,7 @@ const light = {
   cardSecondaryBackground: "rgba(222, 220, 233, 0.67)",
   cardDisabledBackground: "rgba(189, 189, 189, 1)",
   shimmerBase: "rgba(205, 205, 205, 1)",
-  circularProgress: "rgba(101, 80, 172, 1)",
+  circularProgress: "rgba(251, 251, 253, 1)",
 
   // Images
   bodyBackground: require("../assets/images/body_background_light.jpg"),
