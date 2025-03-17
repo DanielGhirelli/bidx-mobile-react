@@ -64,7 +64,7 @@ export default function SignInScreen() {
           }
           style={{ alignSelf: "flex-start" }}
         >
-          <Text className="font-source-sans text-text-secondary text-md mb-20">
+          <Text className="font-source-sans text-text-secondary text-md mb-14">
             {i18n.t("login.forgot_password")}
           </Text>
         </TouchableOpacity>
@@ -93,11 +93,11 @@ export default function SignInScreen() {
         </TouchableOpacity>
 
         <View className="flex flex-row items-center justify-center mt-6 mb-6">
-          <View className="flex-1 h-[0.4px] bg-gray-300" />
+          <View className="flex-1 h-[0.4px] bg-gray-400" />
           <Text className="mx-2 text-lg font-source-sans-bold text-text-primary">
             OR
           </Text>
-          <View className="flex-1 h-[0.4px] bg-gray-300" />
+          <View className="flex-1 h-[0.4px] bg-gray-400" />
         </View>
 
         <TouchableOpacity
@@ -132,9 +132,17 @@ export default function SignInScreen() {
               className="mr-2"
               name="logo-google"
               size={22}
-              color={fetchThemeKey("textPrimary")}
+              color="white"
             />
           </LinearGradient>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => Linking.openURL("https://go.bidx.io/knowledge")}
+        >
+          <Text className="font-source-sans-bold text-link text-md mt-9">
+            {i18n.t("login.description.button")}
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     </View>

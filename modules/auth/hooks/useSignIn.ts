@@ -57,7 +57,7 @@ export function useSignIn(): UseSignIn {
         return;
       }
       
-      router.push("/(tabs)");
+      router.replace("/(tabs)");
     } catch (error) {
       setEmailError(i18n.t("An error occurred") + error);
     } finally {
