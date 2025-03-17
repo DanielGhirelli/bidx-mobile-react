@@ -1,8 +1,8 @@
-import AuthenticatedHttpClient from '../../../services/AuthenticatedHttpClient';
+import ApiClient from '../../../services/apiClient';
 
 class OAuthService {
   async getOAuthToken(body: Record<string, string>): Promise<Response> {
-    return AuthenticatedHttpClient.getOAuthToken(body);
+    return ApiClient.getOAuthToken(body);
   }
 }
 

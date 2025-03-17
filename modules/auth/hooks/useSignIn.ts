@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { router } from "expo-router";
-import i18n from "../config/i18n";  // Adjust path based on your project structure
+import i18n from "../../../config/i18n"; 
+import auth from "../auth";
 
 interface UseSignIn {
   email: string;
@@ -46,9 +47,16 @@ export function useSignIn(): UseSignIn {
 
     if (emailValidation || passwordValidation) return;
 
-    setLoading(true);
-
     try {
+      setLoading(true);
+
+      const isValid = await auth.validateCredentials({ email, password });
+
+      if (!isValid) {
+        setEmailError(i18n.t("login.email_input.error"));
+        return;
+      }
+      
       router.push("/(tabs)");
     } catch (error) {
       setEmailError(i18n.t("An error occurred") + error);

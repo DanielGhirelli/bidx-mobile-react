@@ -6,7 +6,7 @@ import {
   TextInputProps,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { fetchThemeKey } from "../themes/bidx";
+import { fetchThemeKey } from "../themes/base";
 
 export default function InputIcon({
   icon,

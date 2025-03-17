@@ -1,4 +1,3 @@
-// components/HeaderBackground.tsx
 import { ImageBackground } from "react-native";
 
 export default function HeaderBackground() {

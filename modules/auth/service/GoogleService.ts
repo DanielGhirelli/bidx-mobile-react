@@ -1,9 +1,9 @@
 import { ApiUrls } from '../../../constants/apiUrls';
-import AuthenticatedHttpClient from '../../../services/AuthenticatedHttpClient';
+import ApiClient from '../../../services/apiClient';
 
 class GoogleService {
   async authGoogleSignIn(body: Record<string, any>): Promise<Response> {
-    return AuthenticatedHttpClient.post(ApiUrls.AUTH_GOOGLE, body);
+    return ApiClient.post(ApiUrls.AUTH_GOOGLE, body);
   }
 }
 

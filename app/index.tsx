@@ -10,7 +10,7 @@ import {
 import i18n from "../config/i18n";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { fetchThemeKey } from "@/themes/bidx";
+import { fetchThemeKey } from "@/themes/base";
 import { Link } from "expo-router";
 
 export default function WelcomeScreen() {
@@ -57,7 +57,10 @@ export default function WelcomeScreen() {
               end={{ x: 1, y: 0 }}
               style={{ width: "100%", padding: 14, alignItems: "center" }}
             >
-              <Text className="font-source-sans" style={{ fontSize: 20, fontWeight: "500", color: "white" }}>
+              <Text
+                className="font-source-sans"
+                style={{ fontSize: 20, fontWeight: "500", color: "white" }}
+              >
                 {i18n.t("welcome.signup_button")}
               </Text>
             </LinearGradient>

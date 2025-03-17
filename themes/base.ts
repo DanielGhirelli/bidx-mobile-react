@@ -1,4 +1,3 @@
-// themes/bidx.ts
 import { useColorScheme, vars } from "nativewind";
 
 // Theme Schema

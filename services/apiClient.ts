@@ -3,7 +3,7 @@ import * as Keychain from 'react-native-keychain';
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? '';
 const AUTH_URL = process.env.EXPO_PUBLIC_AUTH_URL ?? '';
 
-class AuthenticatedHttpClient {
+class ApiClient {
   // Get Token from Secure Storage
   async getToken(): Promise<string | null> {
     const credentials = await Keychain.getGenericPassword();
@@ -24,7 +24,7 @@ class AuthenticatedHttpClient {
         },
       });
 
-      return await response.json();
+      return response;
     } catch (error) {
       console.error('Error in GET request', error);
       throw error;
@@ -46,7 +46,7 @@ class AuthenticatedHttpClient {
         body: JSON.stringify(body),
       });
 
-      return await response.json();
+      return response;
     } catch (error) {
       console.error('Error in POST request', error);
       throw error;
@@ -64,7 +64,7 @@ class AuthenticatedHttpClient {
         body: JSON.stringify(body),
       });
 
-      return await response.json();
+      return response;
     } catch (error) {
       console.error('Error in OAuth request', error);
       throw error;
@@ -72,4 +72,4 @@ class AuthenticatedHttpClient {
   }
 }
 
-export default new AuthenticatedHttpClient();
+export default new ApiClient();

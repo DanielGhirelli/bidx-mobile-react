@@ -1,9 +1,9 @@
 import { ApiUrls } from '../../../constants/apiUrls';
-import AuthenticatedHttpClient from '../../../services/AuthenticatedHttpClient';
+import ApiClient from '../../../services/apiClient';
 
 class UserCompanyService {
   async getUserCompany(): Promise<Response> {
-    return AuthenticatedHttpClient.get(ApiUrls.GET_USER_COMPANY);
+    return ApiClient.get(ApiUrls.GET_USER_COMPANY);
   }
 }
 

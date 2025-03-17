@@ -1,5 +1,5 @@
 export interface IUser {
-    id: string;
+    id: number;
     name: string;
     email: string;
   }
@@ -9,8 +9,7 @@ export interface IUser {
     token: string;
   }
   
-  export const iOAuthFromJson = (jsonString: string): IOAuth => {
-    const jsonData = JSON.parse(jsonString);
+  export const iOAuthFromJson = (jsonData: any): IOAuth => {
     return {
       user: jsonData.data.user as IUser,
       token: jsonData.data.token as string,

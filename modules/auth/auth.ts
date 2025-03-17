@@ -1,9 +1,8 @@
 import * as Keychain from 'react-native-keychain';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import OAuthService from './service/OAuthService';
 import UserCompanyService from '../user_company/service/UserCompanyService';
 import { IUserCompany } from '../user_company/model/IUserCompany';
 import { IOAuth, iOAuthFromJson } from "./model/IOAuth";
+import OAuthService from './service/OAuthService';
 import GoogleService from './service/GoogleService';
 
 class Auth {
@@ -11,7 +10,7 @@ class Auth {
   async validateCredentials(body: Record<string, string>): Promise<boolean> {
     const response = await OAuthService.getOAuthToken(body);
 
-    if (response.status === 200 || response.status === 201) {
+    if (response.status === 200 || response.status === 201) {      
       const oAuth: IOAuth = iOAuthFromJson(await response.json());
       await this.storeToken(oAuth.token);
       return true;
@@ -68,37 +67,37 @@ class Auth {
     await Keychain.resetGenericPassword({ service: 'bidxUserCompany' });
   }
 
-  // signInWithGoogle: handle sign-in with Google
-  async signInWithGoogle(): Promise<boolean> {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const googleUser = await GoogleSignin.signIn();
+  // // signInWithGoogle: handle sign-in with Google
+  // async signInWithGoogle(): Promise<boolean> {
+  //   try {
+  //     await GoogleSignin.hasPlayServices();
+  //     const googleUser = await GoogleSignin.signIn();
 
-      if (googleUser) {
-        const user = googleUser.data?.user;
+  //     if (googleUser) {
+  //       const user = googleUser.data?.user;
 
-        // Submit data to API
-        const response = await GoogleService.authGoogleSignIn({
-          google_id: user?.id,
-          user_data: {
-            email: user?.email,
-            given_name: user?.givenName || '',
-            family_name: user?.familyName || '',
-          },
-        });
+  //       // Submit data to API
+  //       const response = await GoogleService.authGoogleSignIn({
+  //         google_id: user?.id,
+  //         user_data: {
+  //           email: user?.email,
+  //           given_name: user?.givenName || '',
+  //           family_name: user?.familyName || '',
+  //         },
+  //       });
 
-        if (response.status === 200 || response.status === 201) {
-          const oAuth: IOAuth = iOAuthFromJson(await response.json());
-          await this.storeToken(oAuth.token);
-          return true;
-        }
-      }
-    } catch (error) {
-      console.error('Google Sign-In Error:', error);
-    }
+  //       if (response.status === 200 || response.status === 201) {
+  //         const oAuth: IOAuth = iOAuthFromJson(await response.json());
+  //         await this.storeToken(oAuth.token);
+  //         return true;
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Google Sign-In Error:', error);
+  //   }
 
-    return false;
-  }
+  //   return false;
+  // }
 }
 
 export default new Auth();
