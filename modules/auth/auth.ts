@@ -1,4 +1,4 @@
-import * as Keychain from 'react-native-keychain';
+import * as SecureStore from 'expo-secure-store';
 import UserCompanyService from '../user_company/service/UserCompanyService';
 import { IUserCompany } from '../user_company/model/IUserCompany';
 import { IOAuth, iOAuthFromJson } from "./model/IOAuth";
@@ -19,10 +19,10 @@ class Auth {
     return false;
   }
 
-  // storeToken: securely stores token using Keychain
+  // storeToken: securely stores token using SecureStore
   async storeToken(token: string): Promise<void> {
-    await Keychain.setGenericPassword('authToken', token, {
-      service: 'bidxAuthToken',
+    await SecureStore.setItemAsync('token', token, {
+      keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
     });
 
     await this.loadUserCompany();
@@ -33,10 +33,10 @@ class Auth {
     const responseCompany = await UserCompanyService.getUserCompany();
     const userCompany: IUserCompany = await responseCompany.json();
 
-    await Keychain.setGenericPassword(
+    await SecureStore.setItemAsync(
       'userCompany',
       JSON.stringify(userCompany),
-      { service: 'bidxUserCompany' }
+      { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY }
     );
 
     return userCompany;
@@ -44,27 +44,21 @@ class Auth {
 
   // hasValidToken: validate if stored token is valid
   async hasValidToken(): Promise<boolean> {
-    const credentials = await Keychain.getGenericPassword({
-      service: 'bidxAuthToken',
-    });
-
-    return credentials !== false;
+    const token = await SecureStore.getItemAsync('token');
+    return !!token;
   }
 
   // isUserSwitched: validate if user is switched or not
   async isUserSwitched(): Promise<boolean> {
-    const credentials = await Keychain.getGenericPassword({
-      service: 'bidxPrevToken',
-    });
-
-    return credentials !== false;
+    const prevToken = await SecureStore.getItemAsync('prevToken');
+    return !!prevToken;
   }
 
   // signOut: remove stored token and user data
   async signOut(): Promise<void> {
-    await Keychain.resetGenericPassword({ service: 'bidxAuthToken' });
-    await Keychain.resetGenericPassword({ service: 'bidxPrevToken' });
-    await Keychain.resetGenericPassword({ service: 'bidxUserCompany' });
+    await SecureStore.deleteItemAsync('token');
+    await SecureStore.deleteItemAsync('prevToken');
+    await SecureStore.deleteItemAsync('userCompany');
   }
 
   // // signInWithGoogle: handle sign-in with Google

@@ -1,4 +1,4 @@
-import * as Keychain from 'react-native-keychain';
+import * as SecureStore from 'expo-secure-store';
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? '';
 const AUTH_URL = process.env.EXPO_PUBLIC_AUTH_URL ?? '';
@@ -6,8 +6,7 @@ const AUTH_URL = process.env.EXPO_PUBLIC_AUTH_URL ?? '';
 class ApiClient {
   // Get Token from Secure Storage
   async getToken(): Promise<string | null> {
-    const credentials = await Keychain.getGenericPassword();
-    return credentials ? credentials.password : null;
+    return await SecureStore.getItemAsync('token');
   }
 
   // GET Request with Authorization
@@ -20,7 +19,7 @@ class ApiClient {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: token ? `Bearer ${token}` : '',
         },
       });
 
@@ -41,7 +40,7 @@ class ApiClient {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: token ? `Bearer ${token}` : '',
         },
         body: JSON.stringify(body),
       });

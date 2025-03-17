@@ -49,7 +49,8 @@
             "./assets/fonts/SourceSans3-SemiBold.ttf"
           ]
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
