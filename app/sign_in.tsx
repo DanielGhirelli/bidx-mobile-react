@@ -1,5 +1,11 @@
 import React from "react";
-import { TouchableOpacity, View, Text, ScrollView } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  ScrollView,
+  Linking,
+} from "react-native";
 import { fetchThemeKey } from "../themes/base";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -7,6 +13,7 @@ import InputIcon from "@/components/InputIcon";
 import { useSignIn } from "@/modules/auth/hooks/useSignIn";
 import i18n from "../config/i18n";
 import CircularIndicator from "@/components/CircularIndicator";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function SignInScreen() {
   const {
@@ -52,9 +59,20 @@ export default function SignInScreen() {
         />
 
         <TouchableOpacity
+          onPress={() =>
+            Linking.openURL("https://app.bidx.io/en/password/reset")
+          }
+          style={{ alignSelf: "flex-start" }}
+        >
+          <Text className="font-source-sans text-text-secondary text-md mb-20">
+            {i18n.t("login.forgot_password")}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           onPress={handleLogin}
           disabled={loading}
-          style={{ width: "100%", borderRadius: 8, overflow: "hidden" }}
+          style={{ width: "100%", borderRadius: 5, overflow: "hidden" }}
         >
           <LinearGradient
             colors={[
@@ -65,11 +83,56 @@ export default function SignInScreen() {
             locations={[0.4, 0.9, 1]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            style={{ width: "100%", padding: 14, alignItems: "center" }}
+            style={{ width: "100%", padding: 12, alignItems: "center" }}
           >
             <CircularIndicator
               loading={loading}
               text={i18n.t("core.continue")}
+            />
+          </LinearGradient>
+        </TouchableOpacity>
+
+        <View className="flex flex-row items-center justify-center mt-6 mb-6">
+          <View className="flex-1 h-[0.4px] bg-gray-300" />
+          <Text className="mx-2 text-lg font-source-sans-bold text-text-primary">
+            OR
+          </Text>
+          <View className="flex-1 h-[0.4px] bg-gray-300" />
+        </View>
+
+        <TouchableOpacity
+          onPress={handleGoogleLogin}
+          disabled={loading}
+          style={{ width: "100%", borderRadius: 5, overflow: "hidden" }}
+        >
+          <LinearGradient
+            colors={[
+              fetchThemeKey("buttonSecondaryGradient1"),
+              fetchThemeKey("buttonSecondaryGradient2"),
+              fetchThemeKey("buttonSecondaryGradient3"),
+            ]}
+            locations={[0.4, 0.9, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={{
+              width: "100%",
+              padding: 12,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text
+              className="font-source-sans ml-2"
+              style={{ fontSize: 20, fontWeight: "500", color: "white" }}
+            >
+              {i18n.t("login.google_button")}
+            </Text>
+            <Ionicons
+              className="mr-2"
+              name="logo-google"
+              size={22}
+              color={fetchThemeKey("textPrimary")}
             />
           </LinearGradient>
         </TouchableOpacity>

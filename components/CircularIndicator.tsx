@@ -12,7 +12,7 @@ export default function CircularIndicator({
   text,
 }: CircularIndicatorProps) {
   return (
-    <View style={styles.container}>
+    <View>
       {loading ? (
         <ActivityIndicator
           size="small"
@@ -29,12 +29,3 @@ export default function CircularIndicator({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    height: 30
-  },
-});

@@ -44,7 +44,7 @@ export default function WelcomeScreen() {
           </Text>
 
           <TouchableOpacity
-            style={{ width: "100%", borderRadius: 8, overflow: "hidden" }}
+            style={{ width: "100%", borderRadius: 5, overflow: "hidden" }}
           >
             <LinearGradient
               colors={[
@@ -55,7 +55,7 @@ export default function WelcomeScreen() {
               locations={[0.4, 0.9, 1]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
-              style={{ width: "100%", padding: 14, alignItems: "center" }}
+              style={{ width: "100%", padding:  12, alignItems: "center" }}
             >
               <Text
                 className="font-source-sans"
