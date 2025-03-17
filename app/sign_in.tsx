@@ -1,11 +1,11 @@
 import React from "react";
 import { TouchableOpacity, View, Text, ScrollView } from "react-native";
-import { fetchThemeKey } from "../../themes/bidx";
+import { fetchThemeKey } from "../themes/bidx";
 import { LinearGradient } from "expo-linear-gradient";
 
 import InputIcon from "@/components/InputIcon";
-import { useSignInController } from "@/controllers/auth/SignInController";
-import i18n from "../../config/i18n";
+import { useSignIn } from "@/hooks/useSignIn";
+import i18n from "../config/i18n";
 
 export default function SignInScreen() {
   const {
@@ -20,7 +20,7 @@ export default function SignInScreen() {
     loading,
     handleLogin,
     handleGoogleLogin,
-  } = useSignInController();
+  } = useSignIn();
 
   return (
     <View className={`flex-1 bg-background`}>
@@ -66,7 +66,10 @@ export default function SignInScreen() {
             end={{ x: 1, y: 0 }}
             style={{ width: "100%", padding: 14, alignItems: "center" }}
           >
-            <Text className="font-source-sans" style={{ fontSize: 20, fontWeight: "500", color: "white" }}>
+            <Text
+              className="font-source-sans"
+              style={{ fontSize: 20, fontWeight: "500", color: "white" }}
+            >
               {loading ? i18n.t("loading") : i18n.t("core.continue")}
             </Text>
           </LinearGradient>

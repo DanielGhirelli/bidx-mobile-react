@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react";
 import { router } from "expo-router";
-import i18n from "../../config/i18n";
+import i18n from "../config/i18n";  // Adjust path based on your project structure
 
-interface UseSignInController {
+interface UseSignIn {
   email: string;
   setEmail: (email: string) => void;
   emailError: string;
@@ -16,7 +16,7 @@ interface UseSignInController {
   handleGoogleLogin: () => Promise<void>;
 }
 
-export function useSignInController(): UseSignInController {
+export function useSignIn(): UseSignIn {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -49,7 +49,6 @@ export function useSignInController(): UseSignInController {
     setLoading(true);
 
     try {
-      // Simulate API call
       router.push("/(tabs)");
     } catch (error) {
       setEmailError(i18n.t("An error occurred") + error);
@@ -63,7 +62,6 @@ export function useSignInController(): UseSignInController {
 
     setLoading(true);
     try {
-      // Simulating Google login success
       router.push("/(tabs)");
     } catch (error) {
       console.error("Google login failed:", error);

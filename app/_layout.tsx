@@ -25,7 +25,7 @@ export default function RootLayout() {
         }}
       />
       <Stack.Screen
-        name="(root)/sign_in"
+        name="sign_in"
         options={{
           headerRight: () => {
             return (
