@@ -10,7 +10,7 @@ This is the Mobile Application for BidX.
 - Locally installed [Android Studio - develop for android](https://developer.android.com/studio/index.html)
 - Locally installed [Xcode - develop for iOS](https://developer.apple.com/xcode/)
 - Locally installed [VS Code](https://code.visualstudio.com/download) 
-   * Plugins: `ES7+ React snippets`, `React Native Tools`
+   * Plugins: `ES7+ React snippets`, `React Native Tools`, `Expo Tools`
 
 ## Setup
 1. Execute the command `npm ci`
@@ -30,16 +30,21 @@ This is the Mobile Application for BidX.
    2. Log in to EAS with: `eas login` (Credentials on 1Password)
 
 ## Must Know
+- Debugging with VS Code
+  * Connect your app.
+  * Open VS Code command palette (`Cmd ⌘ + Shift + P`)
+  * Run the `Expo: Debug ...` command.
 - Launch iOS or Android Device
-  * On VS Code press `Cmd + Shift + P` and type `Launch ...`
+  * Open VS Code command palette (`Cmd ⌘ + Shift + P`)
+  * Run the `Launch ...` command.
 - Open Expo Management Popup
-Emulator or iOS Simulator, use:
-  * On Android: Shake your device or press `Ctrl + M` (Windows/Linux) or `Cmd + M` (Mac).
-  * On iOS: Shake your device or press `Cmd + D` (Mac).
-  * On Terminal: Press `M`.
-- Manually Reload in Emulator If you’re using an Android Emulator or iOS Simulator, use:
+Emulator
+  * Android: Shake your device or press `Cmd ⌘ + M`
+  * iOS: Shake your device or press `Cmd ⌘ + D`
+  * Terminal: Press `M`
+- Manually Reload in Emulator
   * Android: Press `R` twice (RR).
-  * iOS: Press `Cmd + R` or `R`.
+  * iOS: Press `Cmd ⌘ + R` or `R`
 - Switch between Light/Dark theme
-  * Android: `Cmd + ,`.
-  * iOS: Press `Cmd + Shift + A`.
+  * Android: Press `Cmd ⌘ + ,`
+  * iOS: Press `Cmd ⌘ + Shift + A`
