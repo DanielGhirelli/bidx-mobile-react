@@ -1,7 +1,6 @@
-import { useState, useCallback } from "react";
-import { router } from "expo-router";
+import { useState, useCallback, useContext } from "react";
 import i18n from "../../../config/i18n"; 
-import auth from "../auth";
+import { AuthContext } from "@/providers/AuthProvider";
 
 interface UseSignIn {
   email: string;
@@ -18,6 +17,14 @@ interface UseSignIn {
 }
 
 export function useSignIn(): UseSignIn {
+  const auth = useContext(AuthContext);
+
+  if (!auth) {
+    throw new Error("useSignIn must be used within an AuthProvider");
+  };
+
+  const { signIn } = auth;
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -50,14 +57,12 @@ export function useSignIn(): UseSignIn {
     try {
       setLoading(true);
 
-      const isValid = await auth.validateCredentials({ email, password });
+      const isValid = await signIn(email, password);
 
       if (!isValid) {
         setEmailError(i18n.t("login.email_input.error"));
         return;
       }
-      
-      router.replace("/(tabs)");
     } catch (error) {
       setEmailError(i18n.t("An error occurred") + error);
     } finally {
@@ -68,9 +73,9 @@ export function useSignIn(): UseSignIn {
   const handleGoogleLogin = async () => {
     if (loading) return;
 
-    setLoading(true);
     try {
-      router.push("/(tabs)");
+      setLoading(true);
+
     } catch (error) {
       console.error("Google login failed:", error);
     } finally {

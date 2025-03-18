@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { fetchThemeKey } from "../themes/base";
+import { useState } from "react";
 
 export default function InputIcon({
   icon,
@@ -28,10 +29,14 @@ export default function InputIcon({
   togglePassword?: () => void;
   errorMessage?: string;
 } & TextInputProps) {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <View className={`w-full ${!errorMessage ? "mb-5" : "mb-3"}`}>
       <View
-        className={`border ${!errorMessage ? "border-gray-500" : "border-error"} bg-background rounded-lg flex-row items-center p-5`}
+        className={`border 
+          ${isFocused ? "border-button" : errorMessage ? "border-error" : "border-gray-500"} 
+          bg-background rounded-lg flex-row items-center p-5`}
       >
         {/* Left Icon */}
         <FontAwesome
@@ -43,13 +48,15 @@ export default function InputIcon({
 
         {/* Input Field */}
         <TextInput
-          className={`flex-1 font-source-sans text-xl text-text-primary`}
+          className={`flex-1 font-source-sans text-xl text-text-secondary`}
           autoCapitalize="none"
           placeholder={placeholder}
           placeholderTextColor={fetchThemeKey("textPlaceholder")}
           secureTextEntry={secureTextEntry}
           value={value}
           onChangeText={onChangeText}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           {...rest}
         />
 
