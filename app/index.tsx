@@ -1,7 +1,7 @@
 import { useAuthSession } from "@/providers/AuthProvider";
 import { Redirect } from "expo-router";
 
-export default function Home() {
+export default function Index() {
   const { token } = useAuthSession();
 
   if (token?.current) {

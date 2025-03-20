@@ -1,4 +1,4 @@
-import { Stack, useRootNavigationState, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { Image, View, TouchableOpacity, Linking } from "react-native";
 

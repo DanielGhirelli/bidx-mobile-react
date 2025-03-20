@@ -5,7 +5,6 @@ import React, {
   useContext,
   useEffect,
   useRef,
-  useState,
 } from "react";
 import { router } from "expo-router";
 import Auth from "../modules/auth/auth";
@@ -14,10 +13,12 @@ import * as SecureStore from "expo-secure-store";
 const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<boolean>;
   signOut: () => void;
+  isUserSwitched: () => Promise<boolean>,
   token: MutableRefObject<string | null> | null;
 }>({
   signIn: async () => false,
   signOut: () => null,
+  isUserSwitched: async () => false,
   token: null,
 });
 
@@ -75,7 +76,7 @@ export default function AuthProvider({
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, token: tokenRef }}>
+    <AuthContext.Provider value={{ signIn, signOut, isUserSwitched, token: tokenRef }}>
       {children}
     </AuthContext.Provider>
   );

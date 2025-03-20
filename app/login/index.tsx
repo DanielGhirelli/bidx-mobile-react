@@ -15,7 +15,7 @@ import { useSignIn } from "@/modules/auth/hooks/useSignIn";
 import CircularIndicator from "@/components/CircularIndicator";
 import { useThemeKey } from "@/hooks/useThemeKey";
 
-export default function Login() {
+export default function Index() {
   const theme = useThemeKey();
 
   const {
