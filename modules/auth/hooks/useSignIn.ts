@@ -1,6 +1,6 @@
 import { useState, useCallback, useContext } from "react";
 import i18n from "../../../config/i18n"; 
-import { AuthContext } from "@/providers/AuthProvider";
+import { useAuthSession } from "@/providers/AuthProvider";
 
 interface UseSignIn {
   email: string;
@@ -17,14 +17,8 @@ interface UseSignIn {
 }
 
 export function useSignIn(): UseSignIn {
-  const auth = useContext(AuthContext);
-
-  if (!auth) {
-    throw new Error("useSignIn must be used within an AuthProvider");
-  };
-
-  const { signIn } = auth;
-
+  const {signIn} = useAuthSession();
+  
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");

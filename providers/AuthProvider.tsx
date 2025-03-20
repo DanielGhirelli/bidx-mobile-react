@@ -1,33 +1,54 @@
-import React, { createContext, ReactNode } from "react";
-import { useRouter } from "expo-router";
+import React, {
+  createContext,
+  MutableRefObject,
+  ReactNode,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { router } from "expo-router";
 import Auth from "../modules/auth/auth";
+import * as SecureStore from "expo-secure-store";
 
-interface AuthContextProps {
-  hasValidToken: () => Promise<boolean>;
-  isUserSwitched: () => Promise<boolean>;
+const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<boolean>;
-  signOut: () => Promise<void>;
+  signOut: () => void;
+  token: MutableRefObject<string | null> | null;
+  isLoading: boolean;
+}>({
+  signIn: async () => false,
+  signOut: () => null,
+  token: null,
+  isLoading: true,
+});
+
+// Access the context as a hook
+export function useAuthSession() {
+  return useContext(AuthContext);
 }
 
-interface AuthProviderProps {
+export default function AuthProvider({
+  children,
+}: {
   children: ReactNode;
-}
+}): ReactNode {
+  const tokenRef = useRef<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-export const AuthContext = createContext<AuthContextProps | undefined>(
-  undefined
-);
+  useEffect(() => {
+    (async (): Promise<void> => {
+      const token = await SecureStore.getItemAsync("token");
+      tokenRef.current = token || "";
+      
+      console.log(token)
+      if (token) {
+        router.replace("/(authorized)/(tabs)");
+      }
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const router = useRouter();
-
-  const hasValidToken = async () => {
-    try {
-      return await Auth.hasValidToken();
-    } catch (error) {
-      console.error("AuthProvider: Error checking user switch status", error);
-      return false;
-    }
-  };
+      setIsLoading(false);
+    })();
+  }, []);
 
   const isUserSwitched = async () => {
     try {
@@ -43,7 +64,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const isValid = await Auth.validateCredentials({ email, password });
 
       if (isValid) {
-        router.replace("/(tabs)");
+        router.replace("/(authorized)/(tabs)");
         return true;
       }
 
@@ -57,7 +78,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signOut = async () => {
     try {
       await Auth.signOut();
-      router.replace("/sign_in");
+      router.replace("/welcome");
     } catch (error) {
       console.error("AuthProvider: Error signing out", error);
     }
@@ -65,9 +86,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ hasValidToken, isUserSwitched, signIn, signOut }}
+      value={{ signIn, signOut, token: tokenRef, isLoading }}
     >
       {children}
     </AuthContext.Provider>
   );
-};
+}

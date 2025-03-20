@@ -1,11 +1,9 @@
-import { SplashScreen, Stack } from "expo-router";
+import { SplashScreen } from "expo-router";
 import { I18nextProvider } from "react-i18next";
 import { useEffect } from "react";
 
 import i18n from "../config/i18n";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import HeaderLeft from "@/components/HeaderLeft";
-import HeaderBackground from "@/components/HeaderBackground";
 import useLoadFonts from "@/hooks/useLoadFonts";
 
 interface AppLayoutProps {
@@ -27,17 +25,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <ThemeProvider>
-        <Stack
-          screenOptions={{
-            headerLeft: () => <HeaderLeft />,
-            contentStyle: { backgroundColor: "transparent" },
-            headerBackground: () => <HeaderBackground />,
-          }}
-        >
-          {children}
-        </Stack>
-      </ThemeProvider>
+      <ThemeProvider>{children}</ThemeProvider>
     </I18nextProvider>
   );
 }

@@ -41,12 +41,6 @@ class Auth {
     return userCompany;
   }
 
-  // hasValidToken: validate if stored token is valid
-  async hasValidToken(): Promise<boolean> {
-    const token = await SecureStore.getItemAsync('token');
-    return !!token;
-  }
-
   // isUserSwitched: validate if user is switched or not
   async isUserSwitched(): Promise<boolean> {
     const prevToken = await SecureStore.getItemAsync('prevToken');
