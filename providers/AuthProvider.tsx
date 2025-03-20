@@ -15,12 +15,10 @@ const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<boolean>;
   signOut: () => void;
   token: MutableRefObject<string | null> | null;
-  isLoading: boolean;
 }>({
   signIn: async () => false,
   signOut: () => null,
   token: null,
-  isLoading: true,
 });
 
 // Access the context as a hook
@@ -34,19 +32,11 @@ export default function AuthProvider({
   children: ReactNode;
 }): ReactNode {
   const tokenRef = useRef<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async (): Promise<void> => {
       const token = await SecureStore.getItemAsync("token");
-      tokenRef.current = token || "";
-      
-      console.log(token)
-      if (token) {
-        router.replace("/(authorized)/(tabs)");
-      }
-
-      setIsLoading(false);
+      tokenRef.current = token || null;
     })();
   }, []);
 
@@ -85,9 +75,7 @@ export default function AuthProvider({
   };
 
   return (
-    <AuthContext.Provider
-      value={{ signIn, signOut, token: tokenRef, isLoading }}
-    >
+    <AuthContext.Provider value={{ signIn, signOut, token: tokenRef }}>
       {children}
     </AuthContext.Provider>
   );

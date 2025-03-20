@@ -43,6 +43,7 @@ export default function RootLayout() {
               headerShown: true,
               animation: "default",
               headerBackground: () => <HeaderBackground />,
+              headerLeft: () => <HeaderLeft />,
               headerRight: () => {
                 return (
                   <TouchableOpacity
