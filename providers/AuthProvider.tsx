@@ -1,9 +1,9 @@
-import React, { createContext, useState, useEffect, ReactNode } from "react";
-import { useRouter, useSegments } from "expo-router";
+import React, { createContext, ReactNode } from "react";
+import { useRouter } from "expo-router";
 import Auth from "../modules/auth/auth";
 
 interface AuthContextProps {
-  hasValidToken: boolean;
+  hasValidToken: () => Promise<boolean>;
   isUserSwitched: () => Promise<boolean>;
   signIn: (email: string, password: string) => Promise<boolean>;
   signOut: () => Promise<void>;
@@ -18,26 +18,16 @@ export const AuthContext = createContext<AuthContextProps | undefined>(
 );
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [hasValidToken, setHasValidToken] = useState<boolean>(false);
   const router = useRouter();
-  const segments = useSegments();
 
-  const checkAuth = async () => {
+  const hasValidToken = async () => {
     try {
-      const hasToken = await Auth.hasValidToken();
-      setHasValidToken(hasToken);
-
-      if (!hasToken && (`/${segments.join("/")}` !== "/")) {
-        router.replace("/");
-      }
+      return await Auth.hasValidToken();
     } catch (error) {
-      console.error("AuthProvider: Error checking authentication", error);
+      console.error("AuthProvider: Error checking user switch status", error);
+      return false;
     }
   };
-
-  useEffect(() => {
-    checkAuth();
-  }, []);
 
   const isUserSwitched = async () => {
     try {
@@ -53,8 +43,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const isValid = await Auth.validateCredentials({ email, password });
 
       if (isValid) {
-        setHasValidToken(true);
-
         router.replace("/(tabs)");
         return true;
       }
@@ -69,8 +57,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signOut = async () => {
     try {
       await Auth.signOut();
-      setHasValidToken(false);
-
       router.replace("/sign_in");
     } catch (error) {
       console.error("AuthProvider: Error signing out", error);

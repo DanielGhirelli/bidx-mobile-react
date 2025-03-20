@@ -1,4 +1,4 @@
-import { fetchThemeKey } from "@/themes/base";
+import { useThemeKey } from "@/hooks/useThemeKey";
 import React from "react";
 import { ActivityIndicator, View, StyleSheet, Text } from "react-native";
 
@@ -11,12 +11,14 @@ export default function CircularIndicator({
   loading = false,
   text,
 }: CircularIndicatorProps) {
+    const theme = useThemeKey();
+  
   return (
     <View>
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={fetchThemeKey("circularProgress")}
+          color={theme.find("circularProgress")}
         />
       ) : (
         <Text

@@ -6,8 +6,8 @@ import {
   TextInputProps,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { fetchThemeKey } from "../themes/base";
 import { useState } from "react";
+import { useThemeKey } from "@/hooks/useThemeKey";
 
 export default function InputIcon({
   icon,
@@ -29,6 +29,7 @@ export default function InputIcon({
   togglePassword?: () => void;
   errorMessage?: string;
 } & TextInputProps) {
+  const theme = useThemeKey();
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -42,7 +43,7 @@ export default function InputIcon({
         <FontAwesome
           name={icon}
           size={20}
-          color={fetchThemeKey("textSecondary")}
+          color={theme.find("textSecondary")}
           style={{ marginRight: 16 }}
         />
 
@@ -51,7 +52,7 @@ export default function InputIcon({
           className={`flex-1 font-source-sans text-xl text-text-secondary`}
           autoCapitalize="none"
           placeholder={placeholder}
-          placeholderTextColor={fetchThemeKey("textPlaceholder")}
+          placeholderTextColor={theme.find("textPlaceholder")}
           secureTextEntry={secureTextEntry}
           value={value}
           onChangeText={onChangeText}
@@ -69,7 +70,7 @@ export default function InputIcon({
             <FontAwesome
               name={secureTextEntry ? "eye-slash" : "eye"}
               size={20}
-              color={fetchThemeKey("textSecondary")}
+              color={theme.find("textSecondary")}
             />
           </TouchableOpacity>
         )}

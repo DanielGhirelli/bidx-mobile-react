@@ -1,7 +1,7 @@
-import { useColorScheme, vars } from "nativewind";
+import { vars } from "nativewind";
 
 // Theme Schema
-const light = {
+export const light = {
   // Colors
   primary: "rgba(19, 20, 74, 1)",
   secondary: "rgba(252, 96, 83, 1)",
@@ -33,7 +33,7 @@ const light = {
   bodyBackground: require("../assets/images/body_background_light.jpg"),
 };
 
-const dark = {
+export const dark = {
   // Colors
   primary: "rgba(242, 242, 242, 1)",
   secondary: "rgba(19, 20, 74, 1)",
@@ -121,12 +121,4 @@ export const themes = {
     "--color-shimmer-base": dark.shimmerBase,
     "--color-circular-progress": dark.circularProgress,
   }),
-};
-
-// fetchThemeKey: essential for component accessing theme colors/images
-export const fetchThemeKey = (key: keyof typeof light): any => {
-  const { colorScheme } = useColorScheme();
-  const theme = colorScheme === "dark" ? dark : light;
-
-  return theme[key] || null;
 };

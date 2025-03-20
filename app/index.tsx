@@ -10,14 +10,16 @@ import {
 import i18n from "../config/i18n";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { fetchThemeKey } from "@/themes/base";
 import { Link } from "expo-router";
+import { useThemeKey } from "@/hooks/useThemeKey";
 
 export default function WelcomeScreen() {
+  const theme = useThemeKey();
+
   return (
     <View className={`flex-1`}>
       <ImageBackground
-        source={fetchThemeKey("bodyBackground")}
+        source={theme.find("bodyBackground")}
         className={`flex-1`}
       >
         <ScrollView
@@ -48,14 +50,14 @@ export default function WelcomeScreen() {
           >
             <LinearGradient
               colors={[
-                fetchThemeKey("buttonGradient1"),
-                fetchThemeKey("buttonGradient2"),
-                fetchThemeKey("buttonGradient3"),
+                theme.find("buttonGradient1"),
+                theme.find("buttonGradient2"),
+                theme.find("buttonGradient3"),
               ]}
               locations={[0.4, 0.9, 1]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
-              style={{ width: "100%", padding:  12, alignItems: "center" }}
+              style={{ width: "100%", padding: 12, alignItems: "center" }}
             >
               <Text
                 className="font-source-sans"
@@ -77,7 +79,7 @@ export default function WelcomeScreen() {
         className="bg-background"
         style={{
           paddingVertical: 16,
-          shadowColor: fetchThemeKey("primary"),
+          shadowColor: theme.find("primary"),
           shadowOpacity: 0.4,
           shadowRadius: 4,
           shadowOffset: { width: 0, height: 1 },
@@ -92,7 +94,7 @@ export default function WelcomeScreen() {
             <Ionicons
               name="logo-google"
               size={22}
-              color={fetchThemeKey("textPrimary")}
+              color={theme.find("textPrimary")}
             />
           </TouchableOpacity>
 

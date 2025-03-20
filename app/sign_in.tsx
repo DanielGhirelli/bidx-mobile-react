@@ -6,7 +6,6 @@ import {
   ScrollView,
   Linking,
 } from "react-native";
-import { fetchThemeKey } from "../themes/base";
 import { LinearGradient } from "expo-linear-gradient";
 
 import InputIcon from "@/components/InputIcon";
@@ -14,8 +13,11 @@ import { useSignIn } from "@/modules/auth/hooks/useSignIn";
 import i18n from "../config/i18n";
 import CircularIndicator from "@/components/CircularIndicator";
 import { Ionicons } from "@expo/vector-icons";
+import { useThemeKey } from "@/hooks/useThemeKey";
 
 export default function SignInScreen() {
+  const theme = useThemeKey();
+
   const {
     email,
     setEmail,
@@ -76,9 +78,9 @@ export default function SignInScreen() {
         >
           <LinearGradient
             colors={[
-              fetchThemeKey("buttonGradient1"),
-              fetchThemeKey("buttonGradient2"),
-              fetchThemeKey("buttonGradient3"),
+              theme.find("buttonGradient1"),
+              theme.find("buttonGradient2"),
+              theme.find("buttonGradient3"),
             ]}
             locations={[0.4, 0.9, 1]}
             start={{ x: 0, y: 0 }}
@@ -107,9 +109,9 @@ export default function SignInScreen() {
         >
           <LinearGradient
             colors={[
-              fetchThemeKey("buttonSecondaryGradient1"),
-              fetchThemeKey("buttonSecondaryGradient2"),
-              fetchThemeKey("buttonSecondaryGradient3"),
+              theme.find("buttonSecondaryGradient1"),
+              theme.find("buttonSecondaryGradient2"),
+              theme.find("buttonSecondaryGradient3"),
             ]}
             locations={[0.4, 0.9, 1]}
             start={{ x: 0, y: 0 }}

@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import HeaderLeft from "@/components/HeaderLeft";
 import HeaderBackground from "@/components/HeaderBackground";
 import useLoadFonts from "@/hooks/useLoadFonts";
-import { AuthProvider } from "@/providers/AuthProvider";
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -29,17 +28,15 @@ export default function AppLayout({ children }: AppLayoutProps) {
   return (
     <I18nextProvider i18n={i18n}>
       <ThemeProvider>
-        <AuthProvider>
-          <Stack
-            screenOptions={{
-              headerLeft: () => <HeaderLeft />,
-              contentStyle: { backgroundColor: "transparent" },
-              headerBackground: () => <HeaderBackground />,
-            }}
-          >
-            {children}
-          </Stack>
-        </AuthProvider>
+        <Stack
+          screenOptions={{
+            headerLeft: () => <HeaderLeft />,
+            contentStyle: { backgroundColor: "transparent" },
+            headerBackground: () => <HeaderBackground />,
+          }}
+        >
+          {children}
+        </Stack>
       </ThemeProvider>
     </I18nextProvider>
   );
