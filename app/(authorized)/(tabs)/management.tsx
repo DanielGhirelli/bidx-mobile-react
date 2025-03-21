@@ -2,7 +2,7 @@ import { View, Text, Button } from "react-native";
 import React from "react";
 import { useAuthSession } from "@/providers/AuthProvider";
 
-export default function Profile() {
+export default function Management() {
   const auth = useAuthSession();
 
   if (!auth) return null;
