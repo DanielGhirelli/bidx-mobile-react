@@ -41,10 +41,16 @@ class Auth {
     return userCompany;
   }
 
-  // isUserSwitched: validate if user is switched or not
-  async isUserSwitched(): Promise<boolean> {
+  // hasValidToken: validate if stored token is valid and return token
+  async hasValidToken(): Promise<string | null> {
+    const token = await SecureStore.getItemAsync('token');
+    return token;
+  }
+  
+  // isUserSwitched: validate if user is switched and return previous token
+  async isUserSwitched(): Promise<string | null> {
     const prevToken = await SecureStore.getItemAsync('prevToken');
-    return !!prevToken;
+    return prevToken;
   }
 
   // signOut: remove stored token and user data

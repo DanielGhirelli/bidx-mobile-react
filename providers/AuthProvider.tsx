@@ -13,7 +13,7 @@ import * as SecureStore from "expo-secure-store";
 const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<boolean>;
   signOut: () => void;
-  isUserSwitched: () => Promise<boolean>,
+  isUserSwitched: () => Promise<boolean>;
   token: MutableRefObject<string | null> | null;
 }>({
   signIn: async () => false,
@@ -36,14 +36,15 @@ export default function AuthProvider({
 
   useEffect(() => {
     (async (): Promise<void> => {
-      const token = await SecureStore.getItemAsync("token");
+      const token = await Auth.hasValidToken();
       tokenRef.current = token || null;
     })();
   }, []);
 
   const isUserSwitched = async () => {
     try {
-      return await Auth.isUserSwitched();
+      const prevToken = await Auth.isUserSwitched();
+      return !!prevToken;
     } catch (error) {
       console.error("AuthProvider: Error checking user switch status", error);
       return false;
@@ -76,7 +77,9 @@ export default function AuthProvider({
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, isUserSwitched, token: tokenRef }}>
+    <AuthContext.Provider
+      value={{ signIn, signOut, isUserSwitched, token: tokenRef }}
+    >
       {children}
     </AuthContext.Provider>
   );
