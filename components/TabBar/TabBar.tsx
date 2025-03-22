@@ -29,7 +29,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
   useEffect(() => {
     tabPositionX.value = withSpring(buttonWidth * state.index, {
-      duration: 1500,
+      duration: 2000,
     });
   }, [state.index, buttonWidth]);
 
@@ -43,8 +43,9 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             backgroundColor: "#723FEB",
             borderRadius: 30,
             marginHorizontal: 12,
-            height: dimensions.height - 15,
+            height: 50,
             width: buttonWidth - 25,
+            top: 8,
           },
         ]}
       />
@@ -97,17 +98,19 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 const styles = StyleSheet.create({
   tabbar: {
     position: "absolute",
-    bottom: 50,
+    bottom: 0,
+    left: 0,
+    right: 0,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "#fff",
-    marginHorizontal: 80,
-    paddingVertical: 15,
-    borderRadius: 55,
+    paddingVertical: 10,
+    paddingBottom: 30,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 10,
-    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 8,
   },
 });
