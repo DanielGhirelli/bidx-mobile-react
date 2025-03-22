@@ -17,7 +17,7 @@ export default function Dashboard() {
         }}
       >
         <Text className="font-bold text-lg my-10 font-source-sans text-3xl">
-          Profileeeeeee
+          DASHBOARD
         </Text>
       </View>
     </View>

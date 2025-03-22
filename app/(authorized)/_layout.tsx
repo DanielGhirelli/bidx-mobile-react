@@ -1,4 +1,4 @@
-import HeaderBackground from "@/components/HeaderBackground";
+import HeaderBackground from "@/components/Header/HeaderBackground";
 import { Stack } from "expo-router";
 import { ReactNode } from "react";
 

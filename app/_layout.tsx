@@ -5,8 +5,8 @@ import { Image, View, TouchableOpacity, Linking } from "react-native";
 import "./global.css";
 import AuthProvider from "@/providers/AuthProvider";
 import AppLayout from "@/components/AppLayout";
-import HeaderBackground from "@/components/HeaderBackground";
-import HeaderLeft from "@/components/HeaderLeft";
+import HeaderBackground from "@/components/Header/HeaderBackground";
+import HeaderLeft from "@/components/Header/HeaderLeft";
 
 export default function RootLayout() {
   return (
