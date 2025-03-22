@@ -4,10 +4,13 @@ import { useThemeKey } from "@/hooks/useThemeKey";
 import { TabBar } from "@/components/TabBar/TabBar";
 
 export default function TabLayout(): ReactNode {
-  const theme = useThemeKey();
-
   return (
-    <Tabs tabBar={(props) => <TabBar {...props} />}>
+    <Tabs
+      tabBar={(props) => <TabBar {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
