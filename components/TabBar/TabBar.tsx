@@ -7,8 +7,12 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { useThemeKey } from "@/hooks/useThemeKey";
 
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+  const theme = useThemeKey();
+  const styles = getStyles(theme);
+
   const [dimensions, setDimensions] = useState({ height: 20, width: 100 });
   const tabPositionX = useSharedValue(0);
 
@@ -95,22 +99,23 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  tabbar: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    paddingVertical: 10,
-    paddingBottom: 30,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 8,
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    tabbar: {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+      backgroundColor: theme.find("background"),
+      paddingVertical: 10,
+      paddingBottom: 30,
+      shadowColor: theme.find("primary"),
+      shadowOpacity: 0.4,
+      shadowRadius: 4,
+      shadowOffset: { width: 0, height: 1 },
+      elevation: 1,
+    },
+  });

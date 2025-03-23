@@ -17,14 +17,18 @@ export default function TabLayout(): ReactNode {
           title: "Home",
         }}
       />
-
+      <Tabs.Screen
+        name="management"
+        options={{
+          title: "Management",
+        }}
+      />
       <Tabs.Screen
         name="dashboard"
         options={{
           title: "Explore",
         }}
       />
-
       <Tabs.Screen
         name="profile"
         options={{

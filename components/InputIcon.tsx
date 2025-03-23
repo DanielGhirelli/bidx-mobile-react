@@ -36,7 +36,7 @@ export default function InputIcon({
     <View className={`w-full ${!errorMessage ? "mb-5" : "mb-3"}`}>
       <View
         className={`border 
-          ${isFocused ? "border-button" : errorMessage ? "border-error" : "border-gray-500"} 
+          ${isFocused ? "border-text-hover" : errorMessage ? "border-error" : "border-gray-500"} 
           bg-background rounded-lg flex-row items-center p-5`}
       >
         {/* Left Icon */}
