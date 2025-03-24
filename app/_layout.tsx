@@ -1,12 +1,14 @@
 import { Stack } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
-import { Image, View, TouchableOpacity, Linking } from "react-native";
 
 import "./global.css";
 import AuthProvider from "@/providers/AuthProvider";
 import AppLayout from "@/components/AppLayout";
-import HeaderBackground from "@/components/Header/HeaderBackground";
-import HeaderLeft from "@/components/Header/HeaderLeft";
+import {
+  HeaderBack,
+  HeaderLogo,
+  HeaderBackground,
+  HeaderHelp,
+} from "@/components/Header";
 
 export default function RootLayout() {
   return (
@@ -25,16 +27,8 @@ export default function RootLayout() {
               title: "",
               headerShown: true,
               headerBackground: () => <HeaderBackground />,
-              headerLeft: () => false,
-              headerTitle: () => (
-                <View style={{ flex: 1, left: -5 }}>
-                  <Image
-                    source={require("../assets/images/logo_white.png")}
-                    style={{ width: 70, height: 30 }}
-                    resizeMode="stretch"
-                  />
-                </View>
-              ),
+              headerLeft: () => <HeaderLogo />,
+              headerTitle: () => null,
             }}
           />
           <Stack.Screen
@@ -43,27 +37,9 @@ export default function RootLayout() {
               headerShown: true,
               animation: "default",
               headerBackground: () => <HeaderBackground />,
-              headerLeft: () => <HeaderLeft />,
-              headerRight: () => {
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      Linking.openURL("https://go.bidx.io/knowledge")
-                    }
-                  >
-                    <Ionicons name="help-circle" size={27} color="white" />
-                  </TouchableOpacity>
-                );
-              },
-              headerTitle: () => (
-                <View>
-                  <Image
-                    source={require("../assets/images/logo_white.png")}
-                    style={{ width: 70, height: 30 }}
-                    resizeMode="stretch"
-                  />
-                </View>
-              ),
+              headerLeft: () => <HeaderBack />,
+              headerRight: () => <HeaderHelp />,
+              headerTitle: () => <HeaderLogo />,
             }}
           />
         </Stack>

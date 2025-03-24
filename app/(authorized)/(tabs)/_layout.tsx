@@ -2,19 +2,40 @@ import { Tabs } from "expo-router";
 import { ReactNode } from "react";
 import { TabBar } from "@/components/TabBar/TabBar";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { HeaderLogo, HeaderBackground, HeaderHelp } from "@/components/Header";
+import { View } from "react-native";
+import { useThemeKey } from "@/hooks/useThemeKey";
 
 export default function TabLayout(): ReactNode {
+  const theme = useThemeKey();
+
   return (
     <Tabs
       tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
-        headerShown: false,
+        headerTitleStyle: {
+          color: theme.find("textPrimary"),
+          fontFamily: "SourceSans3-Strong",
+          fontSize: 18,
+        },
+        headerBackground: () => <HeaderBackground />,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
+          headerTitle: () => null,
+          headerLeft: () => (
+            <View style={{ left: 16, bottom: 3 }}>
+              <HeaderLogo />
+            </View>
+          ),
+          headerRight: () => (
+            <View style={{ right: 16, bottom: 3 }}>
+              <HeaderHelp />
+            </View>
+          ),
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesomeIcon
               icon={[focused ? "fas" : "far", "house"]}
@@ -27,7 +48,12 @@ export default function TabLayout(): ReactNode {
       <Tabs.Screen
         name="dashboard"
         options={{
-          title: "Dashboard",
+          title: "Dashboards",
+          headerRight: () => (
+            <View style={{ right: 16, bottom: 3 }}>
+              <HeaderHelp />
+            </View>
+          ),
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesomeIcon
               icon={[focused ? "fas" : "far", "chart-simple"]}
@@ -41,6 +67,11 @@ export default function TabLayout(): ReactNode {
         name="management"
         options={{
           title: "Management",
+          headerRight: () => (
+            <View style={{ right: 16, bottom: 3 }}>
+              <HeaderHelp />
+            </View>
+          ),
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesomeIcon
               icon={[focused ? "fas" : "far", "user-gear"]}
@@ -54,6 +85,11 @@ export default function TabLayout(): ReactNode {
         name="profile"
         options={{
           title: "Profile",
+          headerRight: () => (
+            <View style={{ right: 16, bottom: 3 }}>
+              <HeaderHelp />
+            </View>
+          ),
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesomeIcon
               icon={[focused ? "fas" : "far", "house"]}

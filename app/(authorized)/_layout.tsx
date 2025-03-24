@@ -1,4 +1,3 @@
-import HeaderBackground from "@/components/Header/HeaderBackground";
 import { Stack } from "expo-router";
 import { ReactNode } from "react";
 
@@ -8,7 +7,7 @@ export default function RootLayout(): ReactNode {
       screenOptions={{
         animation: "none",
         contentStyle: { backgroundColor: "transparent" },
-        headerBackground: () => <HeaderBackground />,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="(tabs)" />
