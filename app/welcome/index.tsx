@@ -88,7 +88,7 @@ export default function Index() {
         }}
       >
         <View className="flex-row justify-evenly mb-5">
-          <TouchableOpacity className="ml-7 flex-1 flex-row items-center justify-center py-3 mx-2 rounded-full bg-button">
+          <TouchableOpacity className="ml-7 flex-1 flex-row items-center justify-center py-3 mx-2 rounded-full bg-button-background">
             <Text className="font-source-sans-bold text-xl text-text-primary primary-dark mr-2">
               Google
             </Text>
@@ -100,7 +100,7 @@ export default function Index() {
           </TouchableOpacity>
 
           <Link href="/login" asChild>
-            <TouchableOpacity className="mr-7 flex-1 items-center justify-center py-3 mx-2 rounded-full bg-button">
+            <TouchableOpacity className="mr-7 flex-1 items-center justify-center py-3 mx-2 rounded-full bg-button-background">
               <Text className="font-source-sans-bold text-xl text-text-primary">
                 Sign In
               </Text>

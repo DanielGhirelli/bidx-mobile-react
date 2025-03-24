@@ -5,12 +5,14 @@ import { useEffect } from "react";
 import i18n from "../config/i18n";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import useLoadFonts from "@/hooks/useLoadFonts";
+import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
 
 interface AppLayoutProps {
   children: React.ReactNode;
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
+  useLoadFontAwesome();
   const fontsLoaded = useLoadFonts();
 
   useEffect(() => {

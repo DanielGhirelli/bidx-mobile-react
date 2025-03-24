@@ -1,20 +1,22 @@
 import { View, StyleSheet, LayoutChangeEvent } from "react-native";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import React, { useState, useEffect } from "react";
-import TabBarButton from "./TabBarButton";
 import Animated, {
+  Easing,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
+  withTiming,
 } from "react-native-reanimated";
+
 import { useThemeKey } from "@/hooks/useThemeKey";
+import TabBarButton from "./TabBarButton";
 
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const theme = useThemeKey();
   const styles = getStyles(theme);
+  const tabPositionX = useSharedValue(0);
 
   const [dimensions, setDimensions] = useState({ height: 20, width: 100 });
-  const tabPositionX = useSharedValue(0);
 
   const buttonWidth = dimensions.width / state.routes.length;
 
@@ -32,8 +34,9 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   });
 
   useEffect(() => {
-    tabPositionX.value = withSpring(buttonWidth * state.index, {
-      duration: 2000,
+    tabPositionX.value = withTiming(buttonWidth * state.index, {
+      duration: 350,
+      easing: Easing.inOut(Easing.ease),
     });
   }, [state.index, buttonWidth]);
 
@@ -44,24 +47,18 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
           animatedStyle,
           {
             position: "absolute",
-            backgroundColor: "#723FEB",
+            backgroundColor: theme.find("buttonBackground"),
             borderRadius: 30,
             marginHorizontal: 12,
-            height: 50,
+            height: 45,
             width: buttonWidth - 25,
             top: 8,
           },
         ]}
       />
+
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
-        const label =
-          typeof options.tabBarLabel === "string"
-            ? options.tabBarLabel
-            : typeof options.title === "string"
-              ? options.title
-              : route.name;
-
         const isFocused = state.index === index;
 
         const onPress = () => {
@@ -89,9 +86,18 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             onPress={onPress}
             onLongPress={onLongPress}
             isFocused={isFocused}
-            routeName={route.name}
-            color={isFocused ? "#FFF" : "#222"}
-            label={label}
+            label={options.title ?? ""}
+            icon={
+              options.tabBarIcon
+                ? options.tabBarIcon({
+                    color: isFocused
+                      ? theme.find("primary")
+                      : theme.find("buttonInactive"),
+                    size: 20,
+                    focused: isFocused,
+                  })
+                : undefined
+            }
           />
         );
       })}

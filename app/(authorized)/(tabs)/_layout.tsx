@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import { ReactNode } from "react";
-import { useThemeKey } from "@/hooks/useThemeKey";
 import { TabBar } from "@/components/TabBar/TabBar";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 export default function TabLayout(): ReactNode {
   return (
@@ -15,24 +15,52 @@ export default function TabLayout(): ReactNode {
         name="index"
         options={{
           title: "Home",
+          tabBarIcon: ({ focused, color, size }) => (
+            <FontAwesomeIcon
+              icon={[focused ? "fas" : "far", "house"]}
+              size={size}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="dashboard"
+        options={{
+          title: "Dashboard",
+          tabBarIcon: ({ focused, color, size }) => (
+            <FontAwesomeIcon
+              icon={[focused ? "fas" : "far", "chart-simple"]}
+              size={size}
+              color={color}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name="management"
         options={{
           title: "Management",
-        }}
-      />
-      <Tabs.Screen
-        name="dashboard"
-        options={{
-          title: "Explore",
+          tabBarIcon: ({ focused, color, size }) => (
+            <FontAwesomeIcon
+              icon={[focused ? "fas" : "far", "user-gear"]}
+              size={size}
+              color={color}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
+          tabBarIcon: ({ focused, color, size }) => (
+            <FontAwesomeIcon
+              icon={[focused ? "fas" : "far", "house"]}
+              size={size}
+              color={color}
+            />
+          ),
         }}
       />
     </Tabs>

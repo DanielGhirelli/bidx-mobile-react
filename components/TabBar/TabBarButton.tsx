@@ -1,6 +1,5 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
-import { Feather } from "@expo/vector-icons";
 import Animated, {
   interpolate,
   useAnimatedStyle,
@@ -8,28 +7,24 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 
+import { useThemeKey } from "@/hooks/useThemeKey";
+
 type TabBarButtonProps = {
   onPress: () => void;
   onLongPress: () => void;
   isFocused: boolean;
-  routeName: string;
-  color: string;
   label: string;
-};
-
-const icon: Record<string, ({ color }: { color: string }) => JSX.Element> = {
-  index: ({ color }) => <Feather name="home" size={24} color={color} />,
-  dashboard: ({ color }) => <Feather name="compass" size={24} color={color} />,
-  profile: ({ color }) => <Feather name="user" size={24} color={color} />,
+  icon: any;
 };
 
 const TabBarButton = ({
   onPress,
   onLongPress,
   isFocused,
-  routeName,
   label,
+  icon,
 }: TabBarButtonProps) => {
+  const theme = useThemeKey();
   const scale = useSharedValue(0);
 
   useEffect(() => {
@@ -63,13 +58,17 @@ const TabBarButton = ({
       onLongPress={onLongPress}
       style={styles.tabbarItem}
     >
-      <Animated.View style={animedIconStyle}>
-        {icon[routeName]?.({
-          color: isFocused ? "#FFF" : "#222",
-        })}
-      </Animated.View>
-      <Animated.Text
-        style={[{ color: isFocused ? "#673ab7" : "#222" }, animatedTextStyle]}
+      <Animated.View style={animedIconStyle}>{icon}</Animated.View>
+      <Animated.Text className={''}
+        style={[
+          {
+            color: isFocused
+              ? theme.find("primary")
+              : theme.find("buttonInactive"),
+            fontSize: 12
+          },
+          animatedTextStyle,
+        ]}
       >
         {label}
       </Animated.Text>
