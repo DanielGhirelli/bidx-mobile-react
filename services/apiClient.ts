@@ -1,12 +1,12 @@
-import * as SecureStore from 'expo-secure-store';
+import * as SecureStore from "expo-secure-store";
 
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? '';
-const AUTH_URL = process.env.EXPO_PUBLIC_AUTH_URL ?? '';
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? "";
+const AUTH_URL = process.env.EXPO_PUBLIC_AUTH_URL ?? "";
 
 class ApiClient {
   // Get Token from Secure Storage
   async getToken(): Promise<string | null> {
-    return await SecureStore.getItemAsync('token');
+    return await SecureStore.getItemAsync("token");
   }
 
   // GET Request with Authorization
@@ -16,16 +16,16 @@ class ApiClient {
 
     try {
       const response = await fetch(fullUrl, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: token ? `Bearer ${token}` : '',
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
         },
       });
 
       return response;
     } catch (error) {
-      console.error('Error in GET request', error);
+      console.error("Error in GET request", error);
       throw error;
     }
   }
@@ -37,17 +37,17 @@ class ApiClient {
 
     try {
       const response = await fetch(fullUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: token ? `Bearer ${token}` : '',
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
         },
         body: JSON.stringify(body),
       });
 
       return response;
     } catch (error) {
-      console.error('Error in POST request', error);
+      console.error("Error in POST request", error);
       throw error;
     }
   }
@@ -56,16 +56,16 @@ class ApiClient {
   async getOAuthToken(body: Record<string, string>) {
     try {
       const response = await fetch(AUTH_URL, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
 
       return response;
     } catch (error) {
-      console.error('Error in OAuth request', error);
+      console.error("Error in OAuth request", error);
       throw error;
     }
   }

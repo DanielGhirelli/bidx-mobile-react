@@ -4,14 +4,14 @@ import { vars } from "nativewind";
 export const light = {
   // Colors
   primary: "rgba(19, 20, 74, 1)", //x
-  secondary: "rgba(252, 96, 83, 1)", 
+  secondary: "rgba(252, 96, 83, 1)",
   error: "rgba(165, 52, 40, 1)", //x
   background: "rgba(251, 251, 253, 1)", //x
   surface: "rgba(251, 251, 253, 1)",
   link: "rgba(46, 47, 138, 1)", //x
   divider: "rgba(189, 189, 189, 1)", //x
   buttonBackground: "rgba(224, 225, 239, 0.42)", //x
-  buttonInactive: "rgba(19, 20, 74, 0.4)",
+  buttonInactive: "rgba(19, 20, 74, 0.4)", //x
   buttonGradient1: "rgba(19, 20, 74, 1)", //x
   buttonGradient2: "rgba(253, 96, 83, 1)", //x
   buttonGradient3: "rgba(249, 164, 46, 1)", //x

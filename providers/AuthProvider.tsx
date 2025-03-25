@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import { router } from "expo-router";
 import Auth from "../modules/auth/auth";
-import * as SecureStore from "expo-secure-store";
 
 const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<boolean>;

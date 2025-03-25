@@ -4,17 +4,14 @@ import { TabBar } from "@/components/TabBar/TabBar";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { HeaderLogo, HeaderBackground, HeaderHelp } from "@/components/Header";
 import { View } from "react-native";
-import { useThemeKey } from "@/hooks/useThemeKey";
 
 export default function TabLayout(): ReactNode {
-  const theme = useThemeKey();
-
   return (
     <Tabs
       tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
         headerTitleStyle: {
-          color: theme.find("textPrimary"),
+          color: "white",
           fontFamily: "SourceSans3-Strong",
           fontSize: 18,
         },
