@@ -1,7 +1,7 @@
 import { View, Text, Button } from "react-native";
 import React from "react";
 import { useAuthSession } from "@/providers/AuthProvider";
-import AreaChartExample from "@/modules/kpi/components/AreaChart";
+import AreaChart from "@/modules/kpi/components/AreaChart";
 
 export default function Index() {
   const auth = useAuthSession();
@@ -11,7 +11,7 @@ export default function Index() {
   return (
     <View className={`flex-1 bg-background`}>
       <View style={{ height: 300 }}>
-        <AreaChartExample />
+        <AreaChart />
       </View>
       <Text className="font-bold text-lg my-10 font-source-sans text-3xl">
         Index
