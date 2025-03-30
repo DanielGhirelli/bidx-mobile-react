@@ -1,176 +1,142 @@
-import React, { useMemo } from "react";
-import {
-  Text as SKText,
-  useFont,
-  vec,
-  RoundedRect,
-  LinearGradient,
-  Circle,
-} from "@shopify/react-native-skia";
-import {
-  useDerivedValue,
-  useSharedValue,
-  useAnimatedReaction,
-  type SharedValue,
-} from "react-native-reanimated";
-import { Area, CartesianChart, Line, useChartPressState } from "victory-native";
-import { View } from "react-native";
-
-const TOOLTIP_WIDTH = 140;
-const TOOLTIP_HEIGHT = 60;
-const TOOLTIP_PADDING = 10;
+import { View, Text } from "react-native";
+import { LineChart, yAxisSides } from "react-native-gifted-charts";
 
 export default function AreaChart() {
-  const chartData = useMemo(
-    () =>
-      Array.from({ length: 30 }, (_, i) => ({
-        day: i,
-        highTmp: 40 + 30 * Math.random(),
-        date: `2023-03-${(i + 1).toString().padStart(2, "0")}`,
-      })),
-    []
-  );
+  const ptData = [
+    { value: 160, date: "1 Apr 2022" },
+    { value: 180, date: "2 Apr 2022" },
+    { value: 190, date: "3 Apr 2022" },
+    { value: 180, date: "4 Apr 2022" },
+    { value: 140, date: "5 Apr 2022" },
+    { value: 145, date: "6 Apr 2022" },
+    { value: 160, date: "7 Apr 2022" },
+    { value: 200, date: "8 Apr 2022" },
 
-  const font = useFont(
-    require("../../../assets/fonts/SourceSans3-Bold.ttf"),
-    18
-  );
-
-  const { state, isActive } = useChartPressState({ x: 0, y: { highTmp: 0 } });
-
-  const value = useSharedValue("");
-  const dateLabel = useSharedValue("");
-
-  useAnimatedReaction(
-    () => {
-      const xVal = Math.round(state.x.position.value);
-      return chartData.find((item) => item.day === xVal);
+    { value: 220, date: "9 Apr 2022" },
+    {
+      value: 240,
+      date: "10 Apr 2022",
+      label: "10 Apr",
+      labelTextStyle: { color: "lightgray", width: 60 },
     },
-    (selectedDatum) => {
-      if (selectedDatum) {
-        value.value = selectedDatum.highTmp.toFixed(2) + " €";
-        dateLabel.value = `Date: ${selectedDatum.date}`;
-      } else {
-        value.value = "";
-        dateLabel.value = "";
-      }
-    },
-    [chartData]
-  );
+    { value: 280, date: "11 Apr 2022" },
+    { value: 260, date: "12 Apr 2022" },
+    { value: 340, date: "13 Apr 2022" },
+    { value: 385, date: "14 Apr 2022" },
+    { value: 280, date: "15 Apr 2022" },
+    { value: 390, date: "16 Apr 2022" },
 
-  if (!font) return null; // Optional: avoid rendering until font loads
+    { value: 370, date: "17 Apr 2022" },
+    { value: 285, date: "18 Apr 2022" },
+    { value: 295, date: "19 Apr 2022" },
+    {
+      value: 300,
+      date: "20 Apr 2022",
+      label: "20 Apr",
+      labelTextStyle: { color: "lightgray", width: 60 },
+    },
+    { value: 280, date: "21 Apr 2022" },
+    { value: 295, date: "22 Apr 2022" },
+    { value: 260, date: "23 Apr 2022" },
+    { value: 255, date: "24 Apr 2022" },
+
+    { value: 190, date: "25 Apr 2022" },
+    { value: 220, date: "26 Apr 2022" },
+    { value: 205, date: "27 Apr 2022" },
+    { value: 230, date: "28 Apr 2022" },
+    { value: 210, date: "29 Apr 2022" },
+    {
+      value: 200,
+      date: "30 Apr 2022",
+      label: "30 Apr",
+      labelTextStyle: { color: "lightgray", width: 60 },
+    },
+    { value: 240, date: "1 May 2022" },
+    { value: 250, date: "2 May 2022" },
+    { value: 280, date: "3 May 2022" },
+    { value: 250, date: "4 May 2022" },
+    { value: 210, date: "5 May 2022" },
+  ];
 
   return (
-    <View style={{ flex: 1 }}>
-      <CartesianChart
-        data={chartData}
-        xKey="day"
-        yKeys={["highTmp"]}
-        domainPadding={{ top: 30 }}
-        chartPressState={state}
-      >
-        {({ points, chartBounds }) => {
-          const tooltip = isActive && (
-            <>
-              <Circle
-                cx={state.x.position}
-                cy={state.y.highTmp.position}
-                r={6}
-                color="white"
-              />
-              <TooltipBox
-                x={state.x.position}
-                y={state.y.highTmp.position}
-                value={value}
-                dateLabel={dateLabel}
-                font={font}
-                chartWidth={chartBounds.right}
-              />
-            </>
-          );
-
-          return (
-            <>
-              <Line
-                points={points.highTmp}
-                color="lightgreen"
-                strokeWidth={3}
-                animate={{ type: "timing", duration: 500 }}
-              />
-              <Area
-                points={points.highTmp}
-                y0={chartBounds.bottom}
-                animate={{ type: "timing", duration: 500 }}
+    <View
+      style={{
+        paddingVertical: 100,
+        paddingLeft: 20,
+        backgroundColor: "#1C1C1C",
+      }}
+    >
+      <LineChart
+        areaChart
+        data={ptData}
+        rotateLabel
+        width={350}
+        hideDataPoints
+        spacing={9}
+        color="#00ff83"
+        thickness={2}
+        startFillColor="rgba(20,105,81,0.3)"
+        endFillColor="rgba(20,85,81,0.01)"
+        startOpacity={0.9}
+        endOpacity={0.2}
+        initialSpacing={0}
+        noOfSections={6}
+        maxValue={600}
+        yAxisColor="white"
+        yAxisThickness={0}
+        rulesType="solid"
+        rulesColor="gray"
+        yAxisTextStyle={{ color: "gray" }}
+        yAxisSide={yAxisSides.LEFT}
+        xAxisColor="lightgray"
+        pointerConfig={{
+          pointerStripHeight: 160,
+          pointerStripColor: "lightgray",
+          pointerStripWidth: 2,
+          pointerColor: "lightgray",
+          radius: 6,
+          pointerLabelWidth: 100,
+          pointerLabelHeight: 90,
+          autoAdjustPointerLabelPosition: true,
+          pointerLabelComponent: (items: { date: string; value: number }[]) => {
+            return (
+              <View
+                style={{
+                  height: 90,
+                  width: 100,
+                  justifyContent: "center",
+                  marginTop: -50,
+                  marginLeft: 0,
+                }}
               >
-                <LinearGradient
-                  start={vec(chartBounds.bottom, 200)}
-                  end={vec(chartBounds.bottom, chartBounds.bottom)}
-                  colors={["green", "#90ee9050"]}
-                />
-              </Area>
-              {tooltip}
-            </>
-          );
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 14,
+                    marginBottom: 6,
+                    textAlign: "center",
+                  }}
+                >
+                  {items[0].date}
+                </Text>
+          
+                <View
+                  style={{
+                    paddingHorizontal: 14,
+                    paddingVertical: 6,
+                    borderRadius: 16,
+                    backgroundColor: "white",
+                  }}
+                >
+                  <Text style={{ fontWeight: "bold", textAlign: "center" }}>
+                    {"$" + items[0].value + ".0"}
+                  </Text>
+                </View>
+              </View>
+            );
+          },
         }}
-      </CartesianChart>
-    </View>
-  );
-}
-
-function TooltipBox({
-  x,
-  y,
-  value,
-  dateLabel,
-  font,
-  chartWidth,
-}: {
-  x: SharedValue<number>;
-  y: SharedValue<number>;
-  value: SharedValue<string>;
-  dateLabel: SharedValue<string>;
-  font: ReturnType<typeof useFont>;
-  chartWidth: number;
-}) {
-  const adjustedX = useDerivedValue(() => {
-    const rawX = x.value - TOOLTIP_WIDTH / 2;
-    const maxX = chartWidth - TOOLTIP_WIDTH - 4;
-    return Math.max(4, Math.min(rawX, maxX));
-  }, [x]);
-
-  const rectY = useDerivedValue(() => {
-    return Math.max(4, y.value - TOOLTIP_HEIGHT - 20);
-  }, [y]);
-
-  const textX = useDerivedValue(
-    () => adjustedX.value + TOOLTIP_PADDING,
-    [adjustedX]
-  );
-  const dateY = useDerivedValue(() => rectY.value + 20, [rectY]);
-  const valueY = useDerivedValue(() => rectY.value + 40, [rectY]);
-
-  const dateText = useDerivedValue(
-    () => dateLabel.value || "Loading...",
-    [dateLabel]
-  );
-  const valueText = useDerivedValue(
-    () => `Cost: ${value.value || "--"}`,
-    [value]
-  );
-
-  return (
-    <>
-      <RoundedRect
-        x={adjustedX}
-        y={rectY}
-        width={TOOLTIP_WIDTH}
-        height={TOOLTIP_HEIGHT}
-        r={10}
-        color="black"
-        opacity={0.8}
       />
-      <SKText x={textX} y={dateY} text={dateText} font={font} color="white" />
-      <SKText x={textX} y={valueY} text={valueText} font={font} color="white" />
-    </>
+    </View>
   );
 }
