@@ -10,7 +10,13 @@ export default function Index() {
 
   return (
     <View className={`flex-1 bg-background`}>
-      <View style={{ height: 300 }}>
+      <View
+        className="bg-card-background mt-10"
+        style={{
+          height: 300,
+          paddingTop: 100,
+        }}
+      >
         <AreaChart />
       </View>
       <Text className="font-bold text-lg my-10 font-source-sans text-3xl">
