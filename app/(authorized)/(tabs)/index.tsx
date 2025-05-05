@@ -1,7 +1,7 @@
 import { View, Text, Button } from "react-native";
 import React from "react";
 import { useAuthSession } from "@/providers/AuthProvider";
-import AreaChart from "@/modules/kpi/components/AreaChart";
+import AreaChart from "@/components/Charts/AreaChart";
 
 export default function Index() {
   const auth = useAuthSession();

@@ -1,18 +1,10 @@
+import { useThemeKey } from "@/hooks/useThemeKey";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
 
 export default function AreaChart() {
+  const theme = useThemeKey();
   const screenWidth = Dimensions.get("window").width;
-
-  const getPointerMarginLeft = (index: number): number => {
-    if (index >= 27) return -20;
-    if (index >= 26) return -60;
-    if (index >= 25) return -50;
-    if (index >= 24) return -40;
-    if (index >= 23) return -30;
-    if (index >= 22) return -20;
-    return 0;
-  };
 
   const ptData = [
     { value: 160, date: "1 Apr 2022" },
@@ -68,9 +60,8 @@ export default function AreaChart() {
         pointerConfig={{
           pointerStripColor: "black",
           pointerStripWidth: 1,
-          radius: 5,
-          pointerLabelWidth: 100,
-          pointerLabelHeight: 120,
+          pointerLabelWidth: 160,
+          pointerLabelHeight: 100,
           autoAdjustPointerLabelPosition: true,
           pointerComponent: () => (
             <View
@@ -92,26 +83,29 @@ export default function AreaChart() {
             return (
               <View
                 style={{
-                  height: 100,
-                  width: 130,
-                  marginTop: 0,
-                  marginLeft: getPointerMarginLeft(index),
+                  width: 150,
                 }}
               >
                 <View
                   style={{
-                    paddingHorizontal: 14,
-                    paddingVertical: 6,
-                    borderRadius: 16,
-                    backgroundColor: "white",
+                    padding: 5,
+                    borderRadius: 6,
+                    backgroundColor: theme.find("background"),
                   }}
                 >
-                  <Text style={{ fontWeight: "bold", textAlign: "center" }}>
+                  <Text className="font-source-sans-extrabold text-text-primary text-md mb-1">
                     {items[0].date}
                   </Text>
-                  <Text style={{ fontWeight: "bold", textAlign: "center" }}>
-                    {"$" + items[0].value + ".0"}
-                  </Text>
+                  <View className="flex-1 h-[0.4px] bg-gray-400 mb-1" />
+                  <View className="flex-row justify-between items-center">
+                    <Text className="font-source-sans text-text-primary text-md">
+                      Cost:
+                    </Text>
+                    <Text className="font-source-sans text-text-primary text-md"
+                          style={{ color: "rgba(227, 197, 63, 1.0)" }}>
+                      ${items[0].value}.0
+                    </Text>
+                  </View>
                 </View>
               </View>
             );
