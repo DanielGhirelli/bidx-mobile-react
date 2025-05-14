@@ -60,7 +60,7 @@ export default function AreaChart() {
         pointerConfig={{
           pointerStripColor: "black",
           pointerStripWidth: 1,
-          pointerLabelWidth: 160,
+          pointerLabelWidth: 140,
           pointerLabelHeight: 100,
           autoAdjustPointerLabelPosition: true,
           pointerComponent: () => (
@@ -83,7 +83,7 @@ export default function AreaChart() {
             return (
               <View
                 style={{
-                  width: 150,
+                  width: 140,
                 }}
               >
                 <View
@@ -93,15 +93,15 @@ export default function AreaChart() {
                     backgroundColor: theme.find("background"),
                   }}
                 >
-                  <Text className="font-source-sans-extrabold text-text-primary text-md mb-1">
+                  <Text className="font-source-sans-extrabold text-text-secondary text-sm mb-1">
                     {items[0].date}
                   </Text>
                   <View className="flex-1 h-[0.4px] bg-gray-400 mb-1" />
                   <View className="flex-row justify-between items-center">
-                    <Text className="font-source-sans text-text-primary text-md">
+                    <Text className="font-source-sans text-text-secondary text-sm">
                       Cost:
                     </Text>
-                    <Text className="font-source-sans text-text-primary text-md"
+                    <Text className="font-source-sans text-text-primary text-sm"
                           style={{ color: "rgba(227, 197, 63, 1.0)" }}>
                       ${items[0].value}.0
                     </Text>
