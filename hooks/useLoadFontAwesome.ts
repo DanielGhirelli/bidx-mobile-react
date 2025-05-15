@@ -5,18 +5,25 @@ import {
   faUserGear,
 } from "@fortawesome/pro-solid-svg-icons";
 import {
+  faEnvelope as farEnvelope,
+  faLock as farLock,
   faHouse as farHouse,
   faChartSimple as farChartSimple,
-  faUserGear as farUserGear,
 } from "@fortawesome/pro-regular-svg-icons";
+
+import {
+  faUserGear as falUserGear,
+} from "@fortawesome/pro-light-svg-icons";
 
 export default function useLoadFontAwesome() {
   library.add(
+    farEnvelope,
+    farLock,
     faHouse,
     farHouse,
     faChartSimple,
     farChartSimple,
     faUserGear,
-    farUserGear
+    falUserGear
   );
 }

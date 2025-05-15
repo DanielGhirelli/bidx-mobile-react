@@ -22,12 +22,14 @@
         "yesterday": "Yesterday"
     },
     "welcome": {
-        "title": "Leave your Amazon Ads to us.",
-        "sub_title_bold": "And have the time to focus on your business.",
-        "sub_title": "We have developed a web application that uses machine-learning algorithms to continuously analyze the performance of your advertisements.",
-        "signup_button": "SIGN UP NOW",
-        "signup_description": "Get BidX to optimize your advertising strategy with advanced automation tools. Learn more at bidx.io",
-        "signin_button": "Sign In"
+        "title": "Leave your ",
+        "title_2": "Amazon Ads to us, ",
+        "title_3": "and have time to focus ",
+        "title_4": "on your business.",
+        "signin_button": "Sign In",
+        "signin_with_google_button": "Sign with Google",
+        "not_registered": "Not registered yet?  ",
+        "not_registered_link": "Create an account here"
     },
     "login": {
         "forgot_password": "Forgot your password?",
@@ -42,7 +44,7 @@
         "description": {
             "button": "Need help signing in?"
         },
-        "google_button": "Sign in with Google"
+        "or_sign_in": "Or Sign with"
     },
     "register": {
         "step": {

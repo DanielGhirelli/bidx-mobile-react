@@ -10,14 +10,12 @@ export const light = {
   surface: "rgba(251, 251, 253, 1)",
   link: "rgba(46, 47, 138, 1)", //x
   divider: "rgba(189, 189, 189, 1)", //x
-  buttonBackground: "rgba(224, 225, 239, 0.42)", //x
+  buttonBackground: "rgba(240, 241, 242, 1)", //x
+  buttonBorder: "rgba(226, 232, 240, 1)", //x
   buttonInactive: "rgba(19, 20, 74, 0.4)", //x
   buttonGradient1: "rgba(19, 20, 74, 1)", //x
   buttonGradient2: "rgba(253, 96, 83, 1)", //x
   buttonGradient3: "rgba(249, 164, 46, 1)", //x
-  buttonSecondaryGradient1: "rgba(50, 51, 103, 1)", //x
-  buttonSecondaryGradient2: "rgba(118, 81, 118, 1)", //x
-  buttonSecondaryGradient3: "rgba(138, 113, 136, 1)", //x
   textPrimary: "rgba(19, 20, 74, 1)", //x
   textSecondary: "rgb(70, 73, 78)", //x
   textPlaceholder: "rgba(93, 98, 104, 0.65)", //x
@@ -41,14 +39,12 @@ export const dark = {
   surface: "rgba(33, 33, 33, 1)",
   link: "rgba(169, 169, 210, 1)",
   divider: "rgba(66, 66, 66, 1)",
-  buttonBackground: "rgba(66, 67, 146, 0.54)",
+  buttonBackground: "	rgba(40, 41, 42, 1)",
+  buttonBorder: "rgb(62, 62, 62)",
   buttonInactive: "rgba(242, 242, 242, 0.4)",
   buttonGradient1: "rgba(66, 67, 146, 1)",
   buttonGradient2: "rgba(138, 93, 137, 1)",
   buttonGradient3: "rgba(138, 113, 136, 1)",
-  buttonSecondaryGradient1: "rgba(50, 50, 90, 1)",
-  buttonSecondaryGradient2: "rgba(155, 72, 68, 1)",
-  buttonSecondaryGradient3: "rgba(200, 121, 37, 1)",
   textPrimary: "rgba(230, 223, 223, 1)",
   textSecondary: "rgba(208, 207, 207, 1)",
   textPlaceholder: "rgba(208, 207, 207, 0.7)",
@@ -74,13 +70,11 @@ export const themes = {
     "--color-link": light.link,
     "--color-divider": light.divider,
     "--color-button-background": light.buttonBackground,
+    "--color-button-border": light.buttonBorder,
     "--color-button-inactive": light.buttonInactive,
     "--color-button-gradient-1": light.buttonGradient1,
     "--color-button-gradient-2": light.buttonGradient2,
     "--color-button-gradient-3": light.buttonGradient3,
-    "--color-button-secondary-gradient-1": light.buttonSecondaryGradient1,
-    "--color-button-secondary-gradient-2": light.buttonSecondaryGradient2,
-    "--color-button-secondary-gradient-3": light.buttonSecondaryGradient3,
     "--color-text-primary": light.textPrimary,
     "--color-text-secondary": light.textSecondary,
     "--color-text-placeholder": light.textPlaceholder,
@@ -100,13 +94,11 @@ export const themes = {
     "--color-link": dark.link,
     "--color-divider": dark.divider,
     "--color-button-background": dark.buttonBackground,
+    "--color-button-border": dark.buttonBorder,
     "--color-button-inactive": dark.buttonInactive,
     "--color-button-gradient-1": dark.buttonGradient1,
     "--color-button-gradient-2": dark.buttonGradient2,
     "--color-button-gradient-3": dark.buttonGradient3,
-    "--color-button-secondary-gradient-1": dark.buttonSecondaryGradient1,
-    "--color-button-secondary-gradient-2": dark.buttonSecondaryGradient2,
-    "--color-button-secondary-gradient-3": dark.buttonSecondaryGradient3,
     "--color-text-primary": dark.textPrimary,
     "--color-text-secondary": dark.textSecondary,
     "--color-text-placeholder": dark.textPlaceholder,

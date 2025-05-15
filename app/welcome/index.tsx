@@ -32,82 +32,65 @@ export default function Index() {
           }}
         >
           <Image
-            source={require("../../assets/images/rocket.png")}
-            className="w-64 h-64 object-contain"
+            source={require("../../assets/images/welcome_1.png")}
+            className="w-96 h-96 object-contain"
           />
 
-          <Text className="font-source-sans-bold text-text-primary text-2xl text-center mt-5">
+          <Text className="font-source-sans-light text-text-primary text-3xl text-center mt-5 mb-[50px]">
             {i18n.t("welcome.title")}
-          </Text>
-          <Text className="font-source-sans-bold text-text-secondary text-md text-center mt-2">
-            {i18n.t("welcome.sub_title_bold")}
-          </Text>
-          <Text className="font-source-sans text-text-secondary text-sm text-center mt-1 mb-20">
-            {i18n.t("welcome.sub_title")}
+            <Text className="font-source-sans-semibold">
+              {i18n.t("welcome.title_2")}
+            </Text>
+            {i18n.t("welcome.title_3")}
+            <Text className="font-source-sans-semibold">
+              {i18n.t("welcome.title_4")}
+            </Text>
           </Text>
 
-          <TouchableOpacity
-            style={{ width: "100%", borderRadius: 5, overflow: "hidden" }}
-          >
-            <LinearGradient
-              colors={[
-                theme.find("buttonGradient1"),
-                theme.find("buttonGradient2"),
-                theme.find("buttonGradient3"),
-              ]}
-              locations={[0.4, 0.9, 1]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              style={{ width: "100%", padding: 12, alignItems: "center" }}
-            >
-              <Text
-                className="font-source-sans"
-                style={{ fontSize: 20, fontWeight: "500", color: "white" }}
+          <Link href="/login" asChild>
+            <TouchableOpacity className="mb-5 w-full rounded overflow-hidden">
+              <LinearGradient
+                colors={[
+                  theme.find("buttonGradient1"),
+                  theme.find("buttonGradient2"),
+                  theme.find("buttonGradient3"),
+                ]}
+                locations={[0.4, 0.9, 1]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={{ width: "100%", padding: 12, alignItems: "center" }}
               >
-                {i18n.t("welcome.signup_button")}
+                <Text className="font-source-sans text-white text-[20px] font-medium">
+                  {i18n.t("welcome.signin_button")}
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </Link>
+
+          <TouchableOpacity className="mb-5 w-full rounded border border-button-border bg-button-background p-3">
+            <View className="flex-row items-center justify-center">
+              <Ionicons
+                name="logo-google"
+                size={22}
+                color={theme.find("textPrimary")}
+                style={{ marginRight: 8 }}
+              />
+              <Text className="font-source-sans text-text-primary text-[20px]">
+                {i18n.t("welcome.signin_with_google_button")}
               </Text>
-            </LinearGradient>
+            </View>
           </TouchableOpacity>
 
-          <Text className="font-source-sans text-text-secondary text-sm text-center mt-3">
-            {i18n.t("welcome.signup_description")}
+          <Text className="font-source-sans text-text-primary text-md text-center mt-3">
+            {i18n.t("welcome.not_registered")}
+            <Link href="/login" asChild>
+              <Text className="font-source-sans-semibold text-link text-md underline">
+                {i18n.t("welcome.not_registered_link")}
+              </Text>
+            </Link>
           </Text>
         </ScrollView>
       </ImageBackground>
-
-      {/* Bottom Section with White Background */}
-      <View
-        className="bg-background"
-        style={{
-          paddingVertical: 16,
-          shadowColor: theme.find("primary"),
-          shadowOpacity: 0.4,
-          shadowRadius: 4,
-          shadowOffset: { width: 0, height: 1 },
-          elevation: 1,
-        }}
-      >
-        <View className="flex-row justify-evenly mb-5">
-          <TouchableOpacity className="ml-7 flex-1 flex-row items-center justify-center py-3 mx-2 rounded-full bg-button-background">
-            <Text className="font-source-sans-bold text-xl text-text-primary primary-dark mr-2">
-              Google
-            </Text>
-            <Ionicons
-              name="logo-google"
-              size={22}
-              color={theme.find("textPrimary")}
-            />
-          </TouchableOpacity>
-
-          <Link href="/login" asChild>
-            <TouchableOpacity className="mr-7 flex-1 items-center justify-center py-3 mx-2 rounded-full bg-button-background">
-              <Text className="font-source-sans-bold text-xl text-text-primary">
-                Sign In
-              </Text>
-            </TouchableOpacity>
-          </Link>
-        </View>
-      </View>
     </View>
   );
 }

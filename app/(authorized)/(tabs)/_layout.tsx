@@ -71,7 +71,7 @@ export default function TabLayout(): ReactNode {
           ),
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesomeIcon
-              icon={[focused ? "fas" : "far", "user-gear"]}
+              icon={[focused ? "fas" : "fal", "user-gear"]}
               size={size}
               color={color}
             />

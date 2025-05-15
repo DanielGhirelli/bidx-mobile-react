@@ -8,6 +8,8 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { useThemeKey } from "@/hooks/useThemeKey";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { IconName } from "@fortawesome/fontawesome-svg-core";
 
 export default function InputIcon({
   icon,
@@ -20,7 +22,7 @@ export default function InputIcon({
   errorMessage,
   ...rest
 }: {
-  icon: keyof typeof FontAwesome.glyphMap;
+  icon: IconName;
   placeholder: string;
   value: string;
   onChangeText: (text: string) => void;
@@ -40,8 +42,8 @@ export default function InputIcon({
           bg-background rounded-lg flex-row items-center p-5`}
       >
         {/* Left Icon */}
-        <FontAwesome
-          name={icon}
+        <FontAwesomeIcon
+          icon={["far", icon]}
           size={20}
           color={theme.find("textSecondary")}
           style={{ marginRight: 16 }}
