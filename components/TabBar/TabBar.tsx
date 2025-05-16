@@ -53,6 +53,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             height: 45,
             width: buttonWidth - 25,
             top: 8,
+            left: 0
           },
         ]}
       />
