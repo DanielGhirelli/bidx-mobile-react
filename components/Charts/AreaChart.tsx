@@ -1,4 +1,5 @@
 import { useThemeKey } from "@/hooks/useThemeKey";
+import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
 
@@ -60,7 +61,7 @@ export default function AreaChart() {
         pointerConfig={{
           pointerStripColor: "black",
           pointerStripWidth: 1,
-          pointerLabelWidth: 140,
+          pointerLabelWidth: 140 + 11,
           pointerLabelHeight: 100,
           autoAdjustPointerLabelPosition: true,
           pointerComponent: () => (
@@ -77,8 +78,7 @@ export default function AreaChart() {
           ),
           pointerLabelComponent: (
             items: { date: string; value: number }[],
-            _secondaryItems: any,
-            index: number
+            _secondaryItems: any
           ) => {
             return (
               <View
@@ -101,8 +101,10 @@ export default function AreaChart() {
                     <Text className="font-source-sans text-text-secondary text-sm">
                       Cost:
                     </Text>
-                    <Text className="font-source-sans text-text-primary text-sm"
-                          style={{ color: "rgba(227, 197, 63, 1.0)" }}>
+                    <Text
+                      className="font-source-sans text-text-primary text-sm"
+                      style={{ color: "rgba(227, 197, 63, 1.0)" }}
+                    >
                       ${items[0].value}.0
                     </Text>
                   </View>

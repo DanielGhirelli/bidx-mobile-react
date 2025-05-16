@@ -1,3 +1,4 @@
+import React from "react";
 import { SplashScreen } from "expo-router";
 import { I18nextProvider } from "react-i18next";
 import { useEffect } from "react";

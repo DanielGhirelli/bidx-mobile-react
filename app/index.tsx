@@ -1,3 +1,4 @@
+import React from "react";
 import { useAuthSession } from "@/providers/AuthProvider";
 import { Redirect } from "expo-router";
 
