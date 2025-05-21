@@ -5,6 +5,7 @@ import {
   faUserGear,
 } from "@fortawesome/pro-solid-svg-icons";
 import {
+  faChartScatter as farChartScatter,
   faEnvelope as farEnvelope,
   faLock as farLock,
   faHouse as farHouse,
@@ -24,6 +25,7 @@ export default function useLoadFontAwesome() {
     faChartSimple,
     farChartSimple,
     faUserGear,
-    falUserGear
+    falUserGear,
+    farChartScatter
   );
 }

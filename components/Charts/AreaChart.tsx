@@ -46,7 +46,7 @@ export default function AreaChart() {
         areaChart
         data={ptData}
         height={130}
-        width={screenWidth / 1.2}
+        width={screenWidth / 1.3}
         adjustToWidth
         hideDataPoints
         color="rgba(228, 198, 69, 1.0)"

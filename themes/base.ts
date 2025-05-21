@@ -20,8 +20,8 @@ export const light = {
   textSecondary: "rgb(70, 73, 78)", //x
   textPlaceholder: "rgba(93, 98, 104, 0.65)", //x
   textHover: "rgba(46, 47, 138, 1)", //x
-  cardBackground: "rgba(1, 1, 5, 0.68)",
-  cardSecondaryBackground: "rgba(222, 220, 233, 0.67)",
+  cardBackground: "rgb(241, 243, 250)", // x
+  cardSecondaryBackground: "rgb(240, 242, 247)", // x
   cardDisabledBackground: "rgba(189, 189, 189, 1)",
   shimmerBase: "rgba(205, 205, 205, 1)",
   circularProgress: "rgba(251, 251, 253, 1)", //x
@@ -49,8 +49,8 @@ export const dark = {
   textSecondary: "rgba(208, 207, 207, 1)",
   textPlaceholder: "rgba(208, 207, 207, 0.7)",
   textHover: "rgba(169, 169, 210, 1)",
-  cardBackground: "rgba(58, 57, 62, 1)",
-  cardSecondaryBackground: "rgba(78, 75, 85, 0.91)",
+  cardBackground: "rgb(46, 46, 47)",
+  cardSecondaryBackground: "rgba(58, 58, 61, 0.7)",
   cardDisabledBackground: "rgba(66, 66, 66, 1)",
   shimmerBase: "rgba(103, 103, 103, 1)",
   circularProgress: "rgba(208, 156, 52, 1)",
