@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 import { View, Text, Button, ScrollView } from "react-native";
 import { useAuthSession } from "@/providers/AuthProvider";
-import AreaChart from "@/components/Charts/AreaChart";
 import { Dropdown } from "react-native-element-dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useThemeKey } from "@/hooks/useThemeKey";
+import GeneralCards from "../cards/general";
 
 const data = [
-  { label: "General", value: "General" },
-  { label: "ACOS", value: "ACOS" },
-  { label: "Sales", value: "Sales" },
+  { label: "General", value: "general" },
+  { label: "ACOS", value: "acos" },
+  { label: "Sales", value: "sales" },
 ];
 
 export default function Index() {
   const auth = useAuthSession();
-  const theme = useThemeKey();
-  const [selectedReport, setSelectedReport] = useState("General");
-
   if (!auth) return null;
+
+  const theme = useThemeKey();
+  const [selectedReport, setSelectedReport] = useState("general");
 
   return (
     <ScrollView
+      className="bg-background"
       contentContainerStyle={{
         flexGrow: 1,
+        paddingBottom: 130,
       }}
     >
       <View className="flex-1 bg-background px-4">
@@ -49,22 +51,31 @@ export default function Index() {
             style={{
               height: 50,
               borderRadius: 10,
-              borderColor: "red",
+              borderColor: theme.find("buttonBorder"),
+              borderWidth: 1,
               backgroundColor: theme.find("background"),
               paddingHorizontal: 20,
             }}
-            placeholderStyle={{ color: theme.find("textSecondary"),  fontSize: 13 }}
-            selectedTextStyle={{ color: theme.find("textSecondary"), fontSize: 13 }}
-            itemTextStyle={{ color: theme.find("textSecondary"), fontSize: 13 }}
-            containerStyle={{ backgroundColor: theme.find("background"), borderRadius: 8, borderColor: theme.find("background") }}
+            placeholderStyle={{
+              color: theme.find("textSecondary"),
+              fontSize: 14,
+            }}
+            selectedTextStyle={{
+              color: theme.find("textSecondary"),
+              fontSize: 14,
+            }}
+            itemTextStyle={{ color: theme.find("textSecondary"), fontSize: 14 }}
+            containerStyle={{
+              backgroundColor: theme.find("background"),
+              borderRadius: 8,
+              borderColor: theme.find("background"),
+            }}
             activeColor={theme.find("cardSecondaryBackground")}
           />
         </View>
 
         {/* Chart container */}
-        <View className="bg-card-background mt-10 rounded-xl">
-          <AreaChart />
-        </View>
+        {selectedReport === "general" && <GeneralCards />}
 
         <Button title="Logout" onPress={auth.signOut} />
       </View>

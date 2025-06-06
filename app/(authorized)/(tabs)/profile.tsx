@@ -1,12 +1,7 @@
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
-import { useAuthSession } from "@/providers/AuthProvider";
 
 export default function Profile() {
-  const auth = useAuthSession();
-
-  if (!auth) return null;
-
   return (
     <View className={`flex-1 bg-background`}>
       <View

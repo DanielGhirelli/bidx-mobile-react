@@ -3,28 +3,28 @@ import { vars } from "nativewind";
 // Theme Schema
 export const light = {
   // Colors
-  primary: "rgba(19, 20, 74, 1)", //x
+  primary: "rgba(19, 20, 74, 1)",
   secondary: "rgba(252, 96, 83, 1)",
-  error: "rgba(165, 52, 40, 1)", //x
-  background: "rgba(251, 251, 253, 1)", //x
+  error: "rgba(165, 52, 40, 1)",
+  background: "rgba(251, 251, 253, 1)",
   surface: "rgba(251, 251, 253, 1)",
-  link: "rgba(46, 47, 138, 1)", //x
-  divider: "rgba(189, 189, 189, 1)", //x
-  buttonBackground: "rgba(240, 241, 242, 1)", //x
-  buttonBorder: "rgba(226, 232, 240, 1)", //x
-  buttonInactive: "rgba(19, 20, 74, 0.4)", //x
-  buttonGradient1: "rgba(19, 20, 74, 1)", //x
-  buttonGradient2: "rgba(253, 96, 83, 1)", //x
-  buttonGradient3: "rgba(249, 164, 46, 1)", //x
-  textPrimary: "rgba(19, 20, 74, 1)", //x
-  textSecondary: "rgb(70, 73, 78)", //x
-  textPlaceholder: "rgba(93, 98, 104, 0.65)", //x
-  textHover: "rgba(46, 47, 138, 1)", //x
-  cardBackground: "rgb(241, 243, 250)", // x
-  cardSecondaryBackground: "rgb(240, 242, 247)", // x
+  link: "rgba(46, 47, 138, 1)",
+  divider: "rgba(189, 189, 189, 1)",
+  buttonBackground: "rgba(240, 241, 242, 1)",
+  buttonBorder: "rgba(226, 232, 240, 1)",
+  buttonInactive: "rgba(19, 20, 74, 0.4)",
+  buttonGradient1: "rgba(19, 20, 74, 1)",
+  buttonGradient2: "rgba(253, 96, 83, 1)",
+  buttonGradient3: "rgba(249, 164, 46, 1)",
+  textPrimary: "rgba(19, 20, 74, 1)",
+  textSecondary: "rgb(70, 73, 78)",
+  textPlaceholder: "rgba(93, 98, 104, 0.65)",
+  textHover: "rgba(46, 47, 138, 1)",
+  cardBackground: "rgb(241, 243, 250)",
+  cardSecondaryBackground: "rgb(240, 242, 247)",
   cardDisabledBackground: "rgba(189, 189, 189, 1)",
   shimmerBase: "rgba(205, 205, 205, 1)",
-  circularProgress: "rgba(251, 251, 253, 1)", //x
+  circularProgress: "rgba(251, 251, 253, 1)",
 
   // Images
   bodyBackground: require("../assets/images/body_background_light.jpg"),
