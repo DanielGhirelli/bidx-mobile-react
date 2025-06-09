@@ -30,7 +30,11 @@ This is the Mobile Application for BidX.
    2. Log in to EAS with: `eas login` (Credentials on 1Password)
 
 ## Must Know
-- Debugging with VS Code
+- Debugging with JS Debugger
+  * In your terminal: type `j` to open debugger
+  * JS Dev Tools debugger will automatically be open.
+  * Browse to necessary files and add breakpoints.
+- Debugging with VS Code ( **alternative** )
   * Connect your app.
   * Open VS Code command palette (`Cmd ⌘ + Shift + P`)
   * Run the `Expo: Debug ...` command.
