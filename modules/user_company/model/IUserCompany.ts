@@ -1,6 +1,9 @@
-import { ICompany } from '../../company/model/ICompany';
-import { IUser } from '../../user/model/IUser';
-import { IPreferredCurrency } from '../../preferred_currency/model/IPreferredCurrency';
+import { ICompany, iCompanyFromJson } from "../../company/model/ICompany";
+import { IUser, iUserFromJson } from "../../user/model/IUser";
+import {
+  IPreferredCurrency,
+  iPreferredCurrencyFromJson,
+} from "../../preferred_currency/model/IPreferredCurrency";
 
 export interface IUserCompany {
   company?: ICompany;
@@ -13,9 +16,11 @@ export const iUserCompanyFromJson = (jsonString: string): IUserCompany => {
   const jsonData = JSON.parse(jsonString);
 
   return {
-    company: jsonData.company ? jsonData.company as ICompany : undefined,
-    user: jsonData.user ? jsonData.user as IUser : undefined,
-    preferredCurrency: jsonData.preferred_currency ? jsonData.preferred_currency as IPreferredCurrency : undefined,
+    company: jsonData.company ? iCompanyFromJson(jsonData.company) : undefined,
+    user: jsonData.user ? iUserFromJson(jsonData.user) : undefined,
+    preferredCurrency: jsonData.preferred_currency
+      ? iPreferredCurrencyFromJson(jsonData.preferred_currency)
+      : undefined,
   };
 };
 

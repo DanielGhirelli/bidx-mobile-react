@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 import i18n from "../config/i18n";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { FormatterProvider } from "@/providers/FormatterContext";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
 
@@ -28,7 +29,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <ThemeProvider>{children}</ThemeProvider>
+      <FormatterProvider>
+        <ThemeProvider>{children}</ThemeProvider>
+      </FormatterProvider>
     </I18nextProvider>
   );
 }

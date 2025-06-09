@@ -1,5 +1,6 @@
 import { useThemeKey } from "@/hooks/useThemeKey";
 import { ChartData } from "@/modules/core/model/ChartData";
+import { useFormatter } from "@/providers/FormatterContext";
 import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
@@ -10,9 +11,9 @@ type AreaChartProps = {
 };
 
 export default function AreaChart({ tooltip, data }: AreaChartProps) {
+  const { formatCurrency, formatNumber, formatDate } = useFormatter();
   const theme = useThemeKey();
   const screenWidth = Dimensions.get("window").width;
-  const yOffset = Math.min(...data.map((d) => d.value ?? 0)) * 0.95;
 
   return (
     <View>
@@ -33,7 +34,6 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
         endSpacing={0}
         hideAxesAndRules={true}
         hideYAxisText={true}
-        yAxisOffset={yOffset}
         xAxisLabelTextStyle={{
           color: "transparent",
         }}
@@ -68,7 +68,13 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
                   }}
                 >
                   <Text className="font-source-sans-extrabold text-text-secondary text-sm mb-1">
-                    {point.tooltipTitle ?? point.label}
+                    {point.tooltipTitle ??
+                      formatDate(point.label, "yyyyMMdd", {
+                        pattern: {
+                          en: "EEEE, MM/dd/yyyy",
+                          de: "EEEE, dd.MM.yyyy",
+                        },
+                      })}
                   </Text>
                   <View className="flex-1 h-[0.4px] bg-gray-400 mb-1" />
                   <View className="flex-row justify-between items-center">
@@ -79,7 +85,9 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
                       className="font-source-sans text-text-primary text-sm"
                       style={{ color: "rgba(227, 197, 63, 1.0)" }}
                     >
-                      ${point.value}.0
+                      {tooltip.type === "currency"
+                        ? formatCurrency(point.value)
+                        : formatNumber(point.value)}
                     </Text>
                   </View>
                 </View>

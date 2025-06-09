@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, Button, ScrollView } from "react-native";
+import React, { useCallback, useState } from "react";
+import { View, Text, Button, ScrollView, RefreshControl } from "react-native";
 import { useAuthSession } from "@/providers/AuthProvider";
 import { Dropdown } from "react-native-element-dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -19,6 +19,18 @@ export default function Index() {
   const theme = useThemeKey();
   const [selectedReport, setSelectedReport] = useState("general");
 
+  const [refreshing, setRefreshing] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+
+    setTimeout(() => {
+      setRefreshing(false);
+      setRefreshKey((prev) => prev + 1);
+    }, 1000);
+  }, []);
+
   return (
     <ScrollView
       className="bg-background"
@@ -26,6 +38,10 @@ export default function Index() {
         flexGrow: 1,
         paddingBottom: 130,
       }}
+      key={refreshKey}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
     >
       <View className="flex-1 bg-background px-4">
         <View className="bg-card-secondary-background mt-5 rounded-xl p-5">

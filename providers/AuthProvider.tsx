@@ -1,6 +1,5 @@
 import React, {
   createContext,
-  MutableRefObject,
   ReactNode,
   useContext,
   useEffect,
@@ -13,7 +12,7 @@ const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<boolean>;
   signOut: () => void;
   isUserSwitched: () => Promise<boolean>;
-  token: MutableRefObject<string | null> | null;
+  token: React.RefObject<string | null> | null;
 }>({
   signIn: async () => false,
   signOut: () => null,
