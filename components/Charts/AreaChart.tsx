@@ -1,19 +1,21 @@
 import { useThemeKey } from "@/hooks/useThemeKey";
+import { ChartData } from "@/modules/core/model/ChartData";
 import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
 
 type AreaChartProps = {
   tooltip: { type: string; kpi: string };
-  data: { value: number; date: string }[];
+  data: ChartData[];
 };
 
 export default function AreaChart({ tooltip, data }: AreaChartProps) {
   const theme = useThemeKey();
   const screenWidth = Dimensions.get("window").width;
+  const yOffset = Math.min(...data.map((d) => d.value ?? 0)) * 0.95;
 
   return (
-    <View style={{ left: -15 }}>
+    <View>
       <LineChart
         areaChart
         data={data}
@@ -30,6 +32,11 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
         initialSpacing={0}
         endSpacing={0}
         hideAxesAndRules={true}
+        hideYAxisText={true}
+        yAxisOffset={yOffset}
+        xAxisLabelTextStyle={{
+          color: "transparent",
+        }}
         pointerConfig={{
           pointerStripColor: "black",
           pointerStripWidth: 1,
@@ -48,16 +55,11 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
               }}
             />
           ),
-          pointerLabelComponent: (
-            items: { date: string; value: number }[],
-            _secondaryItems: any
-          ) => {
+          pointerLabelComponent: (items: any) => {
+            const point = items[0];
+
             return (
-              <View
-                style={{
-                  width: 140,
-                }}
-              >
+              <View style={{ width: 140 }}>
                 <View
                   style={{
                     padding: 5,
@@ -66,7 +68,7 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
                   }}
                 >
                   <Text className="font-source-sans-extrabold text-text-secondary text-sm mb-1">
-                    {items[0].date}
+                    {point.tooltipTitle ?? point.label}
                   </Text>
                   <View className="flex-1 h-[0.4px] bg-gray-400 mb-1" />
                   <View className="flex-row justify-between items-center">
@@ -77,7 +79,7 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
                       className="font-source-sans text-text-primary text-sm"
                       style={{ color: "rgba(227, 197, 63, 1.0)" }}
                     >
-                      ${items[0].value}.0
+                      ${point.value}.0
                     </Text>
                   </View>
                 </View>

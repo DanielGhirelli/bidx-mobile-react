@@ -33,7 +33,7 @@ This is the Mobile Application for BidX.
 - Debugging with JS Debugger
   * In your terminal: type `j` to open debugger
   * JS Dev Tools debugger will automatically be open.
-  * Browse to necessary files and add breakpoints.
+  * Browse to necessary files or manual breakpoints (`debugger`).
 - Debugging with VS Code ( **alternative** )
   * Connect your app.
   * Open VS Code command palette (`Cmd ⌘ + Shift + P`)

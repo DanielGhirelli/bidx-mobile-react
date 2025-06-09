@@ -4,7 +4,7 @@ import { useAuthSession } from "@/providers/AuthProvider";
 import { Dropdown } from "react-native-element-dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useThemeKey } from "@/hooks/useThemeKey";
-import GeneralCards from "../cards/general";
+import GeneralAnalytics from "../analytics/general";
 
 const data = [
   { label: "General", value: "general" },
@@ -75,7 +75,7 @@ export default function Index() {
         </View>
 
         {/* Chart container */}
-        {selectedReport === "general" && <GeneralCards />}
+        {selectedReport === "general" && <GeneralAnalytics />}
 
         <Button title="Logout" onPress={auth.signOut} />
       </View>
