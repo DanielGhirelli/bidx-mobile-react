@@ -50,11 +50,7 @@ export default function Index() {
           <Link href="/login" asChild>
             <TouchableOpacity className="mb-5 w-full rounded overflow-hidden">
               <LinearGradient
-                colors={[
-                  theme.find("buttonGradient1"),
-                  theme.find("buttonGradient2"),
-                  theme.find("buttonGradient3"),
-                ]}
+                colors={theme.find("buttonGradient")}
                 locations={[0.4, 0.9, 1]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}

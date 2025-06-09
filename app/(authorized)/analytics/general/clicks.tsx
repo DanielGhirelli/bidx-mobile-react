@@ -9,9 +9,11 @@ import { KpiData } from "@/modules/kpi/model/KpiData";
 import AreaChart from "@/components/Charts/AreaChart";
 import Kpi from "../../../../modules/kpi/kpi";
 import { useFormatter } from "@/providers/FormatterContext";
+import { useThemeKey } from "@/hooks/useThemeKey";
 
 export default function ClicksCard() {
   const { formatNumber } = useFormatter();
+  const theme = useThemeKey();
 
   const startDate = format(subDays(new Date(), 30), "yyyyMMdd");
   const endDate = format(subDays(new Date(), 1), "yyyyMMdd");
@@ -55,6 +57,7 @@ export default function ClicksCard() {
           </Text>
 
           <ShimmerPlaceholder
+            shimmerColors={theme.find("shimmerBase")}
             LinearGradient={LinearGradient}
             visible={daily !== null}
             style={{
@@ -81,6 +84,7 @@ export default function ClicksCard() {
         ) : (
           <View style={{ paddingHorizontal: 10, paddingBottom: 23 }}>
             <ShimmerPlaceholder
+              shimmerColors={theme.find("shimmerBase")}
               LinearGradient={LinearGradient}
               style={{ height: 100, borderRadius: 8, width: "100%" }}
             />

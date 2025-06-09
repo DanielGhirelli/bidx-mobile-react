@@ -77,11 +77,7 @@ export default function Index() {
           style={{ width: "100%", borderRadius: 5, overflow: "hidden" }}
         >
           <LinearGradient
-            colors={[
-              theme.find("buttonGradient1"),
-              theme.find("buttonGradient2"),
-              theme.find("buttonGradient3"),
-            ]}
+            colors={theme.find("buttonGradient")}
             locations={[0.4, 0.9, 1]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}

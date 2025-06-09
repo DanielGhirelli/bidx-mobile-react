@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { parse, format as formatDateFns } from "date-fns";
 import { enUS, de } from "date-fns/locale";
 import Auth from "@/modules/auth/auth";
+import i18n from "@/config/i18n";
 
 type CurrencyConfig = {
   locale: string;
@@ -30,7 +31,6 @@ type FormatterContextType = {
     datePattern: string,
     options?: {
       pattern?: { en: string; de: string };
-      localeOverride?: "en" | "de";
     }
   ) => string;
 };
@@ -46,7 +46,7 @@ export const FormatterProvider = ({
   const [prefCurrency, setPrefCurrency] = useState<CurrencyConfig | null>(null);
 
   useEffect(() => {
-    const loadCurrency = async () => {
+    const loadData = async () => {
       const userCompany = await Auth.getUserCompany();
       if (userCompany?.preferredCurrency) {
         setPrefCurrency({
@@ -56,11 +56,11 @@ export const FormatterProvider = ({
       }
 
       if (userCompany?.user?.preferredDateFormat) {
-        setPrefDate(userCompany?.user?.preferredDateFormat);
+        setPrefDate(userCompany?.user?.preferredDateFormat ?? "MM/DD/YYYY");
       }
     };
 
-    loadCurrency();
+    loadData();
   }, []);
 
   const formatCurrency = (
@@ -70,11 +70,9 @@ export const FormatterProvider = ({
       maxDigits?: number;
     }
   ): string => {
-    if (!prefCurrency) return amount.toString();
-
-    return new Intl.NumberFormat(prefCurrency.locale, {
+    return new Intl.NumberFormat(prefCurrency?.locale ?? "en", {
       style: "currency",
-      currency: prefCurrency.code,
+      currency: prefCurrency?.code ?? "USD",
       currencyDisplay: "symbol",
       minimumFractionDigits: options?.minDigits ?? 2,
       maximumFractionDigits: options?.maxDigits ?? 2,
@@ -103,15 +101,14 @@ export const FormatterProvider = ({
         en: string;
         de: string;
       };
-      localeOverride?: "en" | "de";
     }
   ): string => {
     if (!dateString || !datePattern) return dateString;
 
     const date = parse(dateString, datePattern, new Date());
 
-    const isDE = (prefDate === "DD.MM.YYYY");
-    const locale = isDE ? de : enUS;
+    const locale = i18n.t("locale") === "de" ? de : enUS;
+    const isDE = prefDate === "DD.MM.YYYY";
 
     const pattern = options?.pattern
       ? isDE

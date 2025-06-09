@@ -13,9 +13,11 @@ export const light = {
   buttonBackground: "rgba(240, 241, 242, 1)",
   buttonBorder: "rgba(226, 232, 240, 1)",
   buttonInactive: "rgba(19, 20, 74, 0.4)",
-  buttonGradient1: "rgba(19, 20, 74, 1)",
-  buttonGradient2: "rgba(253, 96, 83, 1)",
-  buttonGradient3: "rgba(249, 164, 46, 1)",
+  buttonGradient: [
+    "rgba(19, 20, 74, 1)",
+    "rgba(253, 96, 83, 1)",
+    "rgba(249, 164, 46, 1)",
+  ],
   textPrimary: "rgba(19, 20, 74, 1)",
   textSecondary: "rgb(70, 73, 78)",
   textPlaceholder: "rgba(93, 98, 104, 0.65)",
@@ -23,7 +25,11 @@ export const light = {
   cardBackground: "rgb(241, 243, 250)",
   cardSecondaryBackground: "rgb(240, 242, 247)",
   cardDisabledBackground: "rgba(189, 189, 189, 1)",
-  shimmerBase: "rgba(205, 205, 205, 1)",
+  shimmerBase: [
+    "rgba(235, 235, 235, 1)",
+    "rgba(215, 215, 215, 1)",
+    "rgba(235, 235, 235, 1)",
+  ],
   circularProgress: "rgba(251, 251, 253, 1)",
 
   // Images
@@ -42,9 +48,11 @@ export const dark = {
   buttonBackground: "	rgba(40, 41, 42, 1)",
   buttonBorder: "rgb(62, 62, 62)",
   buttonInactive: "rgba(242, 242, 242, 0.4)",
-  buttonGradient1: "rgba(66, 67, 146, 1)",
-  buttonGradient2: "rgba(138, 93, 137, 1)",
-  buttonGradient3: "rgba(138, 113, 136, 1)",
+  buttonGradient: [
+    "rgba(66, 67, 146, 1)",
+    "rgba(138, 93, 137, 1)",
+    "rgba(138, 113, 136, 1)",
+  ],
   textPrimary: "rgba(230, 223, 223, 1)",
   textSecondary: "rgba(208, 207, 207, 1)",
   textPlaceholder: "rgba(208, 207, 207, 0.7)",
@@ -52,7 +60,11 @@ export const dark = {
   cardBackground: "rgb(46, 46, 47)",
   cardSecondaryBackground: "rgba(58, 58, 61, 0.7)",
   cardDisabledBackground: "rgba(66, 66, 66, 1)",
-  shimmerBase: "rgba(103, 103, 103, 1)",
+  shimmerBase: [
+    "rgba(60, 60, 60, 1)",
+    "rgba(80, 80, 80, 1)",
+    "rgba(60, 60, 60, 1)",
+  ],
   circularProgress: "rgba(208, 156, 52, 1)",
 
   // Images
@@ -72,9 +84,6 @@ export const themes = {
     "--color-button-background": light.buttonBackground,
     "--color-button-border": light.buttonBorder,
     "--color-button-inactive": light.buttonInactive,
-    "--color-button-gradient-1": light.buttonGradient1,
-    "--color-button-gradient-2": light.buttonGradient2,
-    "--color-button-gradient-3": light.buttonGradient3,
     "--color-text-primary": light.textPrimary,
     "--color-text-secondary": light.textSecondary,
     "--color-text-placeholder": light.textPlaceholder,
@@ -82,7 +91,6 @@ export const themes = {
     "--color-card-background": light.cardBackground,
     "--color-card-secondary-background": light.cardSecondaryBackground,
     "--color-card-disabled-background": light.cardDisabledBackground,
-    "--color-shimmer-base": light.shimmerBase,
     "--color-circular-progress": light.circularProgress,
   }),
   dark: vars({
@@ -96,9 +104,6 @@ export const themes = {
     "--color-button-background": dark.buttonBackground,
     "--color-button-border": dark.buttonBorder,
     "--color-button-inactive": dark.buttonInactive,
-    "--color-button-gradient-1": dark.buttonGradient1,
-    "--color-button-gradient-2": dark.buttonGradient2,
-    "--color-button-gradient-3": dark.buttonGradient3,
     "--color-text-primary": dark.textPrimary,
     "--color-text-secondary": dark.textSecondary,
     "--color-text-placeholder": dark.textPlaceholder,
@@ -106,7 +111,6 @@ export const themes = {
     "--color-card-background": dark.cardBackground,
     "--color-card-secondary-background": dark.cardSecondaryBackground,
     "--color-card-disabled-background": dark.cardDisabledBackground,
-    "--color-shimmer-base": dark.shimmerBase,
     "--color-circular-progress": dark.circularProgress,
   }),
 };

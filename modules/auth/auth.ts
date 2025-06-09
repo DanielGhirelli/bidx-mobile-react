@@ -1,8 +1,12 @@
 import * as SecureStore from "expo-secure-store";
 import UserCompanyService from "../user_company/service/UserCompanyService";
-import { IUserCompany, iUserCompanyFromJson } from "../user_company/model/IUserCompany";
+import {
+  IUserCompany,
+  iUserCompanyFromJson,
+} from "../user_company/model/IUserCompany";
 import { IOAuth, iOAuthFromJson } from "./model/IOAuth";
 import OAuthService from "./service/OAuthService";
+import i18n from "@/config/i18n";
 
 class Auth {
   // validateCredentials: validate received credentials on HTTP Client
@@ -27,16 +31,25 @@ class Auth {
     await this.loadUserCompany();
   }
 
-  // loadUserCompany: fetch user company details
+  // loadUserCompany: fetch user company details and store
   async loadUserCompany(): Promise<IUserCompany> {
     const responseCompany = await UserCompanyService.getUserCompany();
-    const userCompany: IUserCompany = await responseCompany.json();
+    const userJSON = JSON.stringify(await responseCompany.json());
 
-    await SecureStore.setItemAsync("userCompany", JSON.stringify(userCompany), {
+    await SecureStore.setItemAsync("userCompany", userJSON, {
       keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
     });
 
+    const userCompany: IUserCompany = iUserCompanyFromJson(userJSON);
+
+    await this.setupLanguage(userCompany.user?.preferredLanguage ?? "en");
+
     return userCompany;
+  }
+
+  // setupLanguage: set selected user i18n
+  async setupLanguage(language: string): Promise<void> {
+    await i18n.changeLanguage(language);
   }
 
   // getUserCompany: retrieve stored user company data
