@@ -13,9 +13,29 @@ import { Link } from "expo-router";
 
 import i18n from "../../config/i18n";
 import { useThemeKey } from "@/hooks/useThemeKey";
+import { useFirebaseGoogleLogin } from "@/services/googleLogin";
 
 export default function Index() {
   const theme = useThemeKey();
+
+  const { promptAsync, request } = useFirebaseGoogleLogin(
+    async (googleUser) => {
+      const payload = {
+        google_id: googleUser.google_id,
+        user_data: {
+          email: googleUser.email,
+          given_name: googleUser.given_name,
+          family_name: googleUser.family_name,
+        },
+      };
+
+      await fetch("https://your-api.com/api/auth/google", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    }
+  );
 
   return (
     <View className={`flex-1`}>
@@ -63,7 +83,11 @@ export default function Index() {
             </TouchableOpacity>
           </Link>
 
-          <TouchableOpacity className="mb-5 w-full rounded border border-button-border bg-button-background p-3">
+          <TouchableOpacity
+            onPress={() => promptAsync()}
+            disabled={!request}
+            className="mb-5 w-full rounded border border-button-border bg-button-background p-3"
+          >
             <View className="flex-row items-center justify-center">
               <Ionicons
                 name="logo-google"

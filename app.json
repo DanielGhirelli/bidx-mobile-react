@@ -10,14 +10,16 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "io.bidx.client"
+      "bundleIdentifier": "io.bidx.client",
+      "googleServicesFile": "./config/GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo_white.png",
         "backgroundColor": "#13144A"
       },
-      "package": "io.bidx.client"
+      "package": "io.bidx.client",
+      "googleServicesFile": "./config/google-services.json"
     },
     "web": {
       "bundler": "metro",
@@ -50,7 +52,8 @@
           ]
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

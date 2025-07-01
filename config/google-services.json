@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "312625322727",
+    "project_id": "bidx-c89c4",
+    "storage_bucket": "bidx-c89c4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312625322727:android:5c9b5a19d694b82ad42042",
+        "android_client_info": {
+          "package_name": "io.bidx.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312625322727-8edbpoeh78ud8cf03va3blp9iuq1e6uk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.bidx.client",
+            "certificate_hash": "ef887315f00585e76f1447f4c6ba2e2920ee424b"
+          }
+        },
+        {
+          "client_id": "312625322727-un6kk12di4t6n3e5j32io9tj6vt5jih9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.bidx.client",
+            "certificate_hash": "54b7bc22569cea262129f06726444274e3addf5e"
+          }
+        },
+        {
+          "client_id": "312625322727-0cc09hnoblta3vsq1ica8tldnf5l165s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJtgMNTyqyAVAoIpVkRHR9UhZ2l2JrcOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312625322727-0cc09hnoblta3vsq1ica8tldnf5l165s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "312625322727-0pfvdg6vnf2favbisbp7bs6fsdmg0p2n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.bidx.client",
+                "app_store_id": "6504685230"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
