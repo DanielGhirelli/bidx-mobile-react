@@ -14,7 +14,8 @@
       "bundleIdentifier": "io.bidx.client",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "googleServicesFile": "./keys/GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +23,8 @@
         "backgroundColor": "#13144A"
       },
       "package": "io.bidx.client",
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "googleServicesFile": "./keys/google-services.json"
     },
     "web": {
       "bundler": "metro",
@@ -33,6 +35,7 @@
       "expo-router",
       "expo-secure-store",
       "expo-web-browser",
+      "@react-native-google-signin/google-signin",
       [
         "expo-splash-screen",
         {
@@ -40,12 +43,6 @@
           "resizeMode": "cover",
           "backgroundColor": "#13144A",
           "enableFullScreenImage_legacy": true
-        }
-      ],
-      [
-        "@react-native-google-signin/google-signin",
-        {
-          "iosUrlScheme": "com.googleusercontent.apps.312625322727-0pfvdg6vnf2favbisbp7bs6fsdmg0p2n"
         }
       ]
     ],

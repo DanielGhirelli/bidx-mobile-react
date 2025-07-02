@@ -14,8 +14,9 @@ This is the Mobile Application for BidX.
 
 ## Setup
 1. Execute the command `npm ci`
-2. Execute the command `npx expo-doctor`
-3. Validate no actions or errors are shown.
+2. Execute teh command `npx expo prebuild --clean` to generate native project directories.
+3. Execute the command `npx expo-doctor`
+4. Validate no actions or errors are shown.
 
 ## Running
 To load and run this project you must execute `npx expo run:ios` or `npx expo run:android`
