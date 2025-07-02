@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
-import { WEB_CLIENT_ID } from "@/keys/google_cloud";
 
 export default function useGoogleSignin() {
   useEffect(() => {
     GoogleSignin.configure({
-      webClientId: WEB_CLIENT_ID,
+      webClientId:
+        "312625322727-pp1ecka1eth4bbtcubehrrvertj7ca4u.apps.googleusercontent.com", // Web client (firebase)
       offlineAccess: true,
       forceCodeForRefreshToken: true,
     });

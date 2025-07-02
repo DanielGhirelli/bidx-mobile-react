@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "312625322727-0n4kfe0lq9tg44ke5nsn5f4tiee763n0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.bidx.client",
+            "certificate_hash": "b27d4cf0068e2da5c6dbefcea6ea1a0ac301ac32"
+          }
+        },
+        {
+          "client_id": "312625322727-5ij42rrm5u4onbip994d7ipdr5lc9jb4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.bidx.client",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "312625322727-8edbpoeh78ud8cf03va3blp9iuq1e6uk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,7 +46,7 @@
           }
         },
         {
-          "client_id": "312625322727-0cc09hnoblta3vsq1ica8tldnf5l165s.apps.googleusercontent.com",
+          "client_id": "312625322727-pp1ecka1eth4bbtcubehrrvertj7ca4u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
