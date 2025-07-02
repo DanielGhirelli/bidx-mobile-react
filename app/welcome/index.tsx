@@ -13,29 +13,11 @@ import { Link } from "expo-router";
 
 import i18n from "../../config/i18n";
 import { useThemeKey } from "@/hooks/useThemeKey";
-import { useFirebaseGoogleLogin } from "@/services/googleLogin";
+import useGoogleAuth from "@/hooks/useGoogleAuth";
 
 export default function Index() {
   const theme = useThemeKey();
-
-  const { promptAsync, request } = useFirebaseGoogleLogin(
-    async (googleUser) => {
-      const payload = {
-        google_id: googleUser.google_id,
-        user_data: {
-          email: googleUser.email,
-          given_name: googleUser.given_name,
-          family_name: googleUser.family_name,
-        },
-      };
-
-      await fetch("https://your-api.com/api/auth/google", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-    }
-  );
+  const { signIn } = useGoogleAuth();
 
   return (
     <View className={`flex-1`}>
@@ -84,19 +66,18 @@ export default function Index() {
           </Link>
 
           <TouchableOpacity
-            onPress={() => promptAsync()}
-            disabled={!request}
             className="mb-5 w-full rounded border border-button-border bg-button-background p-3"
+            onPress={() => signIn()}
           >
             <View className="flex-row items-center justify-center">
               <Ionicons
                 name="logo-google"
                 size={22}
-                color={theme.find("textPrimary")}
+                color="black"
                 style={{ marginRight: 8 }}
               />
               <Text className="font-source-sans text-text-primary text-[20px]">
-                {i18n.t("welcome.signin_with_google_button")}
+                Sign in with Google
               </Text>
             </View>
           </TouchableOpacity>

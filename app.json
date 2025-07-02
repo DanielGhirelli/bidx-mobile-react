@@ -2,7 +2,7 @@
   "expo": {
     "name": "BidX",
     "slug": "bidx",
-    "owner": "bidx-dev",
+    "owner": "bidx",
     "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -11,7 +11,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "io.bidx.client"
+      "bundleIdentifier": "io.bidx.client",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -37,6 +40,12 @@
           "resizeMode": "cover",
           "backgroundColor": "#13144A",
           "enableFullScreenImage_legacy": true
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.312625322727-0pfvdg6vnf2favbisbp7bs6fsdmg0p2n"
         }
       ]
     ],
