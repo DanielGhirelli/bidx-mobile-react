@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 import i18n from "../config/i18n";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { FormatterProvider } from "@/providers/FormatterContext";
+import { FormatterProvider } from "@/context/FormatterContext";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
 

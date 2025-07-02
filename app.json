@@ -2,6 +2,7 @@
   "expo": {
     "name": "BidX",
     "slug": "bidx",
+    "owner": "bidx-dev",
     "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,8 +11,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "io.bidx.client",
-      "googleServicesFile": "./config/GoogleService-Info.plist"
+      "bundleIdentifier": "io.bidx.client"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,15 +19,17 @@
         "backgroundColor": "#13144A"
       },
       "package": "io.bidx.client",
-      "googleServicesFile": "./config/google-services.json"
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
+      "output": "server",
       "favicon": "./assets/images/logo_white.png"
     },
     "plugins": [
       "expo-router",
+      "expo-secure-store",
+      "expo-web-browser",
       [
         "expo-splash-screen",
         {
@@ -36,24 +38,7 @@
           "backgroundColor": "#13144A",
           "enableFullScreenImage_legacy": true
         }
-      ],
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/SourceSans3-Bold.ttf",
-            "./assets/fonts/SourceSans3-ExtraBold.ttf",
-            "./assets/fonts/SourceSans3-ExtraLight.ttf",
-            "./assets/fonts/SourceSans3-Italic.ttf",
-            "./assets/fonts/SourceSans3-Light.ttf",
-            "./assets/fonts/SourceSans3-Medium.ttf",
-            "./assets/fonts/SourceSans3-Regular.ttf",
-            "./assets/fonts/SourceSans3-SemiBold.ttf"
-          ]
-        }
-      ],
-      "expo-secure-store",
-      "expo-web-browser"
+      ]
     ],
     "experiments": {
       "typedRoutes": true
