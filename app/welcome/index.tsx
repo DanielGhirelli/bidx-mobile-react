@@ -13,11 +13,27 @@ import { Link } from "expo-router";
 
 import i18n from "../../config/i18n";
 import { useThemeKey } from "@/hooks/useThemeKey";
-import useGoogleAuth from "@/hooks/useGoogleAuth";
+import {
+  GoogleSignin,
+  isSuccessResponse,
+} from "@react-native-google-signin/google-signin";
 
 export default function Index() {
   const theme = useThemeKey();
-  const { signIn } = useGoogleAuth();
+
+  const handleGoogleSign = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const response = await GoogleSignin.signIn();
+
+      if (isSuccessResponse(response)) {
+        const { idToken, user } = response.data;
+        console.log(user);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View className={`flex-1`}>
@@ -67,7 +83,7 @@ export default function Index() {
 
           <TouchableOpacity
             className="mb-5 w-full rounded border border-button-border bg-button-background p-3"
-            onPress={() => signIn()}
+            onPress={() => handleGoogleSign()}
           >
             <View className="flex-row items-center justify-center">
               <Ionicons

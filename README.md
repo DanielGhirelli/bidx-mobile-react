@@ -18,11 +18,7 @@ This is the Mobile Application for BidX.
 3. Validate no actions or errors are shown.
 
 ## Running
-1. To load and run this project you must execute `npx expo start`
-2. Now you can proceed by:
-   1. Type `i` for iOS simulator
-   2. Type `a` for Android
-   3. Proceed by download `Expo` App in your phone and Scan the QR Code.
+To load and run this project you must execute `npx expo run:ios` or `npx expo run:android`
 
 ## Deploying with Expo
 1. You must have installed `eas-cli`:
@@ -41,8 +37,7 @@ This is the Mobile Application for BidX.
 - Launch iOS or Android Device
   * Open VS Code command palette (`Cmd ⌘ + Shift + P`)
   * Run the `Launch ...` command.
-- Open Expo Management Popup
-Emulator
+- Open Expo Management Popup Emulator
   * Android: Shake your device or press `Cmd ⌘ + M`
   * iOS: Shake your device or press `Cmd ⌘ + D`
   * Terminal: Press `M`

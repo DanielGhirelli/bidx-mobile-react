@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import { FormatterProvider } from "@/context/FormatterContext";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { IOS_CLIENT_ID, WEB_CLIENT_ID } from "@/keys/google_cloud";
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -16,6 +18,15 @@ interface AppLayoutProps {
 export default function AppLayout({ children }: AppLayoutProps) {
   useLoadFontAwesome();
   const fontsLoaded = useLoadFonts();
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: WEB_CLIENT_ID,
+      offlineAccess: true,
+      forceCodeForRefreshToken: true,
+      iosClientId: IOS_CLIENT_ID,
+    });
+  }, []);
 
   useEffect(() => {
     if (fontsLoaded) {
