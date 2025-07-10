@@ -80,6 +80,7 @@ export default TabBarButton;
 
 const styles = StyleSheet.create({
   tabbarItem: {
+    marginTop: 5,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

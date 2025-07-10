@@ -31,6 +31,12 @@ export const light = {
     "rgba(235, 235, 235, 1)",
   ],
   circularProgress: "rgba(251, 251, 253, 1)",
+  shadow: [
+    "rgba(19, 20, 74, 0.05)",
+    "rgba(19, 20, 74, 0.03)",
+    "rgba(19, 20, 74, 0.01)",
+    "rgba(0, 0, 0, 0)",
+  ],
 
   // Images
   bodyBackground: require("../assets/images/body_background_light.jpg"),
@@ -66,6 +72,12 @@ export const dark = {
     "rgba(60, 60, 60, 1)",
   ],
   circularProgress: "rgba(208, 156, 52, 1)",
+  shadow: [
+    "rgba(242, 242, 242, 0.05)",
+    "rgba(242, 242, 242, 0.03)",
+    "rgba(242, 242, 242, 0.01)",
+    "rgba(0, 0, 0, 0)",
+  ],
 
   // Images
   bodyBackground: require("../assets/images/body_background_dark.jpg"),

@@ -10,6 +10,7 @@ import Animated, {
 
 import { useThemeKey } from "@/hooks/useThemeKey";
 import TabBarButton from "./TabBarButton";
+import { LinearGradient } from "expo-linear-gradient";
 
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const theme = useThemeKey();
@@ -42,6 +43,18 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
   return (
     <View onLayout={onTabbarLayout} style={styles.tabbar}>
+      <LinearGradient
+        colors={theme.find("shadow")}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 5,
+          zIndex: 10,
+        }}
+      />
+
       <Animated.View
         style={[
           animatedStyle,
@@ -52,8 +65,8 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             marginHorizontal: 12,
             height: 45,
             width: buttonWidth - 25,
-            top: 8,
-            left: 0
+            top: 13,
+            left: 0,
           },
         ]}
       />
@@ -119,14 +132,5 @@ const getStyles = (theme: any) =>
       backgroundColor: theme.find("background"),
       paddingVertical: 10,
       paddingBottom: 30,
-
-      // iOS shadow
-      shadowColor: theme.find("primary"),
-      shadowOpacity: 0.4,
-      shadowRadius: 4,
-      shadowOffset: { width: 0, height: 1 },
-
-      // Android shadow
-      elevation: 20,
     },
   });
