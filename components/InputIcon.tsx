@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useThemeKey } from "@/hooks/useThemeKey";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { IconName } from "@fortawesome/fontawesome-svg-core";
+import { Platform } from "react-native";
 
 export default function InputIcon({
   icon,
@@ -40,7 +41,11 @@ export default function InputIcon({
       <View
         className={`border 
           ${isFocused ? "border-text-hover" : errorMessage ? "border-error" : "border-gray-500"} 
-          bg-background rounded-lg flex-row items-center p-5`}
+          bg-background rounded-lg flex-row items-center`}
+        style={{
+          paddingVertical: Platform.OS === "android" ? 8 : 20,
+          paddingHorizontal: Platform.OS === "android" ? 12 : 20,
+        }}
       >
         {/* Left Icon */}
         <FontAwesomeIcon

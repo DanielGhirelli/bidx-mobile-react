@@ -7,11 +7,25 @@ import {
 import { IOAuth, iOAuthFromJson } from "./model/IOAuth";
 import OAuthService from "./service/OAuthService";
 import i18n from "@/config/i18n";
+import GoogleService from "./service/GoogleService";
 
 class Auth {
   // validateCredentials: validate received credentials on HTTP Client
   async validateCredentials(body: Record<string, string>): Promise<boolean> {
     const response = await OAuthService.getOAuthToken(body);
+
+    if (response.status === 200 || response.status === 201) {
+      const oAuth: IOAuth = iOAuthFromJson(await response.json());
+      await this.storeToken(oAuth.token);
+      return true;
+    }
+
+    return false;
+  }
+
+  // authWithGoogle: submit Google Credentials data to HTTP login
+  async authWithGoogle(body: Record<string, any>): Promise<boolean> {
+    const response = await GoogleService.authGoogleSignIn(body);
 
     if (response.status === 200 || response.status === 201) {
       const oAuth: IOAuth = iOAuthFromJson(await response.json());

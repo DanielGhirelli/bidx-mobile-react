@@ -41,6 +41,7 @@ export default function RootLayout() {
               headerLeft: () => <HeaderBack />,
               headerRight: () => <HeaderHelp />,
               headerTitle: () => <HeaderLogo />,
+              headerTitleAlign: "center",
             }}
           />
         </Stack>

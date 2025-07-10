@@ -98,7 +98,11 @@ export default function Index() {
           <View className="flex-1 h-[0.4px] bg-gray-400" />
         </View>
 
-        <TouchableOpacity className="rounded-full border border-button-border bg-button-background p-4 items-center justify-center ">
+        <TouchableOpacity
+          onPress={handleGoogleLogin}
+          disabled={loading}
+          className="rounded-full border border-button-border bg-button-background p-4 items-center justify-center "
+        >
           <Ionicons
             name="logo-google"
             size={30}

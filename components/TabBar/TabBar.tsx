@@ -119,10 +119,14 @@ const getStyles = (theme: any) =>
       backgroundColor: theme.find("background"),
       paddingVertical: 10,
       paddingBottom: 30,
+
+      // iOS shadow
       shadowColor: theme.find("primary"),
       shadowOpacity: 0.4,
       shadowRadius: 4,
       shadowOffset: { width: 0, height: 1 },
-      elevation: 1,
+
+      // Android shadow
+      elevation: 20,
     },
   });

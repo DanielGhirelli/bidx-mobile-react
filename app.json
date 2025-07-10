@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon_android.png",
+        "foregroundImage": "./assets/images/icon_android.png"
       },
       "package": "io.bidx.client",
       "edgeToEdgeEnabled": true,
@@ -44,10 +44,12 @@
           "backgroundColor": "#13144A",
           "enableFullScreenImage_legacy": true,
           "ios": {
-            "image": "./assets/images/splash_screen.png"
+            "image": "./assets/images/splash_screen.png",
+            "resizeMode": "cover"
           },
           "android": {
-            "image": "./assets/images/android_splash_screen.png"
+            "image": "./assets/images/splash_android_screen.png",
+            "resizeMode": "contain"
           }
         }
       ]

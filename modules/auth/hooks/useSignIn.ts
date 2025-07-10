@@ -1,5 +1,5 @@
-import { useState, useCallback, useContext } from "react";
-import i18n from "../../../config/i18n"; 
+import { useState, useCallback } from "react";
+import i18n from "../../../config/i18n";
 import { useAuthSession } from "@/providers/AuthProvider";
 
 interface UseSignIn {
@@ -17,8 +17,8 @@ interface UseSignIn {
 }
 
 export function useSignIn(): UseSignIn {
-  const {signIn} = useAuthSession();
-  
+  const { signIn, signInWithGoogle } = useAuthSession();
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +28,8 @@ export function useSignIn(): UseSignIn {
 
   const validateEmail = useCallback((email: string) => {
     if (!email) return i18n.t("login.email_input.invalid");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return i18n.t("login.email_input.invalid");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      return i18n.t("login.email_input.invalid");
     return "";
   }, []);
 
@@ -70,8 +71,14 @@ export function useSignIn(): UseSignIn {
     try {
       setLoading(true);
 
+      const isValid = await signInWithGoogle();
+
+      if (!isValid) {
+        setEmailError(i18n.t("login.email_input.error"));
+        return;
+      }
     } catch (error) {
-      console.error("Google login failed:", error);
+      setEmailError(i18n.t("An error occurred") + error);
     } finally {
       setLoading(false);
     }

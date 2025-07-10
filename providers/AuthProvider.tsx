@@ -7,14 +7,20 @@ import React, {
 } from "react";
 import { router } from "expo-router";
 import Auth from "../modules/auth/auth";
+import {
+  GoogleSignin,
+  isSuccessResponse,
+} from "@react-native-google-signin/google-signin";
 
 const AuthContext = createContext<{
   signIn: (email: string, password: string) => Promise<boolean>;
+  signInWithGoogle: () => Promise<boolean>;
   signOut: () => void;
   isUserSwitched: () => Promise<boolean>;
   token: React.RefObject<string | null> | null;
 }>({
   signIn: async () => false,
+  signInWithGoogle: async () => false,
   signOut: () => null,
   isUserSwitched: async () => false,
   token: null,
@@ -65,6 +71,37 @@ export default function AuthProvider({
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const response = await GoogleSignin.signIn();
+      const isValid = isSuccessResponse(response);
+
+      if (isValid) {
+        const { user } = response.data;
+
+        const success = await Auth.authWithGoogle({
+          google_id: user.id,
+          user_data: {
+            email: user.email,
+            given_name: user?.givenName ?? "",
+            family_name: user?.familyName ?? "",
+          },
+        });
+
+        if (success) {
+          router.replace("/(authorized)/(tabs)");
+          return true;
+        }
+      }
+
+      return false;
+    } catch (error) {
+      console.error("AuthProvider: Error google signing in", error);
+      return false;
+    }
+  };
+
   const signOut = async () => {
     try {
       await Auth.signOut();
@@ -76,7 +113,13 @@ export default function AuthProvider({
 
   return (
     <AuthContext.Provider
-      value={{ signIn, signOut, isUserSwitched, token: tokenRef }}
+      value={{
+        signIn,
+        signInWithGoogle,
+        signOut,
+        isUserSwitched,
+        token: tokenRef,
+      }}
     >
       {children}
     </AuthContext.Provider>

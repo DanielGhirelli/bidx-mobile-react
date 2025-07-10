@@ -22,6 +22,7 @@ export default function TabLayout(): ReactNode {
       <Tabs.Screen
         name="index"
         options={{
+          headerTitleAlign: "center",
           title: "Home",
           headerTitle: () => null,
           headerLeft: () => (
@@ -46,6 +47,7 @@ export default function TabLayout(): ReactNode {
       <Tabs.Screen
         name="dashboard"
         options={{
+          headerTitleAlign: "center",
           title: "Dashboards",
           headerRight: () => (
             <View style={{ right: 16, bottom: 3 }}>
@@ -64,6 +66,7 @@ export default function TabLayout(): ReactNode {
       <Tabs.Screen
         name="management"
         options={{
+          headerTitleAlign: "center",
           title: "Management",
           headerRight: () => (
             <View style={{ right: 16, bottom: 3 }}>
@@ -82,6 +85,7 @@ export default function TabLayout(): ReactNode {
       <Tabs.Screen
         name="profile"
         options={{
+          headerTitleAlign: "center",
           title: "Profile",
           headerRight: () => (
             <View style={{ right: 16, bottom: 3 }}>

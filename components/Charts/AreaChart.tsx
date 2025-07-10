@@ -59,7 +59,7 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
             const point = items[0];
 
             return (
-              <View style={{ width: 140 }}>
+              <View style={{ width: 145 }}>
                 <View
                   style={{
                     padding: 5,
