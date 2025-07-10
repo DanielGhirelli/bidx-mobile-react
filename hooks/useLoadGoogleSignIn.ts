@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
-export default function useGoogleSignin() {
+export default function useLoadGoogleSignIn() {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId:

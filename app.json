@@ -10,6 +10,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "icon": "./assets/images/icon.png",
       "supportsTablet": true,
       "bundleIdentifier": "io.bidx.client",
       "infoPlist": {
@@ -19,8 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo_white.png",
-        "backgroundColor": "#13144A"
+        "foregroundImage": "./assets/images/icon_android.png",
       },
       "package": "io.bidx.client",
       "edgeToEdgeEnabled": true,
@@ -29,7 +29,7 @@
     "web": {
       "bundler": "metro",
       "output": "server",
-      "favicon": "./assets/images/logo_white.png"
+      "favicon": "./assets/images/icon.png"
     },
     "plugins": [
       "expo-router",
@@ -39,10 +39,16 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/logo_white.png",
+          "image": "./assets/images/splash_screen.png",
           "resizeMode": "cover",
           "backgroundColor": "#13144A",
-          "enableFullScreenImage_legacy": true
+          "enableFullScreenImage_legacy": true,
+          "ios": {
+            "image": "./assets/images/splash_screen.png"
+          },
+          "android": {
+            "image": "./assets/images/android_splash_screen.png"
+          }
         }
       ]
     ],

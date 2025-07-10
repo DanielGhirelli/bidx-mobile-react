@@ -23,7 +23,7 @@ export function HeaderBack() {
 export function HeaderLogo() {
   return (
     <Image
-      source={require("../assets/images/logo_white.png")}
+      source={require("../assets/images/bidx_logo_white.png")}
       style={{ width: 70, height: 30 }}
       resizeMode="stretch"
     />

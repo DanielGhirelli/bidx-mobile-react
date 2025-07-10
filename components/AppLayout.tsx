@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import { FormatterProvider } from "@/context/FormatterContext";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
-import useGoogleSignin from "@/hooks/useGoogleSignin";
+import useLoadGoogleSignIn from "@/hooks/useLoadGoogleSignIn";
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ interface AppLayoutProps {
 
 export default function AppLayout({ children }: AppLayoutProps) {
   useLoadFontAwesome();
-  useGoogleSignin();
+  useLoadGoogleSignIn();
   const fontsLoaded = useLoadFonts();
 
   useEffect(() => {
