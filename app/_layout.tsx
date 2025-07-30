@@ -3,7 +3,7 @@ import { Stack } from "expo-router";
 
 import "./global.css";
 import AuthProvider from "@/providers/AuthProvider";
-import AppLayout from "@/components/AppLayout";
+import App from "@/App";
 import {
   HeaderBack,
   HeaderLogo,
@@ -14,7 +14,7 @@ import {
 export default function RootLayout() {
   return (
     <AuthProvider>
-      <AppLayout>
+      <App>
         <Stack
           screenOptions={{
             headerShown: false,
@@ -45,7 +45,7 @@ export default function RootLayout() {
             }}
           />
         </Stack>
-      </AppLayout>
+      </App>
     </AuthProvider>
   );
 }

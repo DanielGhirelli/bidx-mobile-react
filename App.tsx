@@ -3,18 +3,18 @@ import { SplashScreen } from "expo-router";
 import { I18nextProvider } from "react-i18next";
 import { useEffect } from "react";
 
-import i18n from "../config/i18n";
+import i18n from "./config/i18n";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { FormatterProvider } from "@/context/FormatterContext";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
 import useLoadGoogleSignIn from "@/hooks/useLoadGoogleSignIn";
 
-interface AppLayoutProps {
+interface AppProps {
   children: React.ReactNode;
 }
 
-export default function AppLayout({ children }: AppLayoutProps) {
+export default function App({ children }: AppProps) {
   useLoadFontAwesome();
   useLoadGoogleSignIn();
   const fontsLoaded = useLoadFonts();
