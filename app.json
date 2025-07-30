@@ -52,6 +52,14 @@
             "resizeMode": "contain"
           }
         }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "bidx-mobile-app",
+          "organization": "bidx"
+        }
       ]
     ],
     "experiments": {

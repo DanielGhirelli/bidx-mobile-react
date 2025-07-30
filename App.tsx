@@ -2,6 +2,7 @@ import React from "react";
 import { SplashScreen } from "expo-router";
 import { I18nextProvider } from "react-i18next";
 import { useEffect } from "react";
+import * as Sentry from "@sentry/react-native";
 
 import i18n from "./config/i18n";
 import { ThemeProvider } from "@/providers/ThemeProvider";
@@ -9,12 +10,18 @@ import { FormatterProvider } from "@/context/FormatterContext";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
 import useLoadGoogleSignIn from "@/hooks/useLoadGoogleSignIn";
+import Auth from "@/modules/auth/auth";
+
+Sentry.init({
+  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN ?? "",
+  sendDefaultPii: true,
+});
 
 interface AppProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
-export default function App({ children }: AppProps) {
+export default Sentry.wrap(function App({ children }: AppProps) {
   useLoadFontAwesome();
   useLoadGoogleSignIn();
   const fontsLoaded = useLoadFonts();
@@ -22,6 +29,15 @@ export default function App({ children }: AppProps) {
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync();
+
+      Auth.getUserCompany().then((company) => {
+        if (!company?.user?.id) return;
+
+        Sentry.setContext("Secure Store", {
+          companyId: company.user.companyId,
+          userId: company.user.id,
+        });
+      });
     }
   }, [fontsLoaded]);
 
@@ -36,4 +52,4 @@ export default function App({ children }: AppProps) {
       </FormatterProvider>
     </I18nextProvider>
   );
-}
+});

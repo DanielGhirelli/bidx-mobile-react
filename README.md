@@ -6,7 +6,7 @@ This is the Mobile Application for BidX.
 
 ## Requirements
 
-- Locally installed [Node v18.x (LTS)](https://nodejs.org/en/download/)
+- Locally installed [Node v20.x (LTS)](https://nodejs.org/en/download/)
 - Locally installed [Android Studio - develop for android](https://developer.android.com/studio/index.html)
 - Locally installed [Xcode - develop for iOS](https://developer.apple.com/xcode/)
 - Locally installed [VS Code](https://code.visualstudio.com/download) 
@@ -14,9 +14,11 @@ This is the Mobile Application for BidX.
 
 ## Setup
 1. Execute the command `npm ci`
-2. Execute teh command `npx expo prebuild --clean` to generate native project directories.
+2. Execute the command `npx expo prebuild --clean` to generate native project directories.
 3. Execute the command `npx expo-doctor`
-4. Validate no actions or errors are shown.
+   1. Validate no actions or errors are shown.
+4. Add `.env.local` in your root directoy
+   1. If no file is existent make a copy of the **.env.dist**
 
 ## Running
 To load and run this project you must execute `npx expo run:ios` or `npx expo run:android`
@@ -38,7 +40,7 @@ To load and run this project you must execute `npx expo run:ios` or `npx expo ru
 - Launch iOS or Android Device
   * Open VS Code command palette (`Cmd ⌘ + Shift + P`)
   * Run the `Launch ...` command.
-- Open Expo Management Popup Emulator
+- Open Expo / React Native Management Dev Menu
   * Android: Shake your device or press `Cmd ⌘ + M`
   * iOS: Shake your device or press `Cmd ⌘ + D`
   * Terminal: Press `M`
