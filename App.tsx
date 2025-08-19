@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { SplashScreen } from "expo-router";
 import { I18nextProvider } from "react-i18next";
 import { useEffect } from "react";
@@ -10,7 +10,9 @@ import { FormatterProvider } from "@/context/FormatterContext";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
 import useLoadGoogleSignIn from "@/hooks/useLoadGoogleSignIn";
+import useFirebaseMessaging from "@/hooks/useFirebaseMessaging";
 import Auth from "@/modules/auth/auth";
+import notifee from "@notifee/react-native";
 
 Sentry.init({
   dsn: process.env.EXPO_PUBLIC_SENTRY_DSN ?? "",
@@ -22,8 +24,40 @@ interface AppProps {
 }
 
 export default Sentry.wrap(function App({ children }: AppProps) {
+  // ⚙️ General Init
   useLoadFontAwesome();
   useLoadGoogleSignIn();
+
+  // 🔔 Initialize Firebase Messaging
+  const handleToken = useCallback((t: string) => {
+    console.log("Token:", t);
+  }, []);
+
+  const handleMessage = useCallback(async (msg: any) => {
+    console.log("FE Message:", msg);
+
+    await notifee.displayNotification({
+      title: msg?.notification?.title,
+      body: msg?.notification?.body,
+      android: {
+        channelId: "bidx-notification",
+      },
+      ios: {
+        foregroundPresentationOptions: {
+          alert: true,
+          sound: true,
+          badge: true,
+        },
+      },
+    });
+  }, []);
+
+  const { token: fcmToken } = useFirebaseMessaging({
+    onToken: handleToken,
+    onMessage: handleMessage,
+  });
+
+  // 🔤 Initialize Fonts
   const fontsLoaded = useLoadFonts();
 
   useEffect(() => {

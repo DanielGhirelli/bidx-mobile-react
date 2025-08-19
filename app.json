@@ -9,12 +9,22 @@
     "scheme": "bidx-mobile-app",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "notification": {
+      "icon": "./assets/images/icon_android.png",
+      "iosDisplayInForeground": true
+    },
     "ios": {
       "icon": "./assets/images/icon.png",
       "supportsTablet": true,
       "bundleIdentifier": "io.bidx.client",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
+      },
+      "entitlements": {
+        "aps-environment": "development"
       },
       "googleServicesFile": "./keys/GoogleService-Info.plist"
     },
@@ -24,7 +34,8 @@
       },
       "package": "io.bidx.client",
       "edgeToEdgeEnabled": true,
-      "googleServicesFile": "./keys/google-services.json"
+      "googleServicesFile": "./keys/google-services.json",
+      "permissions": ["POST_NOTIFICATIONS"]
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +47,25 @@
       "expo-secure-store",
       "expo-web-browser",
       "@react-native-google-signin/google-signin",
+      "@react-native-firebase/app",
+      "@react-native-firebase/messaging",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static",
+            "extraPods": [
+              { "name": "GoogleUtilities", "modular_headers": true },
+              { "name": "nanopb", "modular_headers": true }
+            ]
+          },
+          "android": {
+            "extraMavenRepos": [
+              "../../node_modules/@notifee/react-native/android/libs"
+            ]
+          }
+        }
+      ],
       [
         "expo-splash-screen",
         {
