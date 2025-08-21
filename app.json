@@ -24,7 +24,8 @@
         ]
       },
       "entitlements": {
-        "aps-environment": "development"
+        "aps-environment": "development",
+        "com.apple.developer.usernotifications.badge": true
       },
       "googleServicesFile": "./keys/GoogleService-Info.plist"
     },
@@ -34,8 +35,7 @@
       },
       "package": "io.bidx.client",
       "edgeToEdgeEnabled": true,
-      "googleServicesFile": "./keys/google-services.json",
-      "permissions": ["POST_NOTIFICATIONS"]
+      "googleServicesFile": "./keys/google-services.json"
     },
     "web": {
       "bundler": "metro",

@@ -33,7 +33,7 @@ export default Sentry.wrap(function App({ children }: AppProps) {
     console.log("Token:", t);
   }, []);
 
-  const handleMessage = useCallback(async (msg: any) => {
+  const handleForegroundMessage = useCallback(async (msg: any) => {
     console.log("FE Message:", msg);
 
     await notifee.displayNotification({
@@ -43,6 +43,7 @@ export default Sentry.wrap(function App({ children }: AppProps) {
         channelId: "bidx-notification",
       },
       ios: {
+        badgeCount: Number(msg.data?.badge) || 1,
         foregroundPresentationOptions: {
           alert: true,
           sound: true,
@@ -52,9 +53,14 @@ export default Sentry.wrap(function App({ children }: AppProps) {
     });
   }, []);
 
+  const handleMessageOpen = useCallback(async (msg: any) => {
+    console.log("Message Opened:", msg);
+  }, []);
+
   const { token: fcmToken } = useFirebaseMessaging({
     onToken: handleToken,
-    onMessage: handleMessage,
+    onForegroundMessage: handleForegroundMessage,
+    onMessageOpen: handleMessageOpen,
   });
 
   // 🔤 Initialize Fonts

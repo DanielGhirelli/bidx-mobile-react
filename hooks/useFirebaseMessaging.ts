@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Platform } from "react-native";
+import { Platform, PermissionsAndroid } from "react-native";
 import { getApp } from "@react-native-firebase/app";
 import {
   FirebaseMessagingTypes,
@@ -9,16 +9,19 @@ import {
   onMessage as messagingOnMessage,
   onTokenRefresh as messagingOnTokenRefresh,
   AuthorizationStatus,
+  onNotificationOpenedApp,
 } from "@react-native-firebase/messaging";
 import notifee, { AndroidImportance } from "@notifee/react-native";
 
 type UseFirebaseMessagingOptions = {
-  onMessage?: (msg: FirebaseMessagingTypes.RemoteMessage) => void;
+  onForegroundMessage?: (msg: FirebaseMessagingTypes.RemoteMessage) => void;
+  onMessageOpen?: (msg: FirebaseMessagingTypes.RemoteMessage) => void;
   onToken?: (token: string) => void;
 };
 
 export default function useFirebaseMessaging({
-  onMessage,
+  onForegroundMessage,
+  onMessageOpen,
   onToken,
 }: UseFirebaseMessagingOptions = {}) {
   const [token, setToken] = useState<string | null>(null);
@@ -32,7 +35,7 @@ export default function useFirebaseMessaging({
       const app = getApp();
       const m = getMessaging(app);
 
-      // iOS permission : code
+      // iOS permission
       if (Platform.OS === "ios") {
         const status = await messagingRequestPermission(m);
         const enabled =
@@ -41,15 +44,21 @@ export default function useFirebaseMessaging({
         if (!enabled) return;
       }
 
-      // Android permission : automatically called under `app.json`
+      // Android permission
       if (Platform.OS === "android") {
+        const status = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS
+        );
+        if (status !== "granted") return;
+
         await notifee.createChannel({
           id: "bidx-notification",
           name: "BidX",
           description: "This is the default notification channel for BidX.",
-          importance: AndroidImportance.DEFAULT,
+          importance: AndroidImportance.HIGH,
         });
       }
+
       const fcmToken = await messagingGetToken(m);
       if (!mounted) return;
 
@@ -58,7 +67,11 @@ export default function useFirebaseMessaging({
 
       // Foreground messages
       msgUnsubRef.current = messagingOnMessage(m, (rm) => {
-        onMessage?.(rm);
+        onForegroundMessage?.(rm);
+      });
+
+      msgUnsubRef.current = onNotificationOpenedApp(m, (rm) => {
+        onMessageOpen?.(rm);
       });
 
       // Token refresh
@@ -75,7 +88,7 @@ export default function useFirebaseMessaging({
       msgUnsubRef.current?.();
       tokenUnsubRef.current?.();
     };
-  }, [onMessage, onToken]);
+  }, [onForegroundMessage, onMessageOpen, onToken]);
 
   return { token };
 }

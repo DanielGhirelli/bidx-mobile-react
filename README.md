@@ -14,15 +14,16 @@ This is the Mobile Application for BidX.
 
 ## Setup
 1. Execute the command `npm ci`
-2. Execute the command `npx expo prebuild --clean` to generate native project directories.
+2. Execute the command `npm run prebuild` to generate native project directories.
 3. Execute the command `npx expo-doctor`
    1. Validate no actions or errors are shown.
 4. Add `.env.local` in your root directoy
    1. If no file is existent make a copy of the **.env.dist**
 
 ## Running
-To load and run this project you must execute `npx expo run:ios` or `npx expo run:android`
-
+- To load and run this project you must execute `npm run ios` or `npm run android`
+  * If device selection is necessary you can add `-- --device` in the command.
+ 
 ## Deploying with Expo
 1. You must have installed `eas-cli`:
    1. Execute `npm install -g eas-cli`
