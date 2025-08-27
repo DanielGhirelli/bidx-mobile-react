@@ -24,7 +24,7 @@
         ]
       },
       "entitlements": {
-        "aps-environment": "development",
+        "aps-environment": "production",
         "com.apple.developer.usernotifications.badge": true
       },
       "googleServicesFile": "./keys/GoogleService-Info.plist"
