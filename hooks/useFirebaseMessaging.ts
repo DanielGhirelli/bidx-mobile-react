@@ -16,7 +16,7 @@ import notifee, { AndroidImportance } from "@notifee/react-native";
 type UseFirebaseMessagingOptions = {
   onForegroundMessage?: (msg: FirebaseMessagingTypes.RemoteMessage) => void;
   onMessageOpen?: (msg: FirebaseMessagingTypes.RemoteMessage) => void;
-  onToken?: (token: string) => void;
+  onToken?: (token: string, platform: string) => void;
 };
 
 export default function useFirebaseMessaging({
@@ -63,7 +63,7 @@ export default function useFirebaseMessaging({
       if (!mounted) return;
 
       setToken(fcmToken);
-      onToken?.(fcmToken);
+      onToken?.(fcmToken, Platform.OS);
 
       // Foreground messages
       msgUnsubRef.current = messagingOnMessage(m, (rm) => {
@@ -77,7 +77,7 @@ export default function useFirebaseMessaging({
       // Token refresh
       tokenUnsubRef.current = messagingOnTokenRefresh(m, (t) => {
         setToken(t);
-        onToken?.(t);
+        onToken?.(t, Platform.OS);
       });
     };
 

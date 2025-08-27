@@ -1,4 +1,5 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
+
 import {
   faHouse,
   faChartSimple,
@@ -11,9 +12,8 @@ import {
   faHouse as farHouse,
   faChartSimple as farChartSimple,
 } from "@fortawesome/pro-regular-svg-icons";
-
-import {
-  faUserGear as falUserGear,
+import { 
+  faUserGear as falUserGear 
 } from "@fortawesome/pro-light-svg-icons";
 
 export default function useLoadFontAwesome() {

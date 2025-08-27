@@ -3,7 +3,7 @@ import React, {
   ReactNode,
   useContext,
   useEffect,
-  useRef,
+  useState,
 } from "react";
 import { router } from "expo-router";
 import Auth from "../modules/auth/auth";
@@ -12,23 +12,27 @@ import {
   isSuccessResponse,
 } from "@react-native-google-signin/google-signin";
 
-const AuthContext = createContext<{
+type AuthState = {
+  token: string | null;
+};
+
+type AuthContextType = {
+  initialized: boolean;
+  isAuthenticated: boolean;
+
   signIn: (email: string, password: string) => Promise<boolean>;
   signInWithGoogle: () => Promise<boolean>;
-  signOut: () => void;
+  signOut: () => Promise<void>;
   isUserSwitched: () => Promise<boolean>;
-  token: React.RefObject<string | null> | null;
-}>({
-  signIn: async () => false,
-  signInWithGoogle: async () => false,
-  signOut: () => null,
-  isUserSwitched: async () => false,
-  token: null,
-});
+};
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Access the context as a hook
-export function useAuthSession() {
-  return useContext(AuthContext);
+export function useAuthSession(): AuthContextType {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuthSession must be used within AuthProvider");
+  return ctx;
 }
 
 export default function AuthProvider({
@@ -36,12 +40,19 @@ export default function AuthProvider({
 }: {
   children: ReactNode;
 }): ReactNode {
-  const tokenRef = useRef<string | null>(null);
+  const [initialized, setInitialized] = useState(false);
+  const [state, setState] = useState<AuthState>({ token: null });
 
+  // One-time boot: hydrate token
   useEffect(() => {
-    (async (): Promise<void> => {
-      const token = await Auth.hasValidToken();
-      tokenRef.current = token || null;
+    (async () => {
+      try {
+        const token = await Auth.hasValidToken();
+
+        setState({ token: token ?? null });
+      } finally {
+        setInitialized(true);
+      }
     })();
   }, []);
 
@@ -58,13 +69,14 @@ export default function AuthProvider({
   const signIn = async (email: string, password: string) => {
     try {
       const isValid = await Auth.validateCredentials({ email, password });
+      if (!isValid) return false;
 
-      if (isValid) {
-        router.replace("/(authorized)/(tabs)");
-        return true;
-      }
+      // If valid sign in grab token
+      const token = await Auth.hasValidToken();
+      setState({ token: token ?? null });
 
-      return false;
+      router.replace("/(authorized)/(tabs)");
+      return true;
     } catch (error) {
       console.error("AuthProvider: Error signing in", error);
       return false;
@@ -73,7 +85,9 @@ export default function AuthProvider({
 
   const signInWithGoogle = async () => {
     try {
+      // Android-only: verify Play Services. iOS returns true silently.
       await GoogleSignin.hasPlayServices();
+
       const response = await GoogleSignin.signIn();
       const isValid = isSuccessResponse(response);
 
@@ -90,6 +104,10 @@ export default function AuthProvider({
         });
 
         if (success) {
+          // If valid sign in grab token
+          const token = await Auth.hasValidToken();
+          setState({ token: token ?? null });
+
           router.replace("/(authorized)/(tabs)");
           return true;
         }
@@ -105,20 +123,23 @@ export default function AuthProvider({
   const signOut = async () => {
     try {
       await Auth.signOut();
-      router.replace("/welcome");
     } catch (error) {
       console.error("AuthProvider: Error signing out", error);
+    } finally {
+      setState({ token: null });
+      router.replace("/welcome");
     }
   };
 
   return (
     <AuthContext.Provider
       value={{
+        initialized,
+        isAuthenticated: !!state.token,
         signIn,
         signInWithGoogle,
         signOut,
         isUserSwitched,
-        token: tokenRef,
       }}
     >
       {children}

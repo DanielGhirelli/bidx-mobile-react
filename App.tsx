@@ -13,7 +13,10 @@ import useLoadGoogleSignIn from "@/hooks/useLoadGoogleSignIn";
 import useFirebaseMessaging from "@/hooks/useFirebaseMessaging";
 import Auth from "@/modules/auth/auth";
 import notifee from "@notifee/react-native";
+import { useAuthSession } from "./providers/AuthProvider";
+import UserService from "./modules/user/service/UserService";
 
+// 📚 Initialize Sentry
 Sentry.init({
   dsn: process.env.EXPO_PUBLIC_SENTRY_DSN ?? "",
   sendDefaultPii: true,
@@ -25,17 +28,31 @@ interface AppProps {
 
 export default Sentry.wrap(function App({ children }: AppProps) {
   // ⚙️ General Init
+  const { isAuthenticated, isUserSwitched } = useAuthSession();
   useLoadFontAwesome();
   useLoadGoogleSignIn();
 
   // 🔔 Initialize Firebase Messaging
-  const handleToken = useCallback((t: string) => {
-    console.log("Token:", t);
-  }, []);
+  const handleToken = useCallback(
+    async (token: string, platform: string) => {
+      const switched = await isUserSwitched();
+      if (!switched) {
+        await UserService.registerDevice({ token, platform });
+      }
+    },
+    [isUserSwitched]
+  );
+
+  const handleMessageOpen = useCallback(
+    async (msg: any) => {
+      if (isAuthenticated) {
+        console.log("Message Opened:", msg);
+      }
+    },
+    [isAuthenticated]
+  );
 
   const handleForegroundMessage = useCallback(async (msg: any) => {
-    console.log("FE Message:", msg);
-
     await notifee.displayNotification({
       title: msg?.notification?.title,
       body: msg?.notification?.body,
@@ -51,10 +68,6 @@ export default Sentry.wrap(function App({ children }: AppProps) {
         },
       },
     });
-  }, []);
-
-  const handleMessageOpen = useCallback(async (msg: any) => {
-    console.log("Message Opened:", msg);
   }, []);
 
   const { token: fcmToken } = useFirebaseMessaging({

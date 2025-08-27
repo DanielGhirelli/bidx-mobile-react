@@ -76,7 +76,7 @@ export default function AreaChart({ tooltip, data }: AreaChartProps) {
                         },
                       })}
                   </Text>
-                  <View className="flex-1 h-[0.4px] bg-gray-400 mb-1" />
+                  <View className="flex-1 h-[0.4px] bg-gray-300 dark:bg-gray-500 mb-1" />
                   <View className="flex-row justify-between items-center">
                     <Text className="font-source-sans text-text-secondary text-sm">
                       {tooltip.kpi}:
