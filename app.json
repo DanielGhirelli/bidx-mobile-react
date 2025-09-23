@@ -23,6 +23,10 @@
           "remote-notification"
         ]
       },
+      "associatedDomains": [
+        "webcredentials:app.bidx.io",
+        "applinks:app.bidx.io"
+      ],
       "entitlements": {
         "aps-environment": "production",
         "com.apple.developer.usernotifications.badge": true
@@ -84,13 +88,23 @@
         }
       ],
       [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification_icon.png",
+          "color": "#13144A",
+          "defaultChannel": "bidx-notification",
+          "enableBackgroundRemoteNotifications": true
+        }
+      ],
+      [
         "@sentry/react-native/expo",
         {
           "url": "https://sentry.io/",
           "project": "bidx-mobile-app",
           "organization": "bidx"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

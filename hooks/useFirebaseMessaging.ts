@@ -29,8 +29,6 @@ export default function useFirebaseMessaging({
   const tokenUnsubRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
-    let mounted = true;
-
     const init = async () => {
       const app = getApp();
       const m = getMessaging(app);
@@ -60,8 +58,6 @@ export default function useFirebaseMessaging({
       }
 
       const fcmToken = await messagingGetToken(m);
-      if (!mounted) return;
-
       setToken(fcmToken);
       onToken?.(fcmToken, Platform.OS);
 
@@ -84,7 +80,6 @@ export default function useFirebaseMessaging({
     void init();
 
     return () => {
-      mounted = false;
       msgUnsubRef.current?.();
       tokenUnsubRef.current?.();
     };
