@@ -9,7 +9,14 @@ export function HeaderBack() {
   const router = useRouter();
 
   return (
-    <TouchableOpacity onPress={() => router.back()}>
+    <TouchableOpacity
+      onPress={() => router.back()}
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        width: 35,
+      }}
+    >
       <Ionicons name="chevron-back" size={24} color="white" />
     </TouchableOpacity>
   );
@@ -20,7 +27,7 @@ export function HeaderLogo() {
   return (
     <Image
       source={require("../assets/images/bidx_logo_white.png")}
-      style={{ width: 70, height: 30 }}
+      style={{ width: 80, height: 30, paddingHorizontal: 5 }}
       resizeMode="stretch"
     />
   );
@@ -31,6 +38,11 @@ export function HeaderHelp() {
   return (
     <TouchableOpacity
       onPress={() => Linking.openURL("https://go.bidx.io/knowledge")}
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        width: 35,
+      }}
     >
       <Ionicons name="help-circle" size={27} color="white" />
     </TouchableOpacity>
