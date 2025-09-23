@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  TouchableOpacity,
-  Image,
-  Linking,
-} from "react-native";
+import { TouchableOpacity, Image, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
@@ -45,7 +41,14 @@ export function HeaderHelp() {
 export function HeaderBackground() {
   return (
     <LinearGradient
-      colors={['#13144A', '#252666', '#424392', '#814e7e', '#FD6053', '#F8F9FA']}
+      colors={[
+        "#13144A",
+        "#252666",
+        "#424392",
+        "#814e7e",
+        "#FD6053",
+        "#F8F9FA",
+      ]}
       start={{ x: 0.5, y: -0.2 }}
       end={{ x: 0.5, y: 1.6 }}
       style={{ flex: 1 }}
