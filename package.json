@@ -49,7 +49,7 @@
     "expo-system-ui": "~5.0.11",
     "expo-web-browser": "~14.2.0",
     "firebase": "^11.10.0",
-    "i18next": "^24.2.2",
+    "i18next": "^25.4.1",
     "jest-expo": "~53.0.10",
     "lodash": "^4.17.21",
     "nativewind": "^4.1.23",
