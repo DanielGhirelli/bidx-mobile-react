@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Platform, PermissionsAndroid } from "react-native";
 import { getApp } from "@react-native-firebase/app";
 import {
+  AuthorizationStatus,
   FirebaseMessagingTypes,
   getMessaging,
-  requestPermission as messagingRequestPermission,
-  getToken as messagingGetToken,
-  onMessage as messagingOnMessage,
-  onTokenRefresh as messagingOnTokenRefresh,
-  AuthorizationStatus,
+  requestPermission,
+  getToken,
+  onMessage,
   onNotificationOpenedApp,
+  onTokenRefresh,
 } from "@react-native-firebase/messaging";
 import notifee, { AndroidImportance } from "@notifee/react-native";
 
@@ -26,16 +26,22 @@ export default function useFirebaseMessaging({
 }: UseFirebaseMessagingOptions = {}) {
   const [token, setToken] = useState<string | null>(null);
   const msgUnsubRef = useRef<(() => void) | null>(null);
+  const openUnsubRef = useRef<(() => void) | null>(null);
   const tokenUnsubRef = useRef<(() => void) | null>(null);
 
+  const initialized = useRef(false); // prevent StrictMode duplicate init in dev
+
   useEffect(() => {
+    if (initialized.current) return;
+    initialized.current = true;
+
     const init = async () => {
       const app = getApp();
       const m = getMessaging(app);
 
       // iOS permission
       if (Platform.OS === "ios") {
-        const status = await messagingRequestPermission(m);
+        const status = await requestPermission(m);
         const enabled =
           status === AuthorizationStatus.AUTHORIZED ||
           status === AuthorizationStatus.PROVISIONAL;
@@ -57,23 +63,31 @@ export default function useFirebaseMessaging({
         });
       }
 
-      const fcmToken = await messagingGetToken(m);
-      setToken(fcmToken);
-      onToken?.(fcmToken, Platform.OS);
+      // token
+      const fcmToken = await getToken(m);
+      if (fcmToken && fcmToken !== token) {
+        setToken(fcmToken);
+        onToken?.(fcmToken, Platform.OS);
+      }
 
-      // Foreground messages
-      msgUnsubRef.current = messagingOnMessage(m, (rm) => {
-        onForegroundMessage?.(rm);
+      // android-foreground
+      msgUnsubRef.current = onMessage(m, (rm) => {
+        if (Platform.OS === "android") {
+          onForegroundMessage?.(rm);
+        }
       });
 
-      msgUnsubRef.current = onNotificationOpenedApp(m, (rm) => {
+      // opened from background or ios-foreground
+      openUnsubRef.current = onNotificationOpenedApp(m, (rm) => {
         onMessageOpen?.(rm);
       });
 
-      // Token refresh
-      tokenUnsubRef.current = messagingOnTokenRefresh(m, (t) => {
-        setToken(t);
-        onToken?.(t, Platform.OS);
+      // token refresh
+      tokenUnsubRef.current = onTokenRefresh(m, (t) => {
+        if (t && t !== token) {
+          setToken(t);
+          onToken?.(t, Platform.OS);
+        }
       });
     };
 
@@ -81,6 +95,7 @@ export default function useFirebaseMessaging({
 
     return () => {
       msgUnsubRef.current?.();
+      openUnsubRef.current?.();
       tokenUnsubRef.current?.();
     };
   }, [onForegroundMessage, onMessageOpen, onToken]);

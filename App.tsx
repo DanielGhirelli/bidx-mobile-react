@@ -28,7 +28,7 @@ interface AppProps {
 
 export default Sentry.wrap(function App({ children }: AppProps) {
   // ⚙️ General Init
-  const { isAuthenticated, isUserSwitched } = useAuthSession();
+  const { isUserSwitched, hasValidToken } = useAuthSession();
   useLoadFontAwesome();
   useLoadGoogleSignIn();
 
@@ -36,6 +36,7 @@ export default Sentry.wrap(function App({ children }: AppProps) {
   const handleToken = useCallback(
     async (token: string, platform: string) => {
       const switched = await isUserSwitched();
+
       if (!switched) {
         await UserService.registerDevice({ token, platform });
       }
@@ -43,16 +44,9 @@ export default Sentry.wrap(function App({ children }: AppProps) {
     [isUserSwitched]
   );
 
-  const handleMessageOpen = useCallback(
-    async (msg: any) => {
-      if (isAuthenticated) {
-        console.log("Message Opened:", msg);
-      }
-    },
-    [isAuthenticated]
-  );
+  const showForegroundMessage = useCallback(async (msg: any) => {
+    console.log("Initial showForegroundMessage");
 
-  const handleForegroundMessage = useCallback(async (msg: any) => {
     await notifee.displayNotification({
       title: msg?.notification?.title,
       body: msg?.notification?.body,
@@ -70,9 +64,20 @@ export default Sentry.wrap(function App({ children }: AppProps) {
     });
   }, []);
 
-  const { token: fcmToken } = useFirebaseMessaging({
+  const handleMessageOpen = useCallback(
+    async (msg: any) => {
+      const token = await hasValidToken();
+
+      if (token) {
+        console.log("Message Opened:", msg);
+      }
+    },
+    [hasValidToken]
+  );
+
+  useFirebaseMessaging({
     onToken: handleToken,
-    onForegroundMessage: handleForegroundMessage,
+    onForegroundMessage: showForegroundMessage,
     onMessageOpen: handleMessageOpen,
   });
 

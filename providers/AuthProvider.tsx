@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useState,
+  useMemo,
 } from "react";
 import { router } from "expo-router";
 import Auth from "../modules/auth/auth";
@@ -24,14 +25,17 @@ type AuthContextType = {
   signInWithGoogle: () => Promise<boolean>;
   signOut: () => Promise<void>;
   isUserSwitched: () => Promise<boolean>;
+  hasValidToken: () => Promise<boolean>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Access the context as a hook
+// Hook to access Auth context
 export function useAuthSession(): AuthContextType {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuthSession must be used within AuthProvider");
+  if (!ctx) {
+    throw new Error("useAuthSession must be used within AuthProvider");
+  }
   return ctx;
 }
 
@@ -43,18 +47,35 @@ export default function AuthProvider({
   const [initialized, setInitialized] = useState(false);
   const [state, setState] = useState<AuthState>({ token: null });
 
-  // One-time boot: hydrate token
+  // Hydrate token once on mount & first load
   useEffect(() => {
+    let mounted = true;
+
     (async () => {
       try {
         const token = await Auth.hasValidToken();
-
-        setState({ token: token ?? null });
+        if (mounted) setState({ token: token ?? null });
+      } catch (err) {
+        console.error("AuthProvider: Error hydrating token", err);
       } finally {
-        setInitialized(true);
+        if (mounted) setInitialized(true);
       }
     })();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
+
+  const hasValidToken = async () => {
+    try {
+      const token = await Auth.hasValidToken();
+      return !!token;
+    } catch (error) {
+      console.error("AuthProvider: Error checking user token", error);
+      return false;
+    }
+  };
 
   const isUserSwitched = async () => {
     try {
@@ -71,7 +92,7 @@ export default function AuthProvider({
       const isValid = await Auth.validateCredentials({ email, password });
       if (!isValid) return false;
 
-      // If valid sign in grab token
+      // If valid fetch token
       const token = await Auth.hasValidToken();
       setState({ token: token ?? null });
 
@@ -104,7 +125,7 @@ export default function AuthProvider({
         });
 
         if (success) {
-          // If valid sign in grab token
+          // If valid fetch token
           const token = await Auth.hasValidToken();
           setState({ token: token ?? null });
 
@@ -131,18 +152,18 @@ export default function AuthProvider({
     }
   };
 
-  return (
-    <AuthContext.Provider
-      value={{
-        initialized,
-        isAuthenticated: !!state.token,
-        signIn,
-        signInWithGoogle,
-        signOut,
-        isUserSwitched,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo<AuthContextType>(
+    () => ({
+      initialized,
+      isAuthenticated: !!state.token,
+      signIn,
+      signInWithGoogle,
+      signOut,
+      isUserSwitched,
+      hasValidToken,
+    }),
+    [initialized, state.token]
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

@@ -11,7 +11,6 @@
     "newArchEnabled": true,
     "notification": {
       "icon": "./assets/images/icon_android.png",
-      "iosDisplayInForeground": true
     },
     "ios": {
       "icon": "./assets/images/icon.png",
@@ -28,8 +27,7 @@
         "applinks:app.bidx.io"
       ],
       "entitlements": {
-        "aps-environment": "production",
-        "com.apple.developer.usernotifications.badge": true
+        "aps-environment": "production"
       },
       "googleServicesFile": "./keys/GoogleService-Info.plist"
     },
