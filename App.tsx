@@ -36,6 +36,7 @@ export default Sentry.wrap(function App({ children }: AppProps) {
     await notifee.displayNotification({
       title: msg?.notification?.title,
       body: msg?.notification?.body,
+      data: msg?.data,
       android: {
         channelId: "bidx-notification",
       },
