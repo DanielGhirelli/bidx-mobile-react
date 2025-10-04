@@ -11,7 +11,7 @@ import {
   onNotificationOpenedApp,
   onTokenRefresh,
 } from "@react-native-firebase/messaging";
-import notifee, { AndroidImportance } from "@notifee/react-native";
+import notifee, { AndroidImportance, EventType } from "@notifee/react-native";
 
 type UseFirebaseMessagingOptions = {
   onForegroundMessage?: (msg: FirebaseMessagingTypes.RemoteMessage) => void;
@@ -26,6 +26,7 @@ export default function useFirebaseMessaging({
 }: UseFirebaseMessagingOptions = {}) {
   const [token, setToken] = useState<string | null>(null);
   const msgUnsubRef = useRef<(() => void) | null>(null);
+  const androidUnsubRef = useRef<(() => void) | null>(null);
   const openUnsubRef = useRef<(() => void) | null>(null);
   const tokenUnsubRef = useRef<(() => void) | null>(null);
 
@@ -70,12 +71,20 @@ export default function useFirebaseMessaging({
         onToken?.(fcmToken, Platform.OS);
       }
 
-      // android-foreground
+      // android-foreground (show)
       msgUnsubRef.current = onMessage(m, (rm) => {
         if (Platform.OS === "android") {
           onForegroundMessage?.(rm);
         }
       });
+      // android-foreground (opened)
+      androidUnsubRef.current = notifee.onForegroundEvent(
+        async ({ type, detail }) => {
+          if (type === EventType.PRESS) {
+            onMessageOpen?.(detail as any);
+          }
+        }
+      );
 
       // opened from background or ios-foreground
       openUnsubRef.current = onNotificationOpenedApp(m, (rm) => {
@@ -95,6 +104,7 @@ export default function useFirebaseMessaging({
 
     return () => {
       msgUnsubRef.current?.();
+      androidUnsubRef.current?.();
       openUnsubRef.current?.();
       tokenUnsubRef.current?.();
     };

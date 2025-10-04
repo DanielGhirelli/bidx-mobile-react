@@ -8,7 +8,7 @@ import i18n from "@/config/i18n";
 import { KpiData } from "@/modules/kpi/model/KpiData";
 import AreaChart from "@/components/Charts/AreaChart";
 import Kpi from "../../../../modules/kpi/kpi";
-import { useFormatter } from "@/context/FormatterContext";
+import { useFormatter } from "@/providers/FormatterContext";
 import { useThemeKey } from "@/hooks/useThemeKey";
 
 export default function ClicksCard() {

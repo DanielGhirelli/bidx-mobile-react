@@ -6,15 +6,12 @@ import * as Sentry from "@sentry/react-native";
 
 import i18n from "./config/i18n";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { FormatterProvider } from "@/context/FormatterContext";
 import useLoadFonts from "@/hooks/useLoadFonts";
 import useLoadFontAwesome from "@/hooks/useLoadFontAwesome";
 import useLoadGoogleSignIn from "@/hooks/useLoadGoogleSignIn";
 import useFirebaseMessaging from "@/hooks/useFirebaseMessaging";
-import Auth from "@/modules/auth/auth";
 import notifee from "@notifee/react-native";
 import { useAuthSession } from "./providers/AuthProvider";
-import UserService from "./modules/user/service/UserService";
 
 // 📚 Initialize Sentry
 Sentry.init({
@@ -28,22 +25,11 @@ interface AppProps {
 
 export default Sentry.wrap(function App({ children }: AppProps) {
   // ⚙️ General Init
-  const { isUserSwitched, hasValidToken } = useAuthSession();
+  const { hasValidToken } = useAuthSession();
   useLoadFontAwesome();
   useLoadGoogleSignIn();
 
   // 🔔 Initialize Firebase Messaging
-  const handleToken = useCallback(
-    async (token: string, platform: string) => {
-      const switched = await isUserSwitched();
-
-      if (!switched) {
-        await UserService.registerDevice({ token, platform });
-      }
-    },
-    [isUserSwitched]
-  );
-
   const showForegroundMessage = useCallback(async (msg: any) => {
     console.log("Initial showForegroundMessage");
 
@@ -52,14 +38,6 @@ export default Sentry.wrap(function App({ children }: AppProps) {
       body: msg?.notification?.body,
       android: {
         channelId: "bidx-notification",
-      },
-      ios: {
-        badgeCount: Number(msg.data?.badge) || 1,
-        foregroundPresentationOptions: {
-          alert: true,
-          sound: true,
-          badge: true,
-        },
       },
     });
   }, []);
@@ -76,7 +54,6 @@ export default Sentry.wrap(function App({ children }: AppProps) {
   );
 
   useFirebaseMessaging({
-    onToken: handleToken,
     onForegroundMessage: showForegroundMessage,
     onMessageOpen: handleMessageOpen,
   });
@@ -87,15 +64,6 @@ export default Sentry.wrap(function App({ children }: AppProps) {
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync();
-
-      Auth.getUserCompany().then((company) => {
-        if (!company?.user?.id) return;
-
-        Sentry.setContext("Secure Store", {
-          companyId: company.user.companyId,
-          userId: company.user.id,
-        });
-      });
     }
   }, [fontsLoaded]);
 
@@ -105,9 +73,7 @@ export default Sentry.wrap(function App({ children }: AppProps) {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <FormatterProvider>
-        <ThemeProvider>{children}</ThemeProvider>
-      </FormatterProvider>
+      <ThemeProvider>{children}</ThemeProvider>
     </I18nextProvider>
   );
 });

@@ -1,6 +1,6 @@
 import { useThemeKey } from "@/hooks/useThemeKey";
 import { ChartData } from "@/modules/core/model/ChartData";
-import { useFormatter } from "@/context/FormatterContext";
+import { useFormatter } from "@/providers/FormatterContext";
 import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
